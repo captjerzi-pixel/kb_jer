@@ -1,0 +1,303 @@
+<h2>
+  <strong>Variant 1: One SOGE On-Prem Airflow instance for ingestion and Databricks orchestration<br/>
+  </strong>
+</h2>
+<p>
+  <ac:image ac:height="250">
+    <ri:attachment ri:filename="1_aifflow.png"/>
+  </ac:image>
+</p>
+<h2>
+  <br/>
+  <strong>Variant 2: One KB On-Prem Airflow instance for ingestion and one SOGE On-Prem Airflow instance for Databricks orchestration<br/>
+  </strong>
+</h2>
+<p>
+  <ac:image ac:height="250">
+    <ri:attachment ri:filename="2_aifflows.png"/>
+  </ac:image>
+</p>
+<h2>Parguet gen. tool</h2>
+<h3>Current State</h3>
+<ul>
+  <li data-uuid="f87c7801-4705-4960-962f-36ec82c2e879">There are <strong>435 workflows (WFs)</strong> in Informatica that load data into TD. Of these, <strong>113 are scheduled using a trigger condition</strong> that verifies whether data is available on the source system before execution.</li>
+  <li data-uuid="130f74fd-92ff-4335-9d47-76dd1d74e79d">In addition, there are currently approximately <strong> <a href="https://wiki.kb.cz/spaces/ODP/pages/1474297861/KB+Process+Scheduling+-+Orchestration#KBProcessSchedulingOrchestration-Offloader-TransferdatatoBDP%26TeradatafromKBsystems(exclBDP%26TD)">105 data loads</a> via Adoki and Offloader from internal systems to Cloudera</strong>, and <strong> <a href="https://wiki.kb.cz/spaces/ODP/pages/1474297861/KB+Process+Scheduling+-+Orchestration#KBProcessSchedulingOrchestration-Offloader-TransferdatatoBDP%26TeradatafromKBsystems(exclBDP%26TD)">5 data loads to TD (via Kafka + Elastic)</a> </strong>.</li>
+</ul>
+<h3>Open Point</h3>
+<p>For the <strong>113 Informatica workflows that rely on source data availability checks</strong>, it will likely not be possible to integrate a direct query from Gen2 Orchestration to the source system's internal knowledge base (KB) to verify data availability. As a result, the on-premises SOGE Airflow environment may not be able to determine precisely when parquet file generation should be triggered.</p>
+<p>
+  <br/>
+</p>
+<h2>Concept of Ingest tool for DataMesh</h2>
+<h3>
+  <strong> <br/>
+  </strong>A) Centralized Parameterized Ingest Tool</h3>
+<p>The centralized Ingest Tool has access to all ingest configurations and automatically executes all defined ingestion flows based on these configurations.</p>
+<p>
+  <ac:image ac:height="301" ac:width="500">
+    <ri:attachment ri:filename="1_pipe_e.png"/>
+  </ac:image>
+</p>
+<h4>Advantages</h4>
+<ul>
+  <li>All ingestion logic is maintained in a single place.</li>
+  <li>Functional changes only need to be implemented in the central tool.</li>
+  <li>No generation or maintenance of individual flow implementations is required.</li>
+  <li>Provides centralized governance and operational control.</li>
+</ul>
+<h4>Disadvantages</h4>
+<ul>
+  <li>Ownership and operational responsibility cannot be clearly assigned to individual Business Unit squads.</li>
+  <li>Dataset-specific issues (e.g., an invalid Parquet schema) must be investigated and resolved by the Ingest Tool squad.</li>
+  <li>Business squads cannot independently trigger or rerun their own flows when required.</li>
+  <li>A failure or outage of the central tool may impact all ingestion flows.</li>
+  <li>Creates a strong operational dependency on a single component.</li>
+</ul>
+<p>
+  <br/>
+</p>
+<h3>B1) Ingest Template Generator</h3>
+<p>The generator creates a complete ingestion flow as a standalone process based on the configuration. The generated flow is fully self-contained and does not require access to metadata or any shared runtime layer during execution.</p>
+<p>
+  <ac:image ac:width="500">
+    <ri:attachment ri:filename="500_pipes_e.png"/>
+  </ac:image>
+</p>
+<p>
+  <br/>
+</p>
+<h4>Advantages</h4>
+<ul>
+  <li>Each flow has a clearly defined owner.</li>
+  <li>Flows are fully independent and can run in parallel.</li>
+  <li>A failure in one flow does not affect other flows.</li>
+  <li>Operational responsibility can be delegated to the corresponding squad.</li>
+  <li>Flow behavior is controlled through metadata configuration, in line with Data Mesh principles.</li>
+</ul>
+<h4>Disadvantages</h4>
+<ul>
+  <li>The same functionality is duplicated across all generated flows.</li>
+  <li>Each flow contains its own copy of the ingestion logic.</li>
+  <li>Adding new functionality or fixing defects requires regeneration and redeployment of all flows.</li>
+  <li>Changes to shared logic must be propagated to all generated instances.</li>
+  <li>The concept requires a mechanism for bulk regeneration and redeployment of all flows.</li>
+</ul>
+<h3>B2)  Versioned Template Library</h3>
+<p>
+  <br/>The Templates Library provides versioned ingest flow templates for different processing patterns, such as full, delta, or kafka ingestion. Each template contains the complete ingestion implementation, while squad-specific behavior is configured through referenced YAML files. A squad selects the appropriate template and deploys a copy of it, together with its YAML configuration, into its own Git repository. From that point onward, the squad owns the resulting flow, including its deployment, operation, and decision on when to upgrade to a newer template version.<br/>
+  <br/>The Ingest Tool Owner Squad maintains only the central templates and, when an important update such as a security patch is released, requests all squads to independently adopt, test, and deploy the updated template.</p>
+<p>
+  <br/>
+</p>
+<p>
+  <ac:image ac:width="500">
+    <ri:attachment ri:filename="500_pipes_b2.png"/>
+  </ac:image>
+</p>
+<p>
+  <br/>
+</p>
+<p>
+  <br/>
+</p>
+<h3>Advantages</h3>
+<ul>
+  <li data-uuid="2c2f4a08-6d32-4b7e-a76a-8cf9c18c1b1d">Each flow is self-contained, independently deployable, and owned by the corresponding squad.</li>
+  <li data-uuid="554dc25e-2a5c-4092-a2de-078eb3c3fcd5">Squads can decide when to adopt a new template version.</li>
+  <li data-uuid="cd209659-a421-479d-9aca-5f14d99e4cac">Failures and upgrades of one flow do not directly affect other flows.</li>
+  <li data-uuid="3bc23d7c-7fd3-4ce7-8cf7-808906adebe8">Different template versions can coexist, enabling gradual migration.</li>
+  <li data-uuid="99aa7bd6-ae44-4e76-9572-344159a31705">Security fixes and functional enhancements can be distributed as versioned template releases.</li>
+  <li data-uuid="64824a9e-a6e6-4721-b846-40dfdbdaa70b">Pull-request validation can verify compatibility between the selected template version and its YAML configuration.</li>
+  <li data-uuid="bcb0d239-33f1-4367-a1f9-926616e2af98">Restricted customization (just YAML config path?) helps preserve standardized behavior across squads.</li>
+  <li data-uuid="80791ea0-31ee-4af9-bcb6-a9f2a1f36a7c">Squads can select a template appropriate for a specific ingestion use case, such as full, delta, or Spark processing.</li>
+</ul>
+<h3>Disadvantages</h3>
+<ul>
+  <li data-uuid="60a21b81-b64b-4346-9b2f-53c7d1a0474a">Multiple template types and versions must be developed, tested, documented, and supported.</li>
+  <li data-uuid="265dc5bd-049a-43d2-99b9-8e76a9a7b115">A central inventory of flows, owners, and deployed template versions is required.</li>
+  <li data-uuid="9f6c932f-414a-4f65-af8b-6895b5fc7367">Security and critical defect fixes depend on squads performing the requested upgrade.</li>
+  <li data-uuid="30dd3f3d-c80f-4d91-bcfb-7f8ecc295567">A lifecycle policy is required to prevent unsupported versions from remaining in production indefinitely.</li>
+  <li data-uuid="e4a9e7ad-b7ef-4259-8c0d-518028452d4f">Validation must reflect the exact configuration schema supported by each template version.</li>
+  <li data-uuid="55a32b06-48a7-495e-bc3a-111a7cecc094">A thick flow can hide the execution details of individual objects behind a single processing cycle.</li>
+  <li data-uuid="45c67ef8-b8b9-4d5b-9450-bd8214523296">Full and delta processing may require separate flows, increasing the total number of deployed flows.</li>
+  <li data-uuid="6d659aac-f0be-495d-82ec-2fd3d7aba2a5">Common enhancements may need to be implemented separately across several template types.</li>
+</ul>
+<h3>C) Ingest Framework with Generated Thin Clients</h3>
+<p>The generator creates only a thin client for each metadata-driven flow. The client contains minimal logic and primarily serves as an independently owned execution unit. During runtime, the client loads its configuration and passes it to a shared framework that performs the actual ingestion processing and Parquet generation.<br/>
+  <br/>This approach combines decentralized flow ownership with centralized implementation of ingestion logic, providing a balance between operational autonomy and maintainability.</p>
+<p>
+  <ac:image ac:width="500">
+    <ri:attachment ri:filename="500_thin_clients_e.png"/>
+  </ac:image>
+</p>
+<p>
+  <br/>
+</p>
+<h4>Advantages</h4>
+<ul>
+  <li>Each flow has a clearly defined owner and operational responsibility.</li>
+  <li>Flows can run independently and in parallel.</li>
+  <li>Ingestion and Parquet generation logic is centralized in a shared framework.</li>
+  <li>Framework enhancements can be deployed centrally without regenerating all flows.</li>
+  <li>Minimizes duplication of common functionality.</li>
+  <li>Supports a Data Mesh ownership model.</li>
+</ul>
+<h4>Disadvantages</h4>
+<ul>
+  <li>Introduces a dependency on a shared framework.</li>
+  <li>A defect in the framework may impact multiple flows simultaneously.</li>
+  <li>Compatibility between the framework and generated clients must be managed.</li>
+  <li>The shared framework becomes an additional component that must be versioned, tested, and operated.</li>
+</ul>
+<p>
+  <br/>
+</p>
+<h2>Comparison of Concepts</h2>
+<table class="wrapped">
+  <thead>
+    <tr>
+      <th>Criterion</th>
+      <th>Centralized Parameterized Ingest Tool</th>
+      <th>Ingest Template Generator (B1)</th>
+      <th>Versioned Template Library (B2)</th>
+      <th>Ingest Framework with Thin Clients (C)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <strong>Flow Ownership</strong>
+      </td>
+      <td>❌ Not clearly assigned</td>
+      <td>✅ Clearly assigned</td>
+      <td>✅ Clearly assigned</td>
+      <td>✅ Clearly assigned</td>
+    </tr>
+    <tr>
+      <td>
+        <strong>Operational Responsibility</strong>
+      </td>
+      <td>❌ Centralized in Ingest Tool Squad</td>
+      <td>✅ Assigned to Business Squads</td>
+      <td>✅ Assigned to Business Squads</td>
+      <td>✅ Assigned to Business Squads</td>
+    </tr>
+    <tr>
+      <td>
+        <strong>Flow Isolation</strong>
+      </td>
+      <td>❌ Low</td>
+      <td>✅ High</td>
+      <td>✅ High</td>
+      <td>✅ High</td>
+    </tr>
+    <tr>
+      <td>
+        <strong>Parallel Execution</strong>
+      </td>
+      <td>⚠️ Limited by central component</td>
+      <td>✅ Fully independent</td>
+      <td>✅ Fully independent</td>
+      <td>✅ Fully independent</td>
+    </tr>
+    <tr>
+      <td>
+        <strong>Logic Reuse</strong>
+      </td>
+      <td>✅ Centralized</td>
+      <td>❌ Duplicated across all flows</td>
+      <td>⚠️ Reused through versioned templates</td>
+      <td>✅ Centralized in framework</td>
+    </tr>
+    <tr>
+      <td>
+        <strong>Maintainability</strong>
+      </td>
+      <td>✅ Changes implemented once</td>
+      <td>❌ Requires regeneration of all flows</td>
+      <td>⚠️ Changes delivered via new template versions</td>
+      <td>✅ Framework updated centrally</td>
+    </tr>
+    <tr>
+      <td>
+        <strong>Upgrade Effort</strong>
+      </td>
+      <td>✅ Low</td>
+      <td>❌ High</td>
+      <td>⚠️ Managed by individual squads</td>
+      <td>✅ Low</td>
+    </tr>
+    <tr>
+      <td>
+        <strong>Failure Isolation</strong>
+      </td>
+      <td>❌ Low</td>
+      <td>✅ High</td>
+      <td>✅ High</td>
+      <td>⚠️ Medium</td>
+    </tr>
+    <tr>
+      <td>
+        <strong>Platform Complexity</strong>
+      </td>
+      <td>✅ Low</td>
+      <td>⚠️ Medium</td>
+      <td>⚠️ Medium-High</td>
+      <td>⚠️ Medium</td>
+    </tr>
+    <tr>
+      <td>
+        <strong>Data Mesh Alignment</strong>
+      </td>
+      <td>❌ Low</td>
+      <td>✅ High</td>
+      <td>✅ High</td>
+      <td>✅ High</td>
+    </tr>
+    <tr>
+      <td>
+        <strong>Standardization Across Squads</strong>
+      </td>
+      <td>✅ High</td>
+      <td>⚠️ Depends on regeneration</td>
+      <td>✅ High</td>
+      <td>✅ High</td>
+    </tr>
+    <tr>
+      <td>
+        <strong>Version Flexibility</strong>
+      </td>
+      <td>❌ None</td>
+      <td>❌ Limited</td>
+      <td>✅ Strong</td>
+      <td>⚠️ Limited by framework version</td>
+    </tr>
+    <tr>
+      <td>
+        <strong>Security Fix Adoption</strong>
+      </td>
+      <td>✅ Immediate</td>
+      <td>❌ Requires regeneration</td>
+      <td>⚠️ Requires squad upgrade</td>
+      <td>✅ Immediate</td>
+    </tr>
+    <tr>
+      <td>
+        <strong>Long-Term Governance</strong>
+      </td>
+      <td>✅ Simple</td>
+      <td>❌ Difficult</td>
+      <td>⚠️ Requires lifecycle management</td>
+      <td>⚠️ Requires framework governance</td>
+    </tr>
+  </tbody>
+</table>
+<p>
+  <strong>Legend:</strong>
+  <br/>✅ Strong / Preferred<br/>⚠️ Acceptable Trade-off<br/>❌ Weakness / Limitation</p>
+<h2>Selected Target Solution</h2>
+<p>Based on the evaluation of the proposed concepts and the target operating model for Data Mesh, the <strong>Versioned Template Library (B2)</strong> has been selected as the target solution.</p>
+<p>This model provides a balanced combination of standardization and squad autonomy. The Ingest Tool Owner Squad is responsible for developing, maintaining, and versioning standardized ingestion templates, while individual Business Unit squads own the resulting flows, including deployment, operations, and upgrade planning.</p>
+<p>Compared to a fully centralized solution, B2 better supports Data Mesh principles by assigning clear ownership and operational responsibility to data-producing teams. Unlike the fully generated approach (B1), it enables controlled reuse through versioned templates and allows squads to adopt new functionality, enhancements, and security fixes according to their own release schedules.</p>
+<p>The approach introduces additional governance requirements, particularly around template lifecycle management, version inventory, and upgrade policies. However, these challenges are considered manageable and are outweighed by the benefits of decentralized ownership, operational independence, controlled standardization, and gradual evolution of the platform.</p>
+<p>As a result, the <strong>Versioned Template Library (B2)</strong> has been selected as the target architecture for both the migration of existing ingestion workloads and future Data Mesh-based ingestion development.</p>
