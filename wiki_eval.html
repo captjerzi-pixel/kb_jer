@@ -57,6 +57,22 @@
         <p>Preparing extracts at source</p>
       </td>
     </tr>
+    <tr>
+      <td>
+        <p>Meltano</p>
+      </td>
+      <td>
+        <p>Meltano (open-source ELT framework based on Singer taps and targets)</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <p>MiNiFi</p>
+      </td>
+      <td>
+        <p>Apache MiNiFi (Java agent)</p>
+      </td>
+    </tr>
   </tbody>
 </table>
 <h1>Scoring Legend</h1>
@@ -656,12 +672,12 @@
 </h1>
 <table class="wrapped relative-table" style="width: 93.4211%;">
   <colgroup>
-    <col style="width: 28.1126%;"/>
-    <col style="width: 6.00823%;"/>
-    <col style="width: 5.71153%;"/>
-    <col style="width: 9.19779%;"/>
-    <col style="width: 7.12087%;"/>
-    <col style="width: 43.8341%;"/>
+    <col style="width: 38%;"/>
+    <col style="width: 12.4%;"/>
+    <col style="width: 12.4%;"/>
+    <col style="width: 12.4%;"/>
+    <col style="width: 12.4%;"/>
+    <col style="width: 12.4%;"/>
   </colgroup>
   <tbody>
     <tr>
@@ -672,16 +688,16 @@
         <p>AirPy</p>
       </th>
       <th>
-        <p>NiFi</p>
-      </th>
-      <th>
         <p>Infa</p>
       </th>
       <th>
         <p>Meltano</p>
       </th>
       <th>
-        <p>Meltano note</p>
+        <p>NiFi</p>
+      </th>
+      <th>
+        <p>MiNiFi</p>
       </th>
     </tr>
     <tr>
@@ -701,7 +717,7 @@
         <p>1</p>
       </td>
       <td>
-        <p>There are two actively maintained plugins for exporting to Parquet: target-parquet by Automattic and target-s3-parquet by gupy-io, and both are actively used in practice.</p>
+        <p>1</p>
       </td>
     </tr>
     <tr>
@@ -712,9 +728,6 @@
         <p>5</p>
       </td>
       <td>
-        <p>1</p>
-      </td>
-      <td>
         <p>6 (<span>licence for PowerExchange for Kafka)</span>
         </p>
       </td>
@@ -722,15 +735,15 @@
         <p>6</p>
       </td>
       <td>
-        <p>A Kafka tap exists and is actively maintained. For Elasticsearch, only a tap that runs via Docker (through an Airbyte wrapper) is available, and it requires so-called Docker-in-Docker (DinD).</p>
+        <p>1</p>
+      </td>
+      <td>
+        <p>1</p>
       </td>
     </tr>
     <tr>
       <td>
         <p>Support for Multiple Source and Target Systems (Oracle, MSSQL, APIs, Files, etc.)</p>
-      </td>
-      <td>
-        <p>1</p>
       </td>
       <td>
         <p>1</p>
@@ -742,7 +755,10 @@
         <p>1</p>
       </td>
       <td>
-        <p>Functional taps are available for MSSQL, Postgres, and Oracle.</p>
+        <p>1</p>
+      </td>
+      <td>
+        <p>1</p>
       </td>
     </tr>
     <tr>
@@ -753,16 +769,16 @@
         <p>1</p>
       </td>
       <td>
-        <p>3</p>
-      </td>
-      <td>
         <p>4</p>
       </td>
       <td>
         <p>6</p>
       </td>
       <td>
-        <p>Meltano does not have a native concept of a "pre-flight SQL gate." We would likely need to implement our own API in KB for invocation from Airflow On-Prem SOGE, or introduce a wrapper layer that runs before calling <code>meltano run</code>, rather than handling this within Meltano itself.</p>
+        <p>3</p>
+      </td>
+      <td>
+        <p>2</p>
       </td>
     </tr>
     <tr>
@@ -773,16 +789,16 @@
         <p>5</p>
       </td>
       <td>
-        <p>0</p>
-      </td>
-      <td>
         <p>6 (ala ODIS)</p>
       </td>
       <td>
         <p>1</p>
       </td>
       <td>
-        <p>State management is a native part of the Singer specification. Incremental replication is supported by tap-postgres, tap-oracle, and tap-mssql</p>
+        <p>0</p>
+      </td>
+      <td>
+        <p>2</p>
       </td>
     </tr>
     <tr>
@@ -793,16 +809,16 @@
         <p>2</p>
       </td>
       <td>
-        <p>5</p>
-      </td>
-      <td>
         <p>2</p>
       </td>
       <td>
         <p>3</p>
       </td>
       <td>
-        <p>It is possible to manually set the delta to any value using the command <code>meltano state set &lt;state-id&gt;</code>. This cannot be done through the UI, so we would need to implement it in a wrapper layer for operators.</p>
+        <p>5</p>
+      </td>
+      <td>
+        <p>2</p>
       </td>
     </tr>
     <tr>
@@ -813,16 +829,16 @@
         <p>10 </p>
       </td>
       <td>
-        <p>9 (jen MySQL)</p>
-      </td>
-      <td>
         <p>6 (licence<br/>PowerExchange CDC)</p>
       </td>
       <td>
         <p>1</p>
       </td>
       <td>
-        <p>Log-based CDC is supported, fully functional, and free of charge for Postgres, Oracle, and MSSQL</p>
+        <p>9 (only MySQL)</p>
+      </td>
+      <td>
+        <p>9</p>
       </td>
     </tr>
     <tr>
@@ -835,16 +851,16 @@
         <p>0</p>
       </td>
       <td>
-        <p>5 (No native per-load pinning)</p>
-      </td>
-      <td>
         <p>1</p>
       </td>
       <td>
         <p>5-6</p>
       </td>
       <td>
-        <p>Meltano does not provide a native solution for this. It could be addressed either through Kubernetes or by using static assignment to virtual machines (VMs).</p>
+        <p>5 (No native per-load pinning)</p>
+      </td>
+      <td>
+        <p>1 (with K8s)</p>
       </td>
     </tr>
     <tr>
@@ -857,20 +873,22 @@
         <p>1</p>
       </td>
       <td>
-        <p>2</p>
-      </td>
-      <td>
         <p>5 (licence for Partitioning)</p>
       </td>
       <td>
         <p>5</p>
       </td>
       <td>
-        <p>For MSSQL, Postgres, and Oracle, Meltano operates in a purely sequential manner, with no parallelization within a single load. However, the Kafka connector supports native parallel consumption through Kafka consumer group partitioning.</p>
+        <p>2</p>
+      </td>
+      <td>
+        <p>2</p>
       </td>
     </tr>
   </tbody>
 </table>
+<p>
+  <br/>MiNiFi is evaluated as the <strong>Java agent</strong>, started per run as a Kubernetes pod from the SOGE on-prem Airflow (KubernetesPodOperator). Parquet files and the related metadata (watermark) are stored on the internal S3 storage, so the pod itself is stateless.</p>
 <h1>4. Data Mesh Alignment</h1>
 <table class="wrapped">
   <tbody>
@@ -882,16 +900,16 @@
         <p>AirPy</p>
       </th>
       <th>
-        <p>NiFi</p>
-      </th>
-      <th>
         <p>Infa</p>
       </th>
       <th>
         <p>Meltano</p>
       </th>
       <th>
-        <p>Meltano note</p>
+        <p>NiFi</p>
+      </th>
+      <th>
+        <p>MiNiFi</p>
       </th>
     </tr>
     <tr>
@@ -902,16 +920,18 @@
         <p>2</p>
       </td>
       <td>
-        <p>4</p>
-      </td>
-      <td>
         <p>1</p>
       </td>
       <td>
         <p>5</p>
       </td>
       <td>
-        <p>Using a namespace-per-squad approach in Kubernetes, combined with native Kubernetes RBAC and access to kubectl logs, provides both workload isolation and monitoring capabilities.<br/>Without K8s we need RBAC at the individual flow level, along with ownership metadata and likely a dedicated monitoring interface as well.</p>
+        <p>4</p>
+      </td>
+      <td>
+        <p>
+          <br/>
+        </p>
       </td>
     </tr>
     <tr>
@@ -922,10 +942,10 @@
         <p>9-&gt;1</p>
       </td>
       <td>
-        <p>9</p>
+        <p>1</p>
       </td>
       <td>
-        <p>1</p>
+        <p>9</p>
       </td>
       <td>
         <p>9</p>
@@ -953,7 +973,9 @@
         <p>3</p>
       </td>
       <td>
-        <p>Configuration only (YAML + schema)</p>
+        <p>
+          <br/>
+        </p>
       </td>
     </tr>
     <tr>
@@ -964,16 +986,18 @@
         <p>1</p>
       </td>
       <td>
-        <p>2</p>
-      </td>
-      <td>
         <p>3</p>
       </td>
       <td>
         <p>4</p>
       </td>
       <td>
-        <p>Meltano itself has solid official documentation. However, individual taps and targets are developed by various independent authors, and the quality and completeness of their documentation can vary significantly.</p>
+        <p>2</p>
+      </td>
+      <td>
+        <p>
+          <br/>
+        </p>
       </td>
     </tr>
     <tr>
@@ -984,16 +1008,18 @@
         <p>1</p>
       </td>
       <td>
-        <p>3</p>
-      </td>
-      <td>
         <p>0</p>
       </td>
       <td>
         <p>4</p>
       </td>
       <td>
-        <p>Meltano has approximately 2,600 GitHub stars, while NiFi has around 6,200 GitHub stars. Additionally, more than 550 connectors are available through Meltano Hub.</p>
+        <p>3</p>
+      </td>
+      <td>
+        <p>
+          <br/>
+        </p>
       </td>
     </tr>
     <tr>
@@ -1007,10 +1033,10 @@
         <p>5(DI?)</p>
       </td>
       <td>
-        <p>5(DI?)</p>
+        <p>1(DI)</p>
       </td>
       <td>
-        <p>1(DI)</p>
+        <p>5(DI?)</p>
       </td>
       <td>
         <p>
@@ -1026,16 +1052,18 @@
         <p>1</p>
       </td>
       <td>
-        <p>3</p>
-      </td>
-      <td>
         <p>7 </p>
       </td>
       <td>
         <p>6</p>
       </td>
       <td>
-        <p>Meltano itself does not support re-runs. This would need to be handled either at the wrapper layer or within Airflow.</p>
+        <p>3</p>
+      </td>
+      <td>
+        <p>
+          <br/>
+        </p>
       </td>
     </tr>
     <tr>
@@ -1049,13 +1077,15 @@
         <p>5</p>
       </td>
       <td>
-        <p>5</p>
-      </td>
-      <td>
         <p>4</p>
       </td>
       <td>
-        <p>Everything can be managed through the command line and configuration files. However, there is no built-in user interface (UI).</p>
+        <p>5</p>
+      </td>
+      <td>
+        <p>
+          <br/>
+        </p>
       </td>
     </tr>
     <tr>
@@ -1075,15 +1105,14 @@
         <p>3</p>
       </td>
       <td>
-        <p>With the Template Library approach, only templates and server configurations are managed.</p>
+        <p>
+          <br/>
+        </p>
       </td>
     </tr>
     <tr>
       <td>
         <p>Scheme validation - DQ</p>
-      </td>
-      <td>
-        <p>2</p>
       </td>
       <td>
         <p>2</p>
@@ -1095,7 +1124,12 @@
         <p>2</p>
       </td>
       <td>
-        <p>A native part of the Singer protocol: each stream carries its own JSON Schema, and the target validates records against it.</p>
+        <p>2</p>
+      </td>
+      <td>
+        <p>
+          <br/>
+        </p>
       </td>
     </tr>
   </tbody>
@@ -1111,16 +1145,16 @@
         <p>AirPy</p>
       </th>
       <th>
-        <p>NiFi</p>
-      </th>
-      <th>
         <p>Infa</p>
       </th>
       <th>
         <p>Meltano</p>
       </th>
       <th>
-        <p>Meltano note</p>
+        <p>NiFi</p>
+      </th>
+      <th>
+        <p>MiNiFi</p>
       </th>
     </tr>
     <tr>
@@ -1134,12 +1168,12 @@
         <p>7</p>
       </td>
       <td>
-        <p>7</p>
-      </td>
-      <td>
         <p>
           <br/>
         </p>
+      </td>
+      <td>
+        <p>7</p>
       </td>
       <td>
         <p>
@@ -1155,16 +1189,18 @@
         <p>2</p>
       </td>
       <td>
-        <p>6 (PJE-REST API)</p>
-      </td>
-      <td>
         <p>2 (SOAP API)</p>
       </td>
       <td>
         <p>6</p>
       </td>
       <td>
-        <p>There is no native API in Meltano, so it would be necessary to build a custom trigger-and-poll layer or use Kubernetes to orchestrate and monitor execution.</p>
+        <p>6 (PJE-REST API)</p>
+      </td>
+      <td>
+        <p>
+          <br/>
+        </p>
       </td>
     </tr>
     <tr>
@@ -1175,16 +1211,18 @@
         <p>1</p>
       </td>
       <td>
-        <p>6</p>
-      </td>
-      <td>
         <p>4</p>
       </td>
       <td>
         <p>1</p>
       </td>
       <td>
-        <p>The entire Meltano platform is driven solely through the <code>meltano.yml</code> file. It is designed as a declarative, Git-friendly configuration model.</p>
+        <p>6</p>
+      </td>
+      <td>
+        <p>
+          <br/>
+        </p>
       </td>
     </tr>
     <tr>
@@ -1195,16 +1233,18 @@
         <p>1</p>
       </td>
       <td>
-        <p>8</p>
-      </td>
-      <td>
         <p>9</p>
       </td>
       <td>
         <p>1</p>
       </td>
       <td>
-        <p>See above regarding <code>meltano.yml</code>.</p>
+        <p>8</p>
+      </td>
+      <td>
+        <p>
+          <br/>
+        </p>
       </td>
     </tr>
     <tr>
@@ -1215,16 +1255,18 @@
         <p>2</p>
       </td>
       <td>
-        <p>5</p>
-      </td>
-      <td>
         <p>3</p>
       </td>
       <td>
         <p>2</p>
       </td>
       <td>
-        <p>Meltano has a native concept of environments in <code>meltano.yml</code> (e.g., dev, staging, and prod), allowing different configurations to be defined for each environment.</p>
+        <p>5</p>
+      </td>
+      <td>
+        <p>
+          <br/>
+        </p>
       </td>
     </tr>
     <tr>
@@ -1279,16 +1321,18 @@
         <p>3</p>
       </td>
       <td>
-        <p>4</p>
-      </td>
-      <td>
         <p>7</p>
       </td>
       <td>
         <p>4</p>
       </td>
       <td>
-        <p>2025/2026: Following a change in ownership, Meltano was acquired by Matatika. Its GitHub community is smaller than that of competing solutions such as Airbyte (roughly 10 to 15 times fewer GitHub stars), and there are growing indications that the community is increasingly recommending dlt as an alternative. The project remains active and continues to be maintained, but its relative momentum and mindshare appear to be declining compared to competing platforms.</p>
+        <p>4</p>
+      </td>
+      <td>
+        <p>
+          <br/>
+        </p>
       </td>
     </tr>
     <tr>
@@ -1299,13 +1343,13 @@
         <p>0</p>
       </td>
       <td>
-        <p>4 </p>
-      </td>
-      <td>
         <p>7</p>
       </td>
       <td>
         <p>9</p>
+      </td>
+      <td>
+        <p>4 </p>
       </td>
       <td>
         <p>
@@ -1321,9 +1365,6 @@
         <p>-</p>
       </td>
       <td>
-        <p>-</p>
-      </td>
-      <td>
         <p>current ca. 205 000 EUR / year</p>
       </td>
       <td>
@@ -1332,7 +1373,12 @@
         </p>
       </td>
       <td>
-        <p>On-premises deployment is available at no licensing cost.</p>
+        <p>-</p>
+      </td>
+      <td>
+        <p>
+          <br/>
+        </p>
       </td>
     </tr>
   </tbody>
@@ -1348,16 +1394,16 @@
         <p>AirPy</p>
       </th>
       <th>
-        <p>NiFi</p>
-      </th>
-      <th>
         <p>Infa</p>
       </th>
       <th>
         <p>Meltano</p>
       </th>
       <th>
-        <p>Meltano note</p>
+        <p>NiFi</p>
+      </th>
+      <th>
+        <p>MiNiFi</p>
       </th>
     </tr>
     <tr>
@@ -1368,16 +1414,18 @@
         <p>1</p>
       </td>
       <td>
-        <p>5</p>
-      </td>
-      <td>
         <p>1</p>
       </td>
       <td>
         <p>5</p>
       </td>
       <td>
-        <p>Meltano nemá žádný vestavěný "secrets backend". Lze využít např. CyberArk Secretless Broker nebo CyberArk Central Credential Provider,  případně dočasné env proměnné.</p>
+        <p>5</p>
+      </td>
+      <td>
+        <p>
+          <br/>
+        </p>
       </td>
     </tr>
     <tr>
@@ -1397,7 +1445,9 @@
         <p>2</p>
       </td>
       <td>
-        <p>Logs and run history are stored in Meltano's system database.</p>
+        <p>
+          <br/>
+        </p>
       </td>
     </tr>
     <tr>
@@ -1408,16 +1458,18 @@
         <p>1</p>
       </td>
       <td>
-        <p>3</p>
-      </td>
-      <td>
         <p>1</p>
       </td>
       <td>
         <p>4</p>
       </td>
       <td>
-        <p>The Meltano CLI does not include its own RBAC (Role-Based Access Control) model. This could be addressed by leveraging Kubernetes RBAC when running Meltano on Kubernetes. Without Kubernetes, access control and security would need to be implemented separately, for example through a custom wrapper layer.</p>
+        <p>3</p>
+      </td>
+      <td>
+        <p>
+          <br/>
+        </p>
       </td>
     </tr>
     <tr>
@@ -1428,16 +1480,18 @@
         <p>1</p>
       </td>
       <td>
-        <p>2</p>
-      </td>
-      <td>
         <p>1</p>
       </td>
       <td>
         <p>2</p>
       </td>
       <td>
-        <p>See above regarding CyberArk.</p>
+        <p>2</p>
+      </td>
+      <td>
+        <p>
+          <br/>
+        </p>
       </td>
     </tr>
   </tbody>
@@ -1453,16 +1507,16 @@
         <p>AirPy</p>
       </th>
       <th>
-        <p>NiFi</p>
-      </th>
-      <th>
         <p>Infa</p>
       </th>
       <th>
         <p>Meltano</p>
       </th>
       <th>
-        <p>Meltano note</p>
+        <p>NiFi</p>
+      </th>
+      <th>
+        <p>MiNiFi</p>
       </th>
     </tr>
     <tr>
@@ -1473,17 +1527,18 @@
         <p>1</p>
       </td>
       <td>
-        <p>3</p>
-      </td>
-      <td>
         <p>1</p>
       </td>
       <td>
         <p>3</p>
       </td>
       <td>
-        <p>The wrapper would need to directly monitor the exit code of the <code>meltano run</code> command. Meltano maintains its own run history in a system database, which can be configured to use a shared external database, allowing multiple worker servers to share execution metadata. Execution history and status information can be retrieved through CLI commands, but we would likely need to build a separate visualization layer to provide a user-friendly overview of runs.</p>
-        <p>Meltano also offers integration with Apache Airflow through a dedicated plugin, and it would be worth verifying whether this integration could address some of the orchestration, monitoring, and visualization requirements.</p>
+        <p>3</p>
+      </td>
+      <td>
+        <p>
+          <br/>
+        </p>
       </td>
     </tr>
     <tr>
@@ -1494,16 +1549,18 @@
         <p>2</p>
       </td>
       <td>
-        <p>4 (REST API)</p>
-      </td>
-      <td>
         <p>2</p>
       </td>
       <td>
         <p>3</p>
       </td>
       <td>
-        <p>This would be another responsibility of the wrapper layer, or alternatively something to be handled through Airflow integration, rather than within Meltano itself.</p>
+        <p>4 (REST API)</p>
+      </td>
+      <td>
+        <p>
+          <br/>
+        </p>
       </td>
     </tr>
     <tr>
@@ -1514,16 +1571,18 @@
         <p>1</p>
       </td>
       <td>
-        <p>2</p>
-      </td>
-      <td>
         <p>8</p>
       </td>
       <td>
         <p>2</p>
       </td>
       <td>
-        <p>Sorted streams can be resumed from the last checkpoint, and that checkpoint can be manually edited. A flow can also be executed for a specific object only.</p>
+        <p>2</p>
+      </td>
+      <td>
+        <p>
+          <br/>
+        </p>
       </td>
     </tr>
     <tr>
@@ -1534,9 +1593,6 @@
         <p>2</p>
       </td>
       <td>
-        <p>4</p>
-      </td>
-      <td>
         <p>3</p>
       </td>
       <td>
@@ -1545,7 +1601,12 @@
         </p>
       </td>
       <td>
-        <p>Without K8s operation of a custom wrapper layer; multi-tenant management for a data mesh environment (based on configuration parameters).</p>
+        <p>4</p>
+      </td>
+      <td>
+        <p>
+          <br/>
+        </p>
       </td>
     </tr>
     <tr>
@@ -1556,16 +1617,18 @@
         <p>2</p>
       </td>
       <td>
-        <p>4</p>
-      </td>
-      <td>
         <p>1</p>
       </td>
       <td>
         <p>4</p>
       </td>
       <td>
-        <p>Community-maintained taps and targets with varying levels of maintenance quality.</p>
+        <p>4</p>
+      </td>
+      <td>
+        <p>
+          <br/>
+        </p>
       </td>
     </tr>
     <tr>
@@ -1603,10 +1666,16 @@
         <p>AirPy</p>
       </th>
       <th>
+        <p>Infa</p>
+      </th>
+      <th>
+        <p>Meltano</p>
+      </th>
+      <th>
         <p>NiFi</p>
       </th>
       <th>
-        <p>Infa</p>
+        <p>MiNiFi</p>
       </th>
     </tr>
     <tr>
@@ -1614,13 +1683,21 @@
         <p>Export 80mil.rows to Parquet (Elapsed Time)</p>
       </td>
       <td>
-        <p> 20 min</p>
+        <p>5 min</p>
+      </td>
+      <td>
+        <p>8 min</p>
+      </td>
+      <td>
+        <p>4 h</p>
       </td>
       <td>
         <p>15 min</p>
       </td>
       <td>
-        <p>40 min</p>
+        <p>
+          <br/>
+        </p>
       </td>
     </tr>
     <tr>
@@ -1633,10 +1710,20 @@
         <p>1</p>
       </td>
       <td>
+        <p>1</p>
+      </td>
+      <td>
+        <p>
+          <br/>
+        </p>
+      </td>
+      <td>
         <p>8</p>
       </td>
       <td>
-        <p>1</p>
+        <p>
+          <br/>
+        </p>
       </td>
     </tr>
     <tr>
@@ -1647,10 +1734,20 @@
         <p>1</p>
       </td>
       <td>
+        <p>1</p>
+      </td>
+      <td>
+        <p>
+          <br/>
+        </p>
+      </td>
+      <td>
         <p>8</p>
       </td>
       <td>
-        <p>1</p>
+        <p>
+          <br/>
+        </p>
       </td>
     </tr>
   </tbody>
@@ -1811,7 +1908,7 @@
     </tr>
     <tr>
       <td>AirPy</td>
-      <td style="text-align: center;">Approximately 20 minutes</td>
+      <td style="text-align: center;">Approximately 5 minutes</td>
       <td style="text-align: center;">Validated</td>
     </tr>
     <tr>
@@ -1821,7 +1918,7 @@
     </tr>
     <tr>
       <td>PowerCenter</td>
-      <td style="text-align: center;">Approximately 40 minutes</td>
+      <td style="text-align: center;">Approximately 8 minutes</td>
       <td style="text-align: center;">Validated</td>
     </tr>
   </tbody>
@@ -1847,11 +1944,11 @@
         <strong>Runtime Performance</strong>
       </td>
       <td>✅ <strong>Strong</strong>
-        <br/>Approximately 20 minutes in the PoC</td>
+        <br/>Approximately 5 minutes in the PoC</td>
       <td>✅ <strong>Preferred</strong>
         <br/>Approximately 15 minutes in the PoC</td>
       <td>❌ <strong>Weakness</strong>
-        <br/>Approximately 40 minutes in the PoC</td>
+        <br/>Approximately 8 minutes in the PoC</td>
     </tr>
     <tr>
       <td>
