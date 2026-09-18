@@ -1,0 +1,2038 @@
+<h1>Evaluated Alternatives</h1>
+<table class="wrapped">
+  <tbody>
+    <tr>
+      <th>
+        <p>Abbreviation</p>
+      </th>
+      <th>
+        <p>Alternative</p>
+      </th>
+    </tr>
+    <tr>
+      <td>
+        <p>AirPy</p>
+      </td>
+      <td>
+        <p>Airflow + Python (in-house solution)</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <p>NiFi</p>
+      </td>
+      <td>
+        <p>Apache NiFi</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <p>Infa</p>
+      </td>
+      <td>
+        <p>Informatica PowerCenter</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <p>IDMC</p>
+      </td>
+      <td>
+        <p>Informatica Intelligent Data Management Cloud</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <p>Adoki</p>
+      </td>
+      <td>
+        <p>Adoki Offloader</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <p>PNJ</p>
+      </td>
+      <td>
+        <p>Preparing extracts at source</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h1>Scoring Legend</h1>
+<table class="wrapped">
+  <tbody>
+    <tr>
+      <th>
+        <p>Score</p>
+      </th>
+      <th>
+        <p>Meaning</p>
+      </th>
+    </tr>
+    <tr>
+      <td>
+        <p>0</p>
+      </td>
+      <td>
+        <p>Ideal solution / no significant drawbacks</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <p>1</p>
+      </td>
+      <td>
+        <p>Very low complexity or effort</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <p>2</p>
+      </td>
+      <td>
+        <p>Low complexity or effort</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <p>3</p>
+      </td>
+      <td>
+        <p>Below-average complexity</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <p>4</p>
+      </td>
+      <td>
+        <p>Moderate complexity</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <p>5</p>
+      </td>
+      <td>
+        <p>Significant complexity</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <p>6</p>
+      </td>
+      <td>
+        <p>High complexity</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <p>7</p>
+      </td>
+      <td>
+        <p>Very high complexity</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <p>8</p>
+      </td>
+      <td>
+        <p>Major complexity or limitations</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <p>9</p>
+      </td>
+      <td>
+        <p>Extremely high complexity / unacceptable</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h1>1. Development and Adoption Complexity</h1>
+<ac:structured-macro ac:macro-id="70c95a99-b2a7-45d8-b333-686d61c7eb74" ac:name="expand" ac:schema-version="1">
+  <ac:parameter ac:name="title">Category Description</ac:parameter>
+  <ac:rich-text-body>
+    <p>This category evaluates the effort required to introduce, operate, maintain, and further develop the solution within KB.</p>
+    <p>It focuses on long-term sustainability, organizational readiness, migration effort, and the complexity of implementing new data extraction pipelines.</p>
+    <ul>
+      <li>
+        <strong>Maintenance Complexity</strong> <br/>Complexity of operating, monitoring, troubleshooting, and maintaining the solution throughout its lifecycle.</li>
+    </ul>
+    <ul>
+      <li>
+        <strong>Upskilling Effort</strong> <br/>Effort required for development, support, and operations teams to acquire the necessary skills and achieve productive use of the solution.</li>
+    </ul>
+    <ul>
+      <li>
+        <strong>Licensing and Upgrade Cost</strong> <br/>Cost and effort associated with licensing, vendor support, platform upgrades, and lifecycle management.</li>
+    </ul>
+    <ul>
+      <li>
+        <strong>Environment Setup Complexity</strong> <br/>Complexity of introducing and operationalizing the solution within KB, including infrastructure, networking, security, governance, and operational readiness.</li>
+    </ul>
+    <ul>
+      <li>
+        <strong>Migration Complexity (Informatica Assets)</strong> <br/>Complexity of migrating existing extraction workloads currently maintained by Informatica teams using a lift-and-shift approach.</li>
+    </ul>
+    <ul>
+      <li>
+        <strong>Migration Complexity (Adoki Assets)</strong> <br/>Complexity of migrating existing extraction workloads currently maintained by Adoki teams using a lift-and-shift approach.</li>
+    </ul>
+    <ul>
+      <li>
+        <strong>New Source Extraction Development Complexity</strong> <br/>Complexity of implementing and deploying a new source-to-Parquet extraction pipeline according to the target architecture standards.</li>
+    </ul>
+  </ac:rich-text-body>
+</ac:structured-macro>
+<table class="wrapped relative-table" style="width: 46.3014%;">
+  <colgroup> <col style="width: 10.545%;"/> <col style="width: 37.7962%;"/> <col style="width: 9.12322%;"/> <col style="width: 7.93839%;"/> <col style="width: 7.93839%;"/> <col style="width: 9.24171%;"/> <col style="width: 9.47867%;"/> <col style="width: 7.93839%;"/> </colgroup>
+  <tbody>
+    <tr>
+      <th>
+        <p>Weight</p>
+      </th>
+      <th>
+        <p>Criterion</p>
+      </th>
+      <th>
+        <p>AirPy</p>
+      </th>
+      <th>
+        <p>NiFi</p>
+      </th>
+      <th>
+        <p>Infa</p>
+      </th>
+      <th>
+        <p>IDMC</p>
+      </th>
+      <th>
+        <p>Adoki</p>
+      </th>
+      <th>
+        <p>PNJ</p>
+      </th>
+    </tr>
+    <tr>
+      <td>
+        <p>
+          <br/>
+        </p>
+      </td>
+      <td>
+        <p>Maintenance Complexity</p>
+      </td>
+      <td>
+        <p>3</p>
+      </td>
+      <td>
+        <p>6</p>
+      </td>
+      <td>
+        <p>4</p>
+      </td>
+      <td>
+        <p>6</p>
+      </td>
+      <td>
+        <p>6</p>
+      </td>
+      <td>
+        <p>8</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <p>
+          <br/>
+        </p>
+      </td>
+      <td>
+        <p>Upskilling Effort</p>
+      </td>
+      <td>
+        <p>4</p>
+      </td>
+      <td>
+        <p>3</p>
+      </td>
+      <td>
+        <p>3</p>
+      </td>
+      <td>
+        <p>2</p>
+      </td>
+      <td>
+        <p>7</p>
+      </td>
+      <td>
+        <p>7</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <p>
+          <br/>
+        </p>
+      </td>
+      <td>
+        <p>Licensing and Upgrade Cost</p>
+      </td>
+      <td>
+        <p>0</p>
+      </td>
+      <td>
+        <p>0</p>
+      </td>
+      <td>
+        <p>4</p>
+      </td>
+      <td>
+        <p>7</p>
+      </td>
+      <td>
+        <p>9</p>
+      </td>
+      <td>
+        <p>2</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <p>
+          <br/>
+        </p>
+      </td>
+      <td>
+        <p>Environment Setup Complexity</p>
+      </td>
+      <td>
+        <p>5</p>
+      </td>
+      <td>
+        <p>3</p>
+      </td>
+      <td>
+        <p>5</p>
+      </td>
+      <td>
+        <p>3</p>
+      </td>
+      <td>
+        <p>3</p>
+      </td>
+      <td>
+        <p>4</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <p>
+          <br/>
+        </p>
+      </td>
+      <td>
+        <p>Migration Complexity (Informatica Assets)</p>
+      </td>
+      <td>
+        <p>3</p>
+      </td>
+      <td>
+        <p>6</p>
+      </td>
+      <td>
+        <p>4</p>
+      </td>
+      <td>
+        <p>5</p>
+      </td>
+      <td>
+        <p>7</p>
+      </td>
+      <td>
+        <p>6</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <p>
+          <br/>
+        </p>
+      </td>
+      <td>
+        <p>Migration Complexity (Adoki Assets)</p>
+      </td>
+      <td>
+        <p>3</p>
+      </td>
+      <td>
+        <p>5</p>
+      </td>
+      <td>
+        <p>3</p>
+      </td>
+      <td>
+        <p>4</p>
+      </td>
+      <td>
+        <p>2</p>
+      </td>
+      <td>
+        <p>8</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <p>
+          <br/>
+        </p>
+      </td>
+      <td>
+        <p>New Source Extraction Development Complexity</p>
+      </td>
+      <td>
+        <p>2</p>
+      </td>
+      <td>
+        <p>3</p>
+      </td>
+      <td>
+        <p>5</p>
+      </td>
+      <td>
+        <p>3</p>
+      </td>
+      <td>
+        <p>6</p>
+      </td>
+      <td>
+        <p>4</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<p>
+  <br/>
+  <strong>AirPy</strong> is considered a KB on-premises in-house solution; therefore, its Licensing and Upgrade Cost is rated as 0.<br/>
+  <br/>Due to the elevated complexity of migration and maintenance the <strong>"PNJ" (Preparing extracts at source) option was discarded</strong> from the list of tools for further evaluation.</p>
+<p>In case of Adoki Offloader there would be need for complete revision of contract. Also it is currently dependent on the Cloudera platform - this would mean more costs in the later phase of the migration when Cloudera is to be decommissioned.</p>
+<p>Thus the <strong>Adoki Offloader option is discarded</strong> as well.</p>
+<h1>2. Costs + Time Estimates in MDs</h1>
+<table class="wrapped">
+  <tbody>
+    <tr>
+      <th scope="col">Area</th>
+      <th scope="col">Notex</th>
+      <th scope="col">AirPy</th>
+      <th scope="col">NiFi</th>
+      <th scope="col">Infa</th>
+    </tr>
+    <tr>
+      <td>Environment Setup - Infra </td>
+      <td>+ CICD, CyberArc </td>
+      <td style="text-align: center;">10</td>
+      <td style="text-align: center;">13</td>
+      <td style="text-align: center;">5</td>
+    </tr>
+    <tr>
+      <td>Environment Setup - Framework Development + Prototyp</td>
+      <td>Trigger conditions, operators, squad ownership, and Vault integration</td>
+      <td style="text-align: center;">30</td>
+      <td style="text-align: center;">35</td>
+      <td style="text-align: center;">5*</td>
+    </tr>
+    <tr>
+      <td>Environment Setup - Flow generator (python/powershell)</td>
+      <td>Generates a single flow for a single parquet generation based on the provided YAML configuration.</td>
+      <td style="text-align: center;">10</td>
+      <td style="text-align: center;">25</td>
+      <td style="text-align: center;">25</td>
+    </tr>
+    <tr>
+      <td>YAMLu Generator "Apache Arrow Schema"</td>
+      <td>
+        <br/>
+      </td>
+      <td colspan="3" style="text-align: center;">5</td>
+    </tr>
+    <tr>
+      <td>
+        <strong>Total Envirement Setup</strong>
+      </td>
+      <td>
+        <br/>
+      </td>
+      <td style="text-align: center;">
+        <strong>55</strong>
+      </td>
+      <td style="text-align: center;">
+        <strong>73</strong>
+      </td>
+      <td style="text-align: center;">
+        <strong>35</strong>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <br/>
+      </td>
+      <td>
+        <br/>
+      </td>
+      <td style="text-align: center;">
+        <br/>
+      </td>
+      <td style="text-align: center;">
+        <br/>
+      </td>
+      <td style="text-align: center;">
+        <br/>
+      </td>
+    </tr>
+    <tr>
+      <td>Upskilling Effort Framework team</td>
+      <td>
+        <br/>
+      </td>
+      <td style="text-align: center;">0</td>
+      <td style="text-align: center;">15</td>
+      <td style="text-align: center;">1</td>
+    </tr>
+    <tr>
+      <td>Upskilling Effort BU Squad - cca 120 data analytics?</td>
+      <td>
+        <br/>
+      </td>
+      <td style="text-align: center;">14**</td>
+      <td style="text-align: center;">120</td>
+      <td style="text-align: center;">14</td>
+    </tr>
+    <tr>
+      <td>
+        <strong>Total Upskilling</strong>
+      </td>
+      <td>
+        <br/>
+      </td>
+      <td style="text-align: center;">
+        <strong>14</strong>
+      </td>
+      <td style="text-align: center;">
+        <strong>135</strong>
+      </td>
+      <td style="text-align: center;">
+        <strong>15</strong>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <br/>
+      </td>
+      <td>
+        <br/>
+      </td>
+      <td colspan="3" style="text-align: center;">
+        <br/>
+      </td>
+    </tr>
+    <tr>
+      <td>Migration Preparation Complexity (Informatica + Adoki Assets)</td>
+      <td>YAML generators - scheme + configuration</td>
+      <td colspan="3" style="text-align: center;">16 </td>
+    </tr>
+    <tr>
+      <td>Migration Complexity (400 Informatica Assets)</td>
+      <td>Flow generation </td>
+      <td style="text-align: center;">100</td>
+      <td style="text-align: center;">100</td>
+      <td style="text-align: center;">100</td>
+    </tr>
+    <tr>
+      <td>Migration Complexity (100 Adoki Assets)</td>
+      <td>Flow generation </td>
+      <td style="text-align: center;">25</td>
+      <td style="text-align: center;">25</td>
+      <td style="text-align: center;">25</td>
+    </tr>
+    <tr>
+      <td>Migration Complexity (400 Informatica Assets)</td>
+      <td>Paralel run - testing</td>
+      <td style="text-align: center;">800</td>
+      <td style="text-align: center;">800</td>
+      <td style="text-align: center;">800</td>
+    </tr>
+    <tr>
+      <td>Migration Complexity (100 Adoki Assets)</td>
+      <td>Paralel run - testing</td>
+      <td style="text-align: center;">200</td>
+      <td style="text-align: center;">200</td>
+      <td style="text-align: center;">200</td>
+    </tr>
+    <tr>
+      <td>
+        <strong>Total Migration</strong>
+      </td>
+      <td>
+        <br/>
+      </td>
+      <td style="text-align: center;">
+        <strong>1141</strong>
+      </td>
+      <td style="text-align: center;">
+        <strong>1125</strong>
+      </td>
+      <td style="text-align: center;">
+        <strong>1125</strong>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <strong>Total</strong>
+      </td>
+      <td>
+        <br/>
+      </td>
+      <td style="text-align: center;">
+        <strong>1221</strong>
+      </td>
+      <td style="text-align: center;">
+        <strong>1398</strong>
+      </td>
+      <td style="text-align: center;">
+        <strong>1185</strong>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <strong> </strong>
+      </td>
+      <td>
+        <br/>
+      </td>
+      <td style="text-align: center;">
+        <strong> </strong>
+      </td>
+      <td style="text-align: center;">
+        <strong> </strong>
+      </td>
+      <td style="text-align: center;">
+        <strong> </strong>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <p>Pricing</p>
+      </td>
+      <td>
+        <p>
+          <br/>
+        </p>
+      </td>
+      <td style="text-align: center;">
+        <p>-</p>
+      </td>
+      <td style="text-align: center;">
+        <p> -</p>
+      </td>
+      <td>
+        <p>+10 500 EUR / year / 4 CPU</p>
+        <p>(in addition to current <br/>ca. 205 000 EUR / year)</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<p>
+  <br/>* We use the complete existing infrastructure, including MWF, which does not address the ownership of trigger conditions by the business squads.</p>
+<p>** This estimate assumes that Airflow will be the primary cloud orchestration platform and that the required training will be included as part of this activity.</p>
+<p>
+  <br/>
+</p>
+<h1>
+  <span>3. Functional Capabilities</span>
+</h1>
+<table class="wrapped relative-table" style="width: 93.4211%;">
+  <colgroup>
+    <col style="width: 28.1126%;"/>
+    <col style="width: 6.00823%;"/>
+    <col style="width: 5.71153%;"/>
+    <col style="width: 9.19779%;"/>
+    <col style="width: 7.12087%;"/>
+    <col style="width: 43.8341%;"/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <th>
+        <p>Criterion</p>
+      </th>
+      <th>
+        <p>AirPy</p>
+      </th>
+      <th>
+        <p>NiFi</p>
+      </th>
+      <th>
+        <p>Infa</p>
+      </th>
+      <th>
+        <p>Meltano</p>
+      </th>
+      <th>
+        <p>Meltano note</p>
+      </th>
+    </tr>
+    <tr>
+      <td>
+        <p>Export Data to Parquet</p>
+      </td>
+      <td>
+        <p>1</p>
+      </td>
+      <td>
+        <p>1</p>
+      </td>
+      <td>
+        <p>1</p>
+      </td>
+      <td>
+        <p>1</p>
+      </td>
+      <td>
+        <p>There are two actively maintained plugins for exporting to Parquet: target-parquet by Automattic and target-s3-parquet by gupy-io, and both are actively used in practice.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <p>Support for Elasticsearch, Kafka</p>
+      </td>
+      <td>
+        <p>5</p>
+      </td>
+      <td>
+        <p>1</p>
+      </td>
+      <td>
+        <p>6 (<span>licence for PowerExchange for Kafka)</span>
+        </p>
+      </td>
+      <td>
+        <p>6</p>
+      </td>
+      <td>
+        <p>A Kafka tap exists and is actively maintained. For Elasticsearch, only a tap that runs via Docker (through an Airbyte wrapper) is available, and it requires so-called Docker-in-Docker (DinD).</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <p>Support for Multiple Source and Target Systems (Oracle, MSSQL, APIs, Files, etc.)</p>
+      </td>
+      <td>
+        <p>1</p>
+      </td>
+      <td>
+        <p>1</p>
+      </td>
+      <td>
+        <p>3(not API)</p>
+      </td>
+      <td>
+        <p>1</p>
+      </td>
+      <td>
+        <p>Functional taps are available for MSSQL, Postgres, and Oracle.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <p>Integration of SQL run conditions</p>
+      </td>
+      <td>
+        <p>1</p>
+      </td>
+      <td>
+        <p>3</p>
+      </td>
+      <td>
+        <p>4</p>
+      </td>
+      <td>
+        <p>6</p>
+      </td>
+      <td>
+        <p>Meltano does not have a native concept of a "pre-flight SQL gate." We would likely need to implement our own API in KB for invocation from Airflow On-Prem SOGE, or introduce a wrapper layer that runs before calling <code>meltano run</code>, rather than handling this within Meltano itself.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <p>Support for Incremental Loads (delta)</p>
+      </td>
+      <td>
+        <p>5</p>
+      </td>
+      <td>
+        <p>0</p>
+      </td>
+      <td>
+        <p>6 (ala ODIS)</p>
+      </td>
+      <td>
+        <p>1</p>
+      </td>
+      <td>
+        <p>State management is a native part of the Singer specification. Incremental replication is supported by tap-postgres, tap-oracle, and tap-mssql</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <p>Checkpoint Overrided</p>
+      </td>
+      <td>
+        <p>2</p>
+      </td>
+      <td>
+        <p>5</p>
+      </td>
+      <td>
+        <p>2</p>
+      </td>
+      <td>
+        <p>3</p>
+      </td>
+      <td>
+        <p>It is possible to manually set the delta to any value using the command <code>meltano state set &lt;state-id&gt;</code>. This cannot be done through the UI, so we would need to implement it in a wrapper layer for operators.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <p>Support for CDC</p>
+      </td>
+      <td>
+        <p>10 </p>
+      </td>
+      <td>
+        <p>9 (jen MySQL)</p>
+      </td>
+      <td>
+        <p>6 (licence<br/>PowerExchange CDC)</p>
+      </td>
+      <td>
+        <p>1</p>
+      </td>
+      <td>
+        <p>Log-based CDC is supported, fully functional, and free of charge for Postgres, Oracle, and MSSQL</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <p>
+          <span class="cf0">Horizontal Scalability (Cross-Load Distribution)</span>
+        </p>
+      </td>
+      <td>
+        <p>0</p>
+      </td>
+      <td>
+        <p>5 (No native per-load pinning)</p>
+      </td>
+      <td>
+        <p>1</p>
+      </td>
+      <td>
+        <p>5-6</p>
+      </td>
+      <td>
+        <p>Meltano does not provide a native solution for this. It could be addressed either through Kubernetes or by using static assignment to virtual machines (VMs).</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <p>
+          <span class="cf0">Horizontal Scalability (Single-Load Partitioning)</span>
+        </p>
+      </td>
+      <td>
+        <p>1</p>
+      </td>
+      <td>
+        <p>2</p>
+      </td>
+      <td>
+        <p>5 (licence for Partitioning)</p>
+      </td>
+      <td>
+        <p>5</p>
+      </td>
+      <td>
+        <p>For MSSQL, Postgres, and Oracle, Meltano operates in a purely sequential manner, with no parallelization within a single load. However, the Kafka connector supports native parallel consumption through Kafka consumer group partitioning.</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h1>4. Data Mesh Alignment</h1>
+<table class="wrapped">
+  <tbody>
+    <tr>
+      <th>
+        <p>Criterion</p>
+      </th>
+      <th>
+        <p>AirPy</p>
+      </th>
+      <th>
+        <p>NiFi</p>
+      </th>
+      <th>
+        <p>Infa</p>
+      </th>
+      <th>
+        <p>Meltano</p>
+      </th>
+      <th>
+        <p>Meltano note</p>
+      </th>
+    </tr>
+    <tr>
+      <td>
+        <p>Squad autonomy in terms of operations</p>
+      </td>
+      <td>
+        <p>2</p>
+      </td>
+      <td>
+        <p>4</p>
+      </td>
+      <td>
+        <p>1</p>
+      </td>
+      <td>
+        <p>5</p>
+      </td>
+      <td>
+        <p>Using a namespace-per-squad approach in Kubernetes, combined with native Kubernetes RBAC and access to kubectl logs, provides both workload isolation and monitoring capabilities.<br/>Without K8s we need RBAC at the individual flow level, along with ownership metadata and likely a dedicated monitoring interface as well.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <p>Availability of Internal Expertise - Squads</p>
+      </td>
+      <td>
+        <p>9-&gt;1</p>
+      </td>
+      <td>
+        <p>9</p>
+      </td>
+      <td>
+        <p>1</p>
+      </td>
+      <td>
+        <p>9</p>
+      </td>
+      <td>
+        <p>
+          <br/>
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <p>Time-to-Delivery for New Use Cases</p>
+      </td>
+      <td>
+        <p>3</p>
+      </td>
+      <td>
+        <p>3</p>
+      </td>
+      <td>
+        <p>3</p>
+      </td>
+      <td>
+        <p>3</p>
+      </td>
+      <td>
+        <p>Configuration only (YAML + schema)</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <p>Documentation quality </p>
+      </td>
+      <td>
+        <p>1</p>
+      </td>
+      <td>
+        <p>2</p>
+      </td>
+      <td>
+        <p>3</p>
+      </td>
+      <td>
+        <p>4</p>
+      </td>
+      <td>
+        <p>Meltano itself has solid official documentation. However, individual taps and targets are developed by various independent authors, and the quality and completeness of their documentation can vary significantly.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <p>Industry standard</p>
+      </td>
+      <td>
+        <p>1</p>
+      </td>
+      <td>
+        <p>3</p>
+      </td>
+      <td>
+        <p>0</p>
+      </td>
+      <td>
+        <p>4</p>
+      </td>
+      <td>
+        <p>Meltano has approximately 2,600 GitHub stars, while NiFi has around 6,200 GitHub stars. Additionally, more than 550 connectors are available through Meltano Hub.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <p>Reuse in other entities potential</p>
+      </td>
+      <td>
+        <p>1</p>
+      </td>
+      <td>
+        <p>5(DI?)</p>
+      </td>
+      <td>
+        <p>5(DI?)</p>
+      </td>
+      <td>
+        <p>1(DI)</p>
+      </td>
+      <td>
+        <p>
+          <br/>
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <p>Autorestarts</p>
+      </td>
+      <td>
+        <p>1</p>
+      </td>
+      <td>
+        <p>3</p>
+      </td>
+      <td>
+        <p>7 </p>
+      </td>
+      <td>
+        <p>6</p>
+      </td>
+      <td>
+        <p>Meltano itself does not support re-runs. This would need to be handled either at the wrapper layer or within Airflow.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <p>Easy to use</p>
+      </td>
+      <td>
+        <p>3</p>
+      </td>
+      <td>
+        <p>5</p>
+      </td>
+      <td>
+        <p>5</p>
+      </td>
+      <td>
+        <p>4</p>
+      </td>
+      <td>
+        <p>Everything can be managed through the command line and configuration files. However, there is no built-in user interface (UI).</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <p>Dependency on Data CoE support teams</p>
+      </td>
+      <td>
+        <p>3</p>
+      </td>
+      <td>
+        <p>3</p>
+      </td>
+      <td>
+        <p>3</p>
+      </td>
+      <td>
+        <p>3</p>
+      </td>
+      <td>
+        <p>With the Template Library approach, only templates and server configurations are managed.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <p>Scheme validation - DQ</p>
+      </td>
+      <td>
+        <p>2</p>
+      </td>
+      <td>
+        <p>2</p>
+      </td>
+      <td>
+        <p>6</p>
+      </td>
+      <td>
+        <p>2</p>
+      </td>
+      <td>
+        <p>A native part of the Singer protocol: each stream carries its own JSON Schema, and the target validates records against it.</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h1>5. Target Architecture Alignment</h1>
+<table class="wrapped">
+  <tbody>
+    <tr>
+      <th>
+        <p>Criterion</p>
+      </th>
+      <th>
+        <p>AirPy</p>
+      </th>
+      <th>
+        <p>NiFi</p>
+      </th>
+      <th>
+        <p>Infa</p>
+      </th>
+      <th>
+        <p>Meltano</p>
+      </th>
+      <th>
+        <p>Meltano note</p>
+      </th>
+    </tr>
+    <tr>
+      <td>
+        <p>Alignment with Target Cloud Architecture</p>
+      </td>
+      <td>
+        <p>4</p>
+      </td>
+      <td>
+        <p>7</p>
+      </td>
+      <td>
+        <p>7</p>
+      </td>
+      <td>
+        <p>
+          <br/>
+        </p>
+      </td>
+      <td>
+        <p>
+          <br/>
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <p>Airflow SOGE Integration</p>
+      </td>
+      <td>
+        <p>2</p>
+      </td>
+      <td>
+        <p>6 (PJE-REST API)</p>
+      </td>
+      <td>
+        <p>2 (SOAP API)</p>
+      </td>
+      <td>
+        <p>6</p>
+      </td>
+      <td>
+        <p>There is no native API in Meltano, so it would be necessary to build a custom trigger-and-poll layer or use Kubernetes to orchestrate and monitor execution.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <p>CI/CD - Git Support</p>
+      </td>
+      <td>
+        <p>1</p>
+      </td>
+      <td>
+        <p>6</p>
+      </td>
+      <td>
+        <p>4</p>
+      </td>
+      <td>
+        <p>1</p>
+      </td>
+      <td>
+        <p>The entire Meltano platform is driven solely through the <code>meltano.yml</code> file. It is designed as a declarative, Git-friendly configuration model.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <p>CI/CD - Yaml config consistency</p>
+      </td>
+      <td>
+        <p>1</p>
+      </td>
+      <td>
+        <p>8</p>
+      </td>
+      <td>
+        <p>9</p>
+      </td>
+      <td>
+        <p>1</p>
+      </td>
+      <td>
+        <p>See above regarding <code>meltano.yml</code>.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <p>CI/CD - Easy environment promotion (dev, test prod)</p>
+      </td>
+      <td>
+        <p>2</p>
+      </td>
+      <td>
+        <p>5</p>
+      </td>
+      <td>
+        <p>3</p>
+      </td>
+      <td>
+        <p>2</p>
+      </td>
+      <td>
+        <p>Meltano has a native concept of environments in <code>meltano.yml</code> (e.g., dev, staging, and prod), allowing different configurations to be defined for each environment.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <p>CI/CD - Lineage preservance</p>
+      </td>
+      <td>
+        <p>3</p>
+      </td>
+      <td>
+        <p>3</p>
+      </td>
+      <td>
+        <p>3</p>
+      </td>
+      <td>
+        <p>3</p>
+      </td>
+      <td>
+        <p>
+          <br/>
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <p>Unity catalog integration</p>
+      </td>
+      <td>
+        <p>3</p>
+      </td>
+      <td>
+        <p>3</p>
+      </td>
+      <td>
+        <p>3</p>
+      </td>
+      <td>
+        <p>3</p>
+      </td>
+      <td>
+        <p>
+          <br/>
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <p>Strategic Outlook and Future Viability</p>
+      </td>
+      <td>
+        <p>3</p>
+      </td>
+      <td>
+        <p>4</p>
+      </td>
+      <td>
+        <p>7</p>
+      </td>
+      <td>
+        <p>4</p>
+      </td>
+      <td>
+        <p>2025/2026: Following a change in ownership, Meltano was acquired by Matatika. Its GitHub community is smaller than that of competing solutions such as Airbyte (roughly 10 to 15 times fewer GitHub stars), and there are growing indications that the community is increasingly recommending dlt as an alternative. The project remains active and continues to be maintained, but its relative momentum and mindshare appear to be declining compared to competing platforms.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <p>Compliance with Société Générale Greenbook</p>
+      </td>
+      <td>
+        <p>0</p>
+      </td>
+      <td>
+        <p>4 </p>
+      </td>
+      <td>
+        <p>7</p>
+      </td>
+      <td>
+        <p>9</p>
+      </td>
+      <td>
+        <p>
+          <br/>
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <p>Pricing</p>
+      </td>
+      <td>
+        <p>-</p>
+      </td>
+      <td>
+        <p>-</p>
+      </td>
+      <td>
+        <p>current ca. 205 000 EUR / year</p>
+      </td>
+      <td>
+        <p>
+          <br/>
+        </p>
+      </td>
+      <td>
+        <p>On-premises deployment is available at no licensing cost.</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h1>6. Security and Governance</h1>
+<table class="wrapped">
+  <tbody>
+    <tr>
+      <th>
+        <p>Criterion</p>
+      </th>
+      <th>
+        <p>AirPy</p>
+      </th>
+      <th>
+        <p>NiFi</p>
+      </th>
+      <th>
+        <p>Infa</p>
+      </th>
+      <th>
+        <p>Meltano</p>
+      </th>
+      <th>
+        <p>Meltano note</p>
+      </th>
+    </tr>
+    <tr>
+      <td>
+        <p>CyberArk / Vault Integration</p>
+      </td>
+      <td>
+        <p>1</p>
+      </td>
+      <td>
+        <p>5</p>
+      </td>
+      <td>
+        <p>1</p>
+      </td>
+      <td>
+        <p>5</p>
+      </td>
+      <td>
+        <p>Meltano nemá žádný vestavěný "secrets backend". Lze využít např. CyberArk Secretless Broker nebo CyberArk Central Credential Provider,  případně dočasné env proměnné.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <p>Auditability</p>
+      </td>
+      <td>
+        <p>2</p>
+      </td>
+      <td>
+        <p>2</p>
+      </td>
+      <td>
+        <p>2</p>
+      </td>
+      <td>
+        <p>2</p>
+      </td>
+      <td>
+        <p>Logs and run history are stored in Meltano's system database.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <p>Role-Based Access Control (RBAC)</p>
+      </td>
+      <td>
+        <p>1</p>
+      </td>
+      <td>
+        <p>3</p>
+      </td>
+      <td>
+        <p>1</p>
+      </td>
+      <td>
+        <p>4</p>
+      </td>
+      <td>
+        <p>The Meltano CLI does not include its own RBAC (Role-Based Access Control) model. This could be addressed by leveraging Kubernetes RBAC when running Meltano on Kubernetes. Without Kubernetes, access control and security would need to be implemented separately, for example through a custom wrapper layer.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <p>Compliance with KB Security Requirements</p>
+      </td>
+      <td>
+        <p>1</p>
+      </td>
+      <td>
+        <p>2</p>
+      </td>
+      <td>
+        <p>1</p>
+      </td>
+      <td>
+        <p>2</p>
+      </td>
+      <td>
+        <p>See above regarding CyberArk.</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h1>7. Operational Capabilities</h1>
+<table class="wrapped">
+  <tbody>
+    <tr>
+      <th>
+        <p>Criterion</p>
+      </th>
+      <th>
+        <p>AirPy</p>
+      </th>
+      <th>
+        <p>NiFi</p>
+      </th>
+      <th>
+        <p>Infa</p>
+      </th>
+      <th>
+        <p>Meltano</p>
+      </th>
+      <th>
+        <p>Meltano note</p>
+      </th>
+    </tr>
+    <tr>
+      <td>
+        <p>Monitoring - success/fail</p>
+      </td>
+      <td>
+        <p>1</p>
+      </td>
+      <td>
+        <p>3</p>
+      </td>
+      <td>
+        <p>1</p>
+      </td>
+      <td>
+        <p>3</p>
+      </td>
+      <td>
+        <p>The wrapper would need to directly monitor the exit code of the <code>meltano run</code> command. Meltano maintains its own run history in a system database, which can be configured to use a shared external database, allowing multiple worker servers to share execution metadata. Execution history and status information can be retrieved through CLI commands, but we would likely need to build a separate visualization layer to provide a user-friendly overview of runs.</p>
+        <p>Meltano also offers integration with Apache Airflow through a dedicated plugin, and it would be worth verifying whether this integration could address some of the orchestration, monitoring, and visualization requirements.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <p>Alerting - ICM creation</p>
+      </td>
+      <td>
+        <p>2</p>
+      </td>
+      <td>
+        <p>4 (REST API)</p>
+      </td>
+      <td>
+        <p>2</p>
+      </td>
+      <td>
+        <p>3</p>
+      </td>
+      <td>
+        <p>This would be another responsibility of the wrapper layer, or alternatively something to be handled through Airflow integration, rather than within Meltano itself.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <p>In-Flight Recovery</p>
+      </td>
+      <td>
+        <p>1</p>
+      </td>
+      <td>
+        <p>2</p>
+      </td>
+      <td>
+        <p>8</p>
+      </td>
+      <td>
+        <p>2</p>
+      </td>
+      <td>
+        <p>Sorted streams can be resumed from the last checkpoint, and that checkpoint can be manually edited. A flow can also be executed for a specific object only.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <p>Operational Effort</p>
+      </td>
+      <td>
+        <p>2</p>
+      </td>
+      <td>
+        <p>4</p>
+      </td>
+      <td>
+        <p>3</p>
+      </td>
+      <td>
+        <p>
+          <br/>
+        </p>
+      </td>
+      <td>
+        <p>Without K8s operation of a custom wrapper layer; multi-tenant management for a data mesh environment (based on configuration parameters).</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <p>Tool reliability</p>
+      </td>
+      <td>
+        <p>2</p>
+      </td>
+      <td>
+        <p>4</p>
+      </td>
+      <td>
+        <p>1</p>
+      </td>
+      <td>
+        <p>4</p>
+      </td>
+      <td>
+        <p>Community-maintained taps and targets with varying levels of maintenance quality.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <p>SLA integration</p>
+      </td>
+      <td>
+        <p>1</p>
+      </td>
+      <td>
+        <p>1</p>
+      </td>
+      <td>
+        <p>1</p>
+      </td>
+      <td>
+        <p>1</p>
+      </td>
+      <td>
+        <p>
+          <br/>
+        </p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h1>8. Proof of Concept Results</h1>
+<table class="wrapped">
+  <tbody>
+    <tr>
+      <th>
+        <p>Test</p>
+      </th>
+      <th>
+        <p>AirPy</p>
+      </th>
+      <th>
+        <p>NiFi</p>
+      </th>
+      <th>
+        <p>Infa</p>
+      </th>
+    </tr>
+    <tr>
+      <td>
+        <p>Export 80mil.rows to Parquet (Elapsed Time)</p>
+      </td>
+      <td>
+        <p> 20 min</p>
+      </td>
+      <td>
+        <p>15 min</p>
+      </td>
+      <td>
+        <p>40 min</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <p>
+          <span style="color:var(--ds-text,#172b4d);">CyberArk / Vault Integration Validated During PoC</span>
+        </p>
+      </td>
+      <td>
+        <p>1</p>
+      </td>
+      <td>
+        <p>8</p>
+      </td>
+      <td>
+        <p>1</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <p>Password Rotation Without Implementation Changes</p>
+      </td>
+      <td>
+        <p>1</p>
+      </td>
+      <td>
+        <p>8</p>
+      </td>
+      <td>
+        <p>1</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h1>9. Evaluation Summary and Recommendation</h1>
+<h2>Evaluation Summary</h2>
+<p>Several alternatives for generating Parquet datasets from source systems were evaluated across the following dimensions:</p>
+<ul>
+  <li>Development and adoption complexity</li>
+  <li>Implementation and migration effort</li>
+  <li>Functional capabilities</li>
+  <li>Data Mesh alignment</li>
+  <li>Target architecture alignment</li>
+  <li>Security and governance</li>
+  <li>Operational capabilities</li>
+  <li>Proof of Concept results</li>
+</ul>
+<p>Following the initial assessment, the <strong>Preparing Extracts at Source (PNJ)</strong> and <strong>Adoki Offloader</strong> alternatives were excluded from further consideration. These options introduced significant disadvantages in terms of operational complexity, long-term sustainability, contractual or platform dependencies, and overall cost.</p>
+<p>The final comparison therefore focused on the following alternatives:</p>
+<ul>
+  <li>Airflow + Python (AirPy)</li>
+  <li>Apache NiFi</li>
+  <li>Informatica PowerCenter (Infa)</li>
+</ul>
+<h2>Key Findings</h2>
+<h3>Airflow + Python (AirPy)</h3>
+<p>AirPy achieved strong results across most evaluation categories and demonstrated the best overall balance between flexibility, maintainability, architectural alignment, automation, and long-term viability.</p>
+<p>
+  <strong>Key strengths:</strong>
+</p>
+<ul>
+  <li>No licensing costs</li>
+  <li>Reuse of the existing Airflow platform and operational ecosystem</li>
+  <li>Strong CI/CD and Git integration</li>
+  <li>Simple automation and generation of new extraction flows using templates</li>
+  <li>Good alignment with the target cloud architecture</li>
+  <li>Strong operational capabilities, including monitoring, retry mechanisms, alerting, autorestarts, and SLA handling</li>
+  <li>Good alignment with Data Mesh principles and squad ownership</li>
+  <li>Potential reuse across other entities and data integration use cases</li>
+</ul>
+<p>
+  <strong>Key limitations:</strong>
+</p>
+<ul>
+  <li data-uuid="2400ddee-ccd0-451f-a000-9e9e5db19263">A higher initial investment is required to build the reusable extraction framework</li>
+  <li>Incremental extraction logic must be implemented as part of the common framework</li>
+  <li>The solution depends on maintaining sufficient internal expertise and ownership</li>
+  <li>Python-based processing may not provide sufficient performance for all future high-volume workloads</li>
+  <li data-uuid="3199385c-1020-4e40-b1b3-957910a7ab5b">In addition to the Société Générale on-premises Airflow platform, the solution would require an Airflow runtime within the KB on-premises environment. The preferred option is to deploy a dedicated KB worker connected to the Société Générale Airflow platform through CeleryExecutor. However, this model may be subject to security restrictions on the Société Générale side. If the required cross-environment connectivity is not approved, a standalone, fully operational Airflow deployment within the KB environment would be required.</li>
+</ul>
+<h3>Apache NiFi</h3>
+<p>NiFi demonstrated strong technical capabilities and achieved the best processing performance during the Proof of Concept.</p>
+<p>
+  <strong>Key strengths:</strong>
+</p>
+<ul>
+  <li>Best runtime performance among the evaluated alternatives</li>
+  <li>Native support for streaming workloads and Kafka integration</li>
+  <li>Native support for incremental processing</li>
+  <li>No licensing costs</li>
+</ul>
+<p>
+  <strong>Key limitations:</strong>
+</p>
+<ul>
+  <li>More complex CI/CD integration and environment promotion</li>
+  <li>More challenging automated flow generation</li>
+  <li>More complex governance, version management, and object lifecycle</li>
+  <li>Complicated integration with Airflow orchestration</li>
+  <li>Higher adoption and training effort across squads</li>
+  <li>More complex integration with CyberArk and password rotation</li>
+</ul>
+<p>Although NiFi is technically capable and demonstrated the best performance, it introduces additional operational, integration, and governance complexity without delivering proportional benefits for the evaluated batch-oriented source-to-Parquet use case.</p>
+<h3>Informatica PowerCenter</h3>
+<p>PowerCenter remains a mature and proven enterprise platform with significant internal adoption, existing expertise, and established operational processes.</p>
+<p>
+  <strong>Key strengths:</strong>
+</p>
+<ul>
+  <li>Existing know-how and operational experience within KB</li>
+  <li>Established integration with existing operational and security processes</li>
+  <li>Stable and proven operational model</li>
+  <li>Low adoption risk for existing Informatica teams</li>
+  <li>Natural separation of configuration and implementation ownership</li>
+</ul>
+<p>
+  <strong>Key limitations:</strong>
+</p>
+<ul>
+  <li>Additional licensing and lifecycle costs</li>
+  <li>Lowest performance observed during the Proof of Concept</li>
+  <li>Reduced flexibility for automated flow generation at scale</li>
+  <li>Limited support for Parquet generation without additional transformations</li>
+  <li>Limited long-term strategic outlook due to the product lifecycle</li>
+  <li>Lower alignment with the target cloud architecture</li>
+</ul>
+<p>PowerCenter presents the lowest transformation and adoption risk, but it also provides the least strategic value for the future target architecture and retains dependency on a licensed platform with a limited lifecycle.</p>
+<h2>Cost and Implementation Effort</h2>
+<p>The total estimated implementation and migration effort is dominated by migration testing, which is broadly comparable across all shortlisted alternatives. The main differences are in the initial environment setup and squad upskilling effort.</p>
+<table class="wrapped">
+  <tbody>
+    <tr>
+      <th>Area</th>
+      <th>AirPy</th>
+      <th>NiFi</th>
+      <th>Infa</th>
+    </tr>
+    <tr>
+      <td>Environment setup</td>
+      <td style="text-align: center;">55 MD</td>
+      <td style="text-align: center;">73 MD</td>
+      <td style="text-align: center;">35 MD</td>
+    </tr>
+    <tr>
+      <td>Upskilling</td>
+      <td style="text-align: center;">14 MD</td>
+      <td style="text-align: center;">135 MD</td>
+      <td style="text-align: center;">15 MD</td>
+    </tr>
+    <tr>
+      <td>Migration</td>
+      <td style="text-align: center;">1,141 MD</td>
+      <td style="text-align: center;">1,125 MD</td>
+      <td style="text-align: center;">1,125 MD</td>
+    </tr>
+    <tr>
+      <td>
+        <strong>Total estimated effort</strong>
+      </td>
+      <td style="text-align: center;">
+        <strong>1,221 MD</strong>
+      </td>
+      <td style="text-align: center;">
+        <strong>1,398 MD</strong>
+      </td>
+      <td style="text-align: center;">
+        <strong>1,185 MD</strong>
+      </td>
+    </tr>
+    <tr>
+      <td>Additional licensing cost</td>
+      <td style="text-align: center;">None</td>
+      <td style="text-align: center;">None</td>
+      <td style="text-align: center;">Approximately EUR 10,500 per year for four additional CPUs</td>
+    </tr>
+  </tbody>
+</table>
+<p>PowerCenter has the lowest estimated implementation effort, while AirPy is approximately 36 MD higher. However, AirPy avoids additional licensing costs and provides stronger long-term architectural and automation benefits.</p>
+<p>NiFi has the highest estimated total effort, primarily due to the significant squad upskilling requirements and the additional complexity of flow generation and integration.</p>
+<h2>Proof of Concept Results</h2>
+<p>The Proof of Concept confirmed that all shortlisted alternatives are capable of generating Parquet datasets and meeting the primary functional requirements.</p>
+<table class="wrapped">
+  <tbody>
+    <tr>
+      <th>Solution</th>
+      <th>Export of 80 Million Rows to Parquet</th>
+      <th>CyberArk and Vault Integration</th>
+    </tr>
+    <tr>
+      <td>AirPy</td>
+      <td style="text-align: center;">Approximately 20 minutes</td>
+      <td style="text-align: center;">Validated</td>
+    </tr>
+    <tr>
+      <td>NiFi</td>
+      <td style="text-align: center;">Approximately 15 minutes</td>
+      <td style="text-align: center;">Significant limitations identified</td>
+    </tr>
+    <tr>
+      <td>PowerCenter</td>
+      <td style="text-align: center;">Approximately 40 minutes</td>
+      <td style="text-align: center;">Validated</td>
+    </tr>
+  </tbody>
+</table>
+<p>NiFi achieved the fastest execution time. However, its performance advantage over AirPy was not considered significant enough to outweigh the additional architectural, operational, CI/CD, security integration, and governance complexity.</p>
+<p>AirPy completed the tested workload in approximately half the PowerCenter execution time, while also successfully validating the required CyberArk and password rotation integration.</p>
+<h2>Decision Summary</h2>
+<p>The following table summarizes the main decision factors identified during the evaluation. It is intended as a high-level overview; detailed scoring and supporting evidence are provided in the preceding sections.</p>
+<p>✅ <strong>Strong / Preferred</strong>
+  <br/>⚠️ <strong>Acceptable Trade-off</strong>
+  <br/>❌ <strong>Weakness / Limitation</strong>
+</p>
+<table class="wrapped">
+  <tbody>
+    <tr>
+      <th>Decision Factor</th>
+      <th>AirPy</th>
+      <th>NiFi</th>
+      <th>Infa</th>
+    </tr>
+    <tr>
+      <td>
+        <strong>Runtime Performance</strong>
+      </td>
+      <td>✅ <strong>Strong</strong>
+        <br/>Approximately 20 minutes in the PoC</td>
+      <td>✅ <strong>Preferred</strong>
+        <br/>Approximately 15 minutes in the PoC</td>
+      <td>❌ <strong>Weakness</strong>
+        <br/>Approximately 40 minutes in the PoC</td>
+    </tr>
+    <tr>
+      <td>
+        <strong>Automated Flow Generation</strong>
+      </td>
+      <td>✅ <strong>Preferred</strong>
+        <br/>Simple template-based generation from YAML configuration</td>
+      <td>❌ <strong>Limitation</strong>
+        <br/>Complex generation and lifecycle management of NiFi objects</td>
+      <td>⚠️ <strong>Acceptable Trade-off</strong>
+        <br/>Possible, but with higher implementation complexity</td>
+    </tr>
+    <tr>
+      <td>
+        <strong>CI/CD and Environment Promotion</strong>
+      </td>
+      <td>✅ <strong>Preferred</strong>
+        <br/>Strong Git integration and consistent configuration-based deployment</td>
+      <td>❌ <strong>Limitation</strong>
+        <br/>More complex versioning and environment promotion</td>
+      <td>⚠️ <strong>Acceptable Trade-off</strong>
+        <br/>Existing integration, but lower configuration consistency</td>
+    </tr>
+    <tr>
+      <td>
+        <strong>Operational Integration</strong>
+      </td>
+      <td>✅ <strong>Preferred</strong>
+        <br/>Strong monitoring, retries, alerting, SLA, and incident integration</td>
+      <td>❌ <strong>Limitation</strong>
+        <br/>More complex orchestration and error propagation</td>
+      <td>✅ <strong>Strong</strong>
+        <br/>Mature and established operational integration</td>
+    </tr>
+    <tr>
+      <td>
+        <strong>Incremental Load Support</strong>
+      </td>
+      <td>⚠️ <strong>Acceptable Trade-off</strong>
+        <br/>Requires a shared framework for watermark and checkpoint management</td>
+      <td>✅ <strong>Strong</strong>
+        <br/>Incremental processing capabilities<br/>However, the delta cannot be overridden with a specific value and can only be reset</td>
+      <td>⚠️ <strong>Acceptable Trade-off</strong>
+        <br/>Available, but with limitations in watermark management and manual overrides</td>
+    </tr>
+    <tr>
+      <td>
+        <strong>Security Integration</strong>
+      </td>
+      <td>✅ <strong>Preferred</strong>
+        <br/>CyberArk integration and password rotation validated in the PoC</td>
+      <td>❌ <strong>Limitation</strong>
+        <br/>Additional integration effort required</td>
+      <td>✅ <strong>Strong</strong>
+        <br/>Existing and validated security integration</td>
+    </tr>
+    <tr>
+      <td>
+        <strong>Squad Adoption and Data Mesh Alignment</strong>
+      </td>
+      <td>✅ <strong>Preferred</strong>
+        <br/>Good squad ownership model and low complexity for new use cases</td>
+      <td>❌ <strong>Limitation</strong>
+        <br/>High upskilling effort and more complex flow ownership</td>
+      <td>⚠️ <strong>Acceptable Trade-off</strong>
+        <br/>Strong existing expertise, but lower flexibility and slower delivery</td>
+    </tr>
+    <tr>
+      <td>
+        <strong>Licensing and Long-Term Cost</strong>
+      </td>
+      <td>✅ <strong>Preferred</strong>
+        <br/>No additional licensing costs</td>
+      <td>✅ <strong>Strong</strong>
+        <br/>No additional licensing costs</td>
+      <td>❌ <strong>Limitation</strong>
+        <br/>Additional licensing and lifecycle costs</td>
+    </tr>
+    <tr>
+      <td>
+        <strong>Target Architecture and Strategic Outlook</strong>
+      </td>
+      <td>✅ <strong>Preferred</strong>
+        <br/>Best fit with the target architecture, CI/CD model, and future orchestration strategy</td>
+      <td>⚠️ <strong>Acceptable Trade-off</strong>
+        <br/>Technically viable, but requires additional integration with Airflow</td>
+      <td>❌ <strong>Limitation</strong>
+        <br/>Limited strategic outlook and product lifecycle</td>
+    </tr>
+    <tr>
+      <td>
+        <strong>Scalability for High-Volume Flows</strong>
+      </td>
+      <td>⚠️ <strong>Acceptable Trade-off</strong>
+        <br/>Apache Spark can be integrated as an optional engine for selected flows</td>
+      <td>✅ <strong>Preferred</strong>
+        <br/>Strong processing performance demonstrated in the PoC</td>
+      <td>❌ <strong>Limitation</strong>
+        <br/>Lower performance and additional licensing requirements for scaling</td>
+    </tr>
+    <tr>
+      <td>
+        <strong>Overall Assessment</strong>
+      </td>
+      <td>✅ <strong>Recommended</strong>
+        <br/>Best overall balance of architecture, automation, cost, operations, and performance</td>
+      <td>⚠️ <strong>Technically Strong Alternative</strong>
+        <br/>Best performance, but higher integration, governance, and adoption complexity</td>
+      <td>⚠️ <strong>Stable Short-Term Alternative</strong>
+        <br/>Low adoption risk, but limited long-term strategic value</td>
+    </tr>
+  </tbody>
+</table>
+<h2>Recommendation</h2>
+<p>
+  <strong>Recommended option: Airflow + Python (AirPy)</strong>
+</p>
+<p>Based on the overall evaluation, AirPy is recommended as the target solution for future source-system-to-Parquet extraction workloads.</p>
+<p>The recommendation is primarily driven by:</p>
+<ul>
+  <li>Strong alignment with the target architecture</li>
+  <li>Good fit with Data Mesh principles and squad ownership</li>
+  <li>Reuse of the existing Airflow ecosystem</li>
+  <li>No additional licensing costs</li>
+  <li>Strong CI/CD, Git, and automation capabilities</li>
+  <li>Simple generation and maintenance of a large number of extraction pipelines</li>
+  <li>Strong operational capabilities, including retry mechanisms, autorestarts, monitoring, and SLA integration</li>
+  <li>Good performance validated during the Proof of Concept</li>
+  <li>Long-term strategic viability and reuse potential</li>
+</ul>
+<p>AirPy requires the development of a common framework for incremental loading, watermark management, schema validation, and Parquet generation. This is considered a one-time enablement investment that can be reused across migrated and newly onboarded extraction workloads.</p>
+<p>The proposed solution also separates orchestration from the processing engine. Airflow remains responsible for orchestration, scheduling, monitoring, retries, and governance, while the most appropriate processing engine can be selected for individual extraction flows.</p>
+<h2>Risks and Mitigations</h2>
+<table class="wrapped">
+  <tbody>
+    <tr>
+      <th>Risk</th>
+      <th>Mitigation</th>
+    </tr>
+    <tr>
+      <td>Missing native support for incremental extraction logic</td>
+      <td>Deliver a shared framework for watermark management, checkpoint overrides, and incremental processing as part of the initial implementation.</td>
+    </tr>
+    <tr>
+      <td>Dependency on internal know-how</td>
+      <td>Establish common development standards, reusable templates, comprehensive documentation, structured training, and clear framework ownership.</td>
+    </tr>
+    <tr>
+      <td>Open-source support model</td>
+      <td>Leverage existing platform ownership, internal support processes, and community-supported components. Define clear responsibilities for platform operation and framework maintenance.</td>
+    </tr>
+    <tr>
+      <td>Higher initial implementation effort</td>
+      <td>Treat framework development as a one-time investment that will be reused across future extraction workloads and reduce subsequent onboarding, maintenance, and licensing costs.</td>
+    </tr>
+    <tr>
+      <td>Insufficient performance for very large-volume or computationally demanding extraction flows</td>
+      <td>Integrate Apache Spark as an optional processing engine for selected high-volume flows while retaining Airflow orchestration, the common configuration framework, and the established governance model.</td>
+    </tr>
+    <tr>
+      <td>Future growth of data volumes may increase processing times</td>
+      <td>Scale the Airflow execution infrastructure horizontally and offload resource-intensive processing to Apache Spark where appropriate.</td>
+    </tr>
+  </tbody>
+</table>
+<p>The performance risk is considered manageable. The Proof of Concept demonstrated that AirPy provides sufficient performance for the evaluated workload. If selected extraction flows exceed the practical limits of Python-based processing in the future, Apache Spark can be used as a specialized processing engine for those flows.</p>
+<p>This approach allows the processing engine to evolve independently of the orchestration and governance layers. Selected workloads can therefore be moved to Spark-based execution without redesigning the overall solution, changing the Airflow orchestration model, or replacing the common CI/CD and configuration framework.</p>
+<h2>Conclusion</h2>
+<p>AirPy provides the best overall balance of performance, cost, automation, operational capabilities, architectural alignment, and long-term strategic value.</p>
+<p>NiFi remains a technically strong option, particularly for streaming and Kafka-oriented use cases, but introduces unnecessary complexity for the evaluated batch-oriented source-to-Parquet scenario. PowerCenter remains a stable short-term alternative with low adoption risk, but its licensing model, performance, product lifecycle, and limited strategic alignment reduce its suitability as the future target solution.</p>
+<p>The recommendation is therefore to adopt <strong>Airflow + Python as the standard orchestration and extraction framework</strong>, with <strong>Apache Spark available as an optional processing engine for selected high-volume or computationally demanding flows</strong>.</p>
+<h1>10. Open Points</h1>
+<ul>
+  <li>
+    <strong>Generation of Parquet datasets from Kafka streams</strong>
+    <p>The approach for processing Kafka streams has not yet been finalized. The preferred option to be evaluated is the use of a Kafka Connect Sink Connector, which would read selected Kafka topics based on configuration and write the data directly to the target storage in Parquet format.</p>
+    <p>The availability of a suitable connector for the target storage, Parquet support, schema handling, partitioning, file rotation, and operational ownership must be verified.</p>
+  </li>
+  <li>
+    <strong>Processing of text-based files</strong>
+    <p>It has not yet been confirmed whether text-based files, such as XML, CSV, or JSON, will be processed through the ingest tool.</p>
+    <p>The current assumption is that the ingest tool will not be responsible for converting these files into Parquet format. This assumption, including the expected processing path and ownership of these file-based inputs, must be validated.</p>
+  </li>
+</ul>
