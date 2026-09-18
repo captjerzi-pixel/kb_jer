@@ -1,0 +1,246 @@
+<p>This section describes the selected architecture for designing an Ingest Tool that operates based on configuration and versioned ingest flow templates. The objective is to align the ingestion process with Data Mesh principles by assigning ownership of configurations, deployments, and operational responsibility to individual Business Unit squads.</p>
+<p>The Platform Squad provides a Templates Library containing versioned ingest flow templates for different processing patterns, such as Full, Delta, or kafka ingestion. Each Business Unit squad selects the appropriate template and deploys a copy of it, together with the corresponding configuration, into its own Git repository.</p>
+<p>All configurations, selected templates, and deployment artifacts are version-controlled in Git and delivered through standard CI/CD pipelines. This ensures that every change is traceable, reviewable, reproducible, and consistently promoted across environments.</p>
+<p>The behavior of each ingestion flow is determined by the selected template type and version together with the configurations owned by the corresponding Business Unit squad. The selected template contains the complete ingestion implementation, while squad-specific behavior is controlled through the referenced configuration files.</p>
+<h2>Principles</h2>
+<ul>
+  <li>Configurations are fully owned by the corresponding Business Unit squad.</li>
+  <li>All configuration, template, and deployment artifacts used by an ingest flow are versioned and maintained in the squad's Git repository.</li>
+  <li>The Platform Squad provides versioned ingest flow templates for supported ingestion patterns.</li>
+  <li>Each Business Unit squad selects an appropriate template and deploys it together with the corresponding configuration.</li>
+  <li>Squads define what data should be exported and how the export should behave, while the ingestion implementation remains standardized within each supported template type and version.</li>
+  <li>Each squad owns the deployment, operation, and lifecycle of its resulting ingest flows.</li>
+  <li>Squads decide when to upgrade to a newer supported template version, except when a mandatory security or critical defect fix is required.</li>
+</ul>
+<h2>Templates Library</h2>
+<p>The Templates Library contains versioned ingest flow templates for different processing patterns and execution technologies.</p>
+<p>Templates may differ substantially in their functionality and implementation. For example, Full and Delta ingestion use separate templates because they implement different processing logic. Kafka-based ingestion may also use a separate template where a different execution technology is required.</p>
+<p>Each template contains the complete implementation required to execute the corresponding ingestion pattern. Template customization is intentionally limited to supported parameters, primarily the reference to the input Export Configuration YAML file.</p>
+<p>A Business Unit squad selects a template and a specific template version from the Templates Library. A copy of the selected template is stored and deployed from the squad's own Git repository together with the corresponding configuration files.</p>
+<h3>Template Lifecycle</h3>
+<ul>
+  <li>The Platform Squad develops, tests, documents, and publishes new template versions.</li>
+  <li>Business Unit squads select the appropriate template type and version for their ingest flows.</li>
+  <li>Template upgrades are performed through the standard pull request and CI/CD process in the squad repository.</li>
+  <li>During pull request validation, the configuration is validated against the selected template type and version.</li>
+  <li>The Platform Squad defines which template versions are supported, deprecated, or no longer supported.</li>
+  <li>Security patches and critical defect fixes are distributed as new template versions together with an upgrade request or mandatory upgrade deadline.</li>
+  <li>An inventory of deployed ingest flows and their template versions is maintained to support lifecycle management and security patching.</li>
+</ul>
+<h2>Configuration Components</h2>
+<h3>1. Object Schema</h3>
+<p>Defines <strong>what</strong> will be stored in the generated Parquet dataset.</p>
+<p>The schema describes the structure of the exported data, including:</p>
+<ul>
+  <li>Dataset name and version</li>
+  <li>Column definitions</li>
+  <li>Physical and logical data types</li>
+  <li>Source object reference</li>
+</ul>
+<p>The schema is expected to follow a standardized format to ensure consistent validation and interoperability across the platform.</p>
+<h4>Lifecycle</h4>
+<ul>
+  <li>During migration, schemas can be generated from existing XML or JSON definitions.</li>
+  <li>For new developments, schemas may be generated from source databases or Bronze-layer datasets.</li>
+  <li>Schema changes are typically driven by source-system DDL changes.</li>
+</ul>
+<h4>Example</h4>
+<pre>
+  <code class="language-yaml">version: "1.0"
+name: crm/customer
+source: CRM.CUSTOMER
+
+columns:
+  - name: CUSTOMER_ID
+    physical_type: INT64   # Data storage format in Parquet
+    logical_type: INTEGER  # Data format in the source system
+
+  - name: CUSTOMER_NAME
+    physical_type: BYTE_ARRAY
+    logical_type: STRING
+
+  - name: CUSTOMER_EMAIL
+    physical_type: BYTE_ARRAY
+    logical_type: STRING
+
+  - name: UPDATE_TS
+    physical_type: INT64
+    logical_type: TIMESTAMP
+</code>
+</pre>
+<h3>2. Export Configuration</h3>
+<p>Defines <strong>where and how</strong> data should be exported.</p>
+<p>The export configuration contains operational settings required by the selected ingest flow template.</p>
+<h4>Typical Configuration Elements</h4>
+<ul>
+  <li>Source connection reference</li>
+  <li>Source system type</li>
+  <li>Export mode identifying the expected processing pattern</li>
+  <li>Watermark column definition</li>
+  <li>Schema validation strategy</li>
+  <li>Export destination</li>
+  <li>Activation status</li>
+</ul>
+<h4>Supported Capabilities</h4>
+<ul>
+  <li>Connection details stored securely in a vault</li>
+  <li>Full or Delta extraction using the corresponding ingest flow template</li>
+  <li>Incremental loading using a watermark column</li>
+  <li>Schema validation modes such as <code>strict</code> or <code>breaking-changes</code>
+  </li>
+  <li>Multiple export destinations</li>
+</ul>
+<p>The <code>load_mode</code> value does not dynamically select or change the implementation of the ingest flow. It is used to validate that the Export Configuration corresponds to the selected template. For example, a configuration with <code>load_mode: full</code> must be deployed with a Full ingest flow template.</p>
+<p>Compatibility between the Export Configuration and the selected template type and version is validated as part of the pull request CI/CD process.</p>
+<h4>Example</h4>
+<pre>
+  <code class="language-yaml">export_id: CRM_EXPORTS
+
+connection_id: CRM_DB
+source_type: oracle
+
+load_mode: full
+validate_schema: breaking-changes
+active: true
+
+run_condition_file: run_condition.txt
+
+exports:
+  - source_object: CRM.CUSTOMER
+    schema_ref: crm-customer
+    watermark_column: UPDATE_TS
+
+    export_location:
+      type: s3
+      path: crm/customer
+
+  - source_object: CRM.CUSTOMER_CONTACTS
+    schema_ref: crm-customer-contacts
+
+    export_location:
+      type: filesystem
+      path: crm/customer-contacts
+</code>
+</pre>
+<h3>3. Run Conditions</h3>
+<p>Defines whether the ingestion flow is allowed to start.</p>
+<p>Run conditions are implemented as SQL queries executed before the export process begins.</p>
+<h4>Typical Use Cases</h4>
+<ul>
+  <li>Verifying that upstream processing has completed successfully.</li>
+  <li>Checking whether source data is available.</li>
+  <li>Implementing dependencies on enterprise scheduling processes.</li>
+</ul>
+<p>Only a subset of ingestion flows requires run conditions.</p>
+<h4>Expected Result</h4>
+<p>The SQL query should return a single record representing the execution decision.</p>
+<ul>
+  <li>Boolean</li>
+  <li>Date</li>
+  <li>Timestamp</li>
+</ul>
+<p>For consistency and simplicity, returning a Boolean value is the preferred approach.</p>
+<h4>Example</h4>
+<pre>
+  <code class="language-sql">SELECT
+    CASE
+        WHEN COUNT(*) &gt; 0 THEN TRUE
+        ELSE FALSE
+    END AS can_run
+FROM CONTROL_TABLE
+WHERE BUSINESS_DATE = CURRENT_DATE;
+</code>
+</pre>
+<h2>Validation</h2>
+<p>Changes to templates and configuration artifacts are validated through the standard pull request process before deployment.</p>
+<p>The validation process should verify at least the following:</p>
+<ul>
+  <li>The Object Schema and Export Configuration use a supported format.</li>
+  <li>All required configuration attributes are present.</li>
+  <li>All <code>schema_ref</code> values reference existing and valid Object Schema definitions.</li>
+  <li>The configured <code>load_mode</code> corresponds to the selected ingest flow template.</li>
+  <li>The configuration is compatible with the selected template version.</li>
+  <li>The selected template version is supported by the Platform Squad.</li>
+  <li>The template has not been modified outside the explicitly supported customization parameters.</li>
+</ul>
+<h2>Template Versioning and Inventory</h2>
+<p>Every deployed ingest flow must be associated with a specific template type and version. This information must be traceable from the squad repository and available in a central inventory.</p>
+<p>The inventory should provide an overview of:</p>
+<ul>
+  <li>Deployed ingest flows</li>
+  <li>Owning Business Unit squads</li>
+  <li>Selected template types</li>
+  <li>Deployed template versions</li>
+  <li>Support status of each template version</li>
+  <li>Required or recommended upgrades</li>
+</ul>
+<p>The inventory enables the Platform Squad to identify flows affected by security vulnerabilities, critical defects, compatibility changes, or end-of-support decisions.</p>
+<h2>Upgrade Model</h2>
+<p>Business Unit squads normally decide when to upgrade their ingest flows to a newer supported template version. An upgrade is performed by replacing the existing template with the selected newer version in the squad repository and delivering the change through the standard pull request and CI/CD process.</p>
+<p>The Platform Squad communicates newly available versions, security patches, defect fixes, compatibility requirements, and end-of-support dates. Security vulnerabilities or defects that may cause data corruption, data loss, or significant operational risk may require a mandatory upgrade within a defined deadline.</p>
+<p>Multiple supported template versions may coexist in production. The Platform Squad defines the support lifecycle and determines which versions are supported, deprecated, or no longer supported.</p>
+<h2>Operational Considerations</h2>
+<p>A single ingest flow may process multiple source objects defined in one Export Configuration. Although the objects share the same orchestration cycle, the processing status of each object should remain observable.</p>
+<p>Monitoring and logging should provide object-level information, including:</p>
+<ul>
+  <li>Processing status</li>
+  <li>Start and completion time</li>
+  <li>Number of exported records</li>
+  <li>Validation result</li>
+  <li>Failure details</li>
+  <li>Retry information</li>
+</ul>
+<p>
+  <br/>
+</p>
+<h2>Ownership Model</h2>
+<table class="wrapped">
+  <thead>
+    <tr>
+      <th>Artifact</th>
+      <th>Owner</th>
+      <th>Responsibility</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Templates Library</td>
+      <td>Platform Squad</td>
+      <td>Development, testing, documentation, release, versioning, security patching, and lifecycle management of ingest flow templates</td>
+    </tr>
+    <tr>
+      <td>Object Schema</td>
+      <td>Business Squad</td>
+      <td>Definition and maintenance of the exported data structure</td>
+    </tr>
+    <tr>
+      <td>Export Configuration</td>
+      <td>Business Squad</td>
+      <td>Definition and maintenance of export behavior</td>
+    </tr>
+    <tr>
+      <td>Run Conditions</td>
+      <td>Business Squad</td>
+      <td>Definition and maintenance of execution prerequisites</td>
+    </tr>
+    <tr>
+      <td>Selected Template Copy</td>
+      <td>Business Squad</td>
+      <td>Selection, version control, supported configuration, and upgrade of the template deployed in the squad repository</td>
+    </tr>
+    <tr>
+      <td>Deployed Ingest Flow</td>
+      <td>Business Squad</td>
+      <td>Deployment, monitoring, operation, incident resolution, and lifecycle management of the resulting ingest flow</td>
+    </tr>
+    <tr>
+      <td>Template Version Inventory</td>
+      <td>Platform Squad</td>
+      <td>Central overview of deployed flows, owners, template versions, support status, and required upgrades</td>
+    </tr>
+  </tbody>
+</table>
+<h2>Summary</h2>
+<p>This approach aligns with Data Mesh principles by assigning ownership of configuration, deployment, and operation to Business squads while keeping template development, standardization, versioning, and lifecycle management centralized within the Platform Squad.</p>
+<p>The Platform Squad provides versioned templates for different ingestion patterns, such as Full, Delta, or Spark-based ingestion. Each Business Unit squad selects an appropriate template, deploys a copy of it together with the corresponding YAML configuration in its own Git repository, and owns the resulting ingest flow.</p>
+<p>Squads control the timing of standard template upgrades, while central inventory, pull request validation, security notifications, and template support policies provide the governance required to operate multiple template types and versions safely.</p>
