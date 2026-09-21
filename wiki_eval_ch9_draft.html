@@ -1,0 +1,377 @@
+<h1>9. Evaluation Summary and Recommendation</h1>
+<h2>Evaluation Summary</h2>
+<p>Several alternatives for generating Parquet datasets from source systems were evaluated across the following dimensions:</p>
+<ul>
+  <li>Development and adoption complexity</li>
+  <li>Implementation and migration effort</li>
+  <li>Functional capabilities</li>
+  <li>Data Mesh alignment</li>
+  <li>Target architecture alignment</li>
+  <li>Security and governance</li>
+  <li>Operational capabilities</li>
+  <li>Proof of Concept results</li>
+</ul>
+<p>Following the initial assessment, the <strong>Preparing Extracts at Source (PNJ)</strong> and <strong>Adoki Offloader</strong> alternatives were excluded from further consideration. These options introduced significant disadvantages in terms of operational complexity, long-term sustainability, contractual or platform dependencies, and overall cost.</p>
+<p>
+  <strong>Meltano</strong> was excluded after the Proof of Concept. The export of 80 million rows took approximately 4 hours, compared with 5 to 15 minutes for the other alternatives.</p>
+<p>The final comparison therefore focused on the following alternatives:</p>
+<ul>
+  <li>Airflow + Python (AirPy)</li>
+  <li>Apache MiNiFi (Java agent)</li>
+  <li>Apache NiFi</li>
+  <li>Informatica PowerCenter (Infa)</li>
+</ul>
+<p>MiNiFi was evaluated on the assumption that it runs in Kubernetes (K8s). Each ingest flow is started per run as a pod from the SOGE on-premises Airflow (KubernetesPodOperator). The Parquet files and the related metadata (watermark) are stored on the internal S3 storage, so the pod itself is stateless. The flow definition and the YAML configuration are versioned in the Git repository of the owning squad, in line with the Versioned Template Library (B2).</p>
+<p>In the scoring tables, AirPy and MiNiFi achieved clearly better results than NiFi, Informatica PowerCenter and Meltano. MiNiFi achieved the best result in the Functional Capabilities category, while AirPy achieved the best results in the Data Mesh alignment, security and operational categories.</p>
+<h2>Key Findings</h2>
+<h3>Apache MiNiFi (Java agent)</h3>
+<p>The MiNiFi Java agent runs the same processors as Apache NiFi (database, Kafka, Elasticsearch, Parquet and S3 processors) in a lightweight form without a user interface. Since NiFi 2, MiNiFi Java is part of the NiFi release line. The flow is a definition file kept in Git, which suits the template-based ownership model.</p>
+<p>
+  <strong>Key strengths:</strong>
+</p>
+<ul>
+  <li>One tool covers all source types, including Kafka and Elasticsearch. The alternative of using AirPy for batch sources and NiFi for Kafka and Elasticsearch would mean two tools, two skill sets, two CI/CD pipelines and two operating models.</li>
+  <li>Ready-made processors are used instead of a custom-built framework. This applies to database extraction, Parquet export and import, Kafka, Elasticsearch, S3 and incremental loading.</li>
+  <li>Best result among the alternatives in the Functional Capabilities category.</li>
+  <li>Strong CI/CD and Git integration: the flow definition and the YAML configuration are stored in Git, validated in pull requests, and the same image is promoted through the environments with environment-specific configuration.</li>
+  <li>Independent flows: each run is an isolated pod in the namespace of the owning squad, with Kubernetes RBAC and Airflow retries.</li>
+  <li>The incremental logic and the watermark stored on S3 are implemented once in the template, and the watermark can be corrected by editing a single object on S3.</li>
+  <li>No licensing costs. The core components are maintained by the Apache NiFi community.</li>
+  <li>Good alignment with the target architecture (Kubernetes, Airflow, S3).</li>
+</ul>
+<p>
+  <strong>Key limitations:</strong>
+</p>
+<ul>
+  <li>No internal NiFi or MiNiFi expertise is available at present. Squads only maintain YAML configuration, but the Platform Squad must build the know-how.</li>
+  <li>MiNiFi Java is a continuously running agent and no run-once mode is documented. A wrapper (or the NiFi Stateless runtime) is needed so that the pod finishes after processing and returns an exit code to Airflow.</li>
+  <li>Some custom code remains: the watermark logic and the translation of the YAML configuration into flow parameters in the template, and the MiNiFi Toolkit conversion in CI.</li>
+  <li>The runtime in the Proof of Concept was approximately 10 minutes, compared with approximately 5 minutes for AirPy.</li>
+  <li>CyberArk and password rotation have not yet been validated. The design assumes that Airflow retrieves the credentials for each run and passes them to the pod.</li>
+  <li>The availability of the required processors (Parquet, Kafka, Elasticsearch, AWS) in the MiNiFi Java distribution and the use of the internal S3-compatible storage must be verified.</li>
+  <li>Weaker documentation and lower adoption in the industry than the alternatives, because MiNiFi is used mainly as an edge data collection agent.</li>
+  <li>Compliance with the Société Générale Greenbook is assumed to be the same as for Apache NiFi and must be confirmed.</li>
+</ul>
+<h3>Airflow + Python (AirPy)</h3>
+<p>AirPy achieved strong results across most evaluation categories and demonstrated the best runtime performance during the Proof of Concept.</p>
+<p>
+  <strong>Key strengths:</strong>
+</p>
+<ul>
+  <li>No licensing costs</li>
+  <li>Reuse of the existing Airflow platform and operational ecosystem</li>
+  <li>Strong CI/CD and Git integration</li>
+  <li>Simple automation and generation of new extraction flows using templates</li>
+  <li>Good alignment with the target cloud architecture</li>
+  <li>Strong operational capabilities, including monitoring, retry mechanisms, alerting, autorestarts, and SLA handling</li>
+  <li>CyberArk integration and password rotation validated in the Proof of Concept</li>
+  <li>Good alignment with Data Mesh principles and squad ownership</li>
+</ul>
+<p>
+  <strong>Key limitations:</strong>
+</p>
+<ul>
+  <li>A custom extraction framework must be developed and maintained in Airflow, including incremental loading, watermark management, schema validation, Parquet generation, and readers for Kafka and Elasticsearch, which are not available as ready-made components.</li>
+  <li>The solution depends on maintaining sufficient internal expertise and ownership of this framework.</li>
+  <li>Python-based processing may not provide sufficient performance for all future high-volume workloads.</li>
+  <li>Kafka and Elasticsearch would have to be handled by another tool (for example NiFi), which results in two tools instead of one.</li>
+  <li>In addition to the Société Générale on-premises Airflow platform, the solution would require an Airflow runtime within the KB on-premises environment. The preferred option is to deploy a dedicated KB worker connected to the Société Générale Airflow platform through CeleryExecutor. However, this model may be subject to security restrictions on the Société Générale side. If the required cross-environment connectivity is not approved, a standalone, fully operational Airflow deployment within the KB environment would be required.</li>
+</ul>
+<h3>Apache NiFi</h3>
+<p>NiFi demonstrated strong technical capabilities, in particular for streaming workloads.</p>
+<p>
+  <strong>Key strengths:</strong>
+</p>
+<ul>
+  <li>Native support for streaming workloads and Kafka integration</li>
+  <li>Native support for incremental processing</li>
+  <li>No licensing costs</li>
+</ul>
+<p>
+  <strong>Key limitations:</strong>
+</p>
+<ul>
+  <li>More complex CI/CD integration and environment promotion</li>
+  <li>More challenging automated flow generation</li>
+  <li>More complex governance, version management, and object lifecycle</li>
+  <li>Complicated integration with Airflow orchestration</li>
+  <li>Higher adoption and training effort across squads</li>
+  <li>More complex integration with CyberArk and password rotation</li>
+</ul>
+<p>NiFi is technically capable, but it introduces additional operational, integration, and governance complexity that the MiNiFi deployment model (a flow file in Git, a pod started per run from Airflow) avoids while using the same processors.</p>
+<h3>Informatica PowerCenter</h3>
+<p>PowerCenter remains a mature and proven enterprise platform with significant internal adoption, existing expertise, and established operational processes.</p>
+<p>
+  <strong>Key strengths:</strong>
+</p>
+<ul>
+  <li>Existing know-how and operational experience within KB</li>
+  <li>Established integration with existing operational and security processes</li>
+  <li>Native and mature Teradata connectivity</li>
+  <li>Stable and proven operational model</li>
+  <li>Low adoption risk for existing Informatica teams</li>
+  <li>Natural separation of configuration and implementation ownership</li>
+</ul>
+<p>
+  <strong>Key limitations:</strong>
+</p>
+<ul>
+  <li>Additional licensing and lifecycle costs</li>
+  <li>Slower than AirPy in the Proof of Concept</li>
+  <li>Reduced flexibility for automated flow generation at scale</li>
+  <li>Limited support for Parquet generation without additional transformations</li>
+  <li>Limited long-term strategic outlook due to the product lifecycle</li>
+  <li>Lower alignment with the target cloud architecture</li>
+</ul>
+<p>PowerCenter presents the lowest transformation and adoption risk, but it also provides the least strategic value for the future target architecture and retains dependency on a licensed platform with a limited lifecycle.</p>
+<h2>Decision Summary</h2>
+<p>The following table summarizes the main decision factors identified during the evaluation. It is intended as a high-level overview; detailed scoring and supporting evidence are provided in the preceding sections.</p>
+<p>✅ <strong>Strong / Preferred</strong>
+  <br/>⚠️ <strong>Acceptable Trade-off</strong>
+  <br/>❌ <strong>Weakness / Limitation</strong>
+</p>
+<table class="wrapped">
+  <tbody>
+    <tr>
+      <th>Decision Factor</th>
+      <th>AirPy</th>
+      <th>Infa</th>
+      <th>NiFi</th>
+      <th>MiNiFi</th>
+    </tr>
+    <tr>
+      <td>
+        <strong>Runtime Performance</strong>
+      </td>
+      <td>✅ <strong>Preferred</strong>
+        <br/>Approximately 5 minutes in the PoC</td>
+      <td>✅ <strong>Strong</strong>
+        <br/>Approximately 8 minutes in the PoC</td>
+      <td>⚠️ <strong>Acceptable Trade-off</strong>
+        <br/>Approximately 15 minutes in the PoC</td>
+      <td>⚠️ <strong>Acceptable Trade-off</strong>
+        <br/>Approximately 10 minutes in the PoC</td>
+    </tr>
+    <tr>
+      <td>
+        <strong>Kafka and Elasticsearch Support</strong>
+      </td>
+      <td>❌ <strong>Limitation</strong>
+        <br/>Requires custom development</td>
+      <td>❌ <strong>Limitation</strong>
+        <br/>Additional licence for PowerExchange for Kafka</td>
+      <td>✅ <strong>Strong</strong>
+        <br/>Native processors for Kafka and Elasticsearch</td>
+      <td>✅ <strong>Strong</strong>
+        <br/>The same processors as in NiFi; availability in the agent distribution to be verified</td>
+    </tr>
+    <tr>
+      <td>
+        <strong>Amount of Custom Code</strong>
+      </td>
+      <td>❌ <strong>Limitation</strong>
+        <br/>A custom framework for incremental loading, watermarks, Parquet generation and connectors</td>
+      <td>✅ <strong>Strong</strong>
+        <br/>Functionality is built into the product</td>
+      <td>⚠️ <strong>Acceptable Trade-off</strong>
+        <br/>Ready-made processors; custom code limited to flow generation and CI</td>
+      <td>⚠️ <strong>Acceptable Trade-off</strong>
+        <br/>Ready-made processors; custom code limited to templates, YAML translation and the pod wrapper</td>
+    </tr>
+    <tr>
+      <td>
+        <strong>Automated Flow Generation</strong>
+      </td>
+      <td>✅ <strong>Preferred</strong>
+        <br/>Simple template-based generation from YAML configuration</td>
+      <td>⚠️ <strong>Acceptable Trade-off</strong>
+        <br/>Possible, but with higher implementation complexity</td>
+      <td>❌ <strong>Limitation</strong>
+        <br/>Complex generation and lifecycle management of NiFi objects</td>
+      <td>✅ <strong>Strong</strong>
+        <br/>The flow is a file in Git; template-based generation from YAML configuration</td>
+    </tr>
+    <tr>
+      <td>
+        <strong>CI/CD and Environment Promotion</strong>
+      </td>
+      <td>✅ <strong>Preferred</strong>
+        <br/>Strong Git integration and consistent configuration-based deployment</td>
+      <td>⚠️ <strong>Acceptable Trade-off</strong>
+        <br/>Existing integration, but lower configuration consistency</td>
+      <td>❌ <strong>Limitation</strong>
+        <br/>More complex versioning and environment promotion</td>
+      <td>✅ <strong>Strong</strong>
+        <br/>Flow and YAML in Git, pull-request validation, the same image promoted across environments</td>
+    </tr>
+    <tr>
+      <td>
+        <strong>Operational Integration</strong>
+      </td>
+      <td>✅ <strong>Preferred</strong>
+        <br/>Strong monitoring, retries, alerting, SLA, and incident integration</td>
+      <td>✅ <strong>Strong</strong>
+        <br/>Mature and established operational integration</td>
+      <td>❌ <strong>Limitation</strong>
+        <br/>More complex orchestration and error propagation</td>
+      <td>⚠️ <strong>Acceptable Trade-off</strong>
+        <br/>Airflow KubernetesPodOperator with pod status; requires a wrapper for the pod lifecycle</td>
+    </tr>
+    <tr>
+      <td>
+        <strong>Incremental Load Support</strong>
+      </td>
+      <td>⚠️ <strong>Acceptable Trade-off</strong>
+        <br/>Requires a shared framework for watermark and checkpoint management</td>
+      <td>⚠️ <strong>Acceptable Trade-off</strong>
+        <br/>Available, but with limitations in watermark management and manual overrides</td>
+      <td>✅ <strong>Strong</strong>
+        <br/>Incremental processing capabilities<br/>However, the delta cannot be overridden with a specific value and can only be reset</td>
+      <td>✅ <strong>Strong</strong>
+        <br/>Incremental logic implemented once in the template; the watermark on S3 can be edited manually</td>
+    </tr>
+    <tr>
+      <td>
+        <strong>Security Integration</strong>
+      </td>
+      <td>✅ <strong>Preferred</strong>
+        <br/>CyberArk integration and password rotation validated in the PoC</td>
+      <td>✅ <strong>Strong</strong>
+        <br/>Existing and validated security integration</td>
+      <td>❌ <strong>Limitation</strong>
+        <br/>Additional integration effort required</td>
+      <td>⚠️ <strong>Acceptable Trade-off</strong>
+        <br/>Airflow supplies the credentials for each run; not yet validated in the PoC</td>
+    </tr>
+    <tr>
+      <td>
+        <strong>Squad Adoption and Data Mesh Alignment</strong>
+      </td>
+      <td>✅ <strong>Preferred</strong>
+        <br/>Good squad ownership model and low complexity for new use cases</td>
+      <td>⚠️ <strong>Acceptable Trade-off</strong>
+        <br/>Strong existing expertise, but lower flexibility and slower delivery</td>
+      <td>❌ <strong>Limitation</strong>
+        <br/>High upskilling effort and more complex flow ownership</td>
+      <td>⚠️ <strong>Acceptable Trade-off</strong>
+        <br/>Squads own the YAML configuration and the pods; the Platform Squad must build the NiFi/MiNiFi expertise</td>
+    </tr>
+    <tr>
+      <td>
+        <strong>Licensing and Long-Term Cost</strong>
+      </td>
+      <td>✅ <strong>Preferred</strong>
+        <br/>No additional licensing costs</td>
+      <td>❌ <strong>Limitation</strong>
+        <br/>Additional licensing and lifecycle costs</td>
+      <td>✅ <strong>Strong</strong>
+        <br/>No additional licensing costs</td>
+      <td>✅ <strong>Strong</strong>
+        <br/>No licensing costs (Apache License)</td>
+    </tr>
+    <tr>
+      <td>
+        <strong>Target Architecture and Strategic Outlook</strong>
+      </td>
+      <td>✅ <strong>Preferred</strong>
+        <br/>Best fit with the target architecture, CI/CD model, and future orchestration strategy</td>
+      <td>❌ <strong>Limitation</strong>
+        <br/>Limited strategic outlook and product lifecycle</td>
+      <td>⚠️ <strong>Acceptable Trade-off</strong>
+        <br/>Technically viable, but requires additional integration with Airflow</td>
+      <td>✅ <strong>Strong</strong>
+        <br/>Fits the Kubernetes, Airflow and S3 target model; part of the NiFi release line</td>
+    </tr>
+    <tr>
+      <td>
+        <strong>Scalability for High-Volume Flows</strong>
+      </td>
+      <td>⚠️ <strong>Acceptable Trade-off</strong>
+        <br/>Apache Spark can be integrated as an optional engine for selected flows</td>
+      <td>❌ <strong>Limitation</strong>
+        <br/>Lower performance and additional licensing requirements for scaling</td>
+      <td>⚠️ <strong>Acceptable Trade-off</strong>
+        <br/>Scaling through NiFi infrastructure without native per-load pinning</td>
+      <td>✅ <strong>Strong</strong>
+        <br/>A pod per load scales on Kubernetes; the volume of a single load is limited by the pod resources</td>
+    </tr>
+    <tr>
+      <td>
+        <strong>Overall Assessment</strong>
+      </td>
+      <td>⚠️ <strong>Technically Strong Alternative</strong>
+        <br/>Best results in most scoring categories, but requires developing and maintaining a custom framework in Airflow</td>
+      <td>⚠️ <strong>Stable Short-Term Alternative</strong>
+        <br/>Low adoption risk, but limited long-term strategic value</td>
+      <td>⚠️ <strong>Technically Strong Alternative</strong>
+        <br/>Strong for streaming, but higher integration, governance, and adoption complexity</td>
+      <td>✅ <strong>Recommended</strong>
+        <br/>One tool for all sources, ready-made components and a good fit with the target architecture; subject to the validation items below</td>
+    </tr>
+  </tbody>
+</table>
+<h2>Recommendation</h2>
+<p>
+  <strong>Recommended option: Apache MiNiFi (Java agent), run as a pod in Kubernetes and started per load from the SOGE on-premises Airflow</strong>
+</p>
+<p>The recommendation is primarily driven by:</p>
+<ul>
+  <li>One tool for all source types, including Kafka and Elasticsearch, instead of a combination of AirPy for batch sources and NiFi for streaming sources</li>
+  <li>Ready-made components instead of a custom-developed framework in Airflow, which is in line with the requirement of the migration project to reuse existing solutions</li>
+  <li>The best result in the Functional Capabilities category</li>
+  <li>Strong CI/CD and Git integration, with the flow and the configuration stored in Git and the same image promoted across environments</li>
+  <li>Independent flows with clear squad ownership and Kubernetes RBAC</li>
+  <li>No licensing costs</li>
+  <li>Good alignment with the target architecture (Kubernetes, Airflow, S3) and the Versioned Template Library concept</li>
+</ul>
+<p>AirPy remains a technically strong alternative with the best results in several categories, in particular runtime performance, operational integration, internal expertise and Greenbook compliance. It is not recommended as the primary solution because it would require developing and maintaining a custom extraction framework in Airflow and, for Kafka and Elasticsearch, a second tool. AirPy remains a viable fallback if the validation items below cannot be fulfilled.</p>
+<p>The recommendation is subject to the following validation items:</p>
+<ul>
+  <li>CyberArk integration and password rotation validated in a Proof of Concept with credentials supplied by Airflow for each run</li>
+  <li>The pod lifecycle solution (wrapper or NiFi Stateless runtime) validated, including the propagation of the exit code to Airflow</li>
+  <li>The Parquet, Kafka, Elasticsearch and AWS processors confirmed as available in the MiNiFi Java distribution, including the use of the internal S3-compatible storage</li>
+  <li>Runtime verified for larger volumes and for loading into target databases, including Teradata</li>
+  <li>Greenbook compliance of MiNiFi confirmed</li>
+  <li>Effort estimate for MiNiFi (environment setup, upskilling, migration) prepared</li>
+</ul>
+<h2>Risks and Mitigations</h2>
+<table class="wrapped">
+  <tbody>
+    <tr>
+      <th>Risk</th>
+      <th>Mitigation</th>
+    </tr>
+    <tr>
+      <td>No internal NiFi or MiNiFi expertise</td>
+      <td>Structured training of the Platform Squad, reusable templates and documentation. Squads maintain only the YAML configuration.</td>
+    </tr>
+    <tr>
+      <td>MiNiFi Java is a continuously running agent without a documented run-once mode</td>
+      <td>Implement a wrapper in the pod (start the flow, wait for completion, stop the agent, return the exit code) or evaluate the NiFi Stateless runtime. Validate in the Proof of Concept.</td>
+    </tr>
+    <tr>
+      <td>CyberArk integration and password rotation not yet validated</td>
+      <td>Validate in a Proof of Concept with credentials supplied by Airflow for each run. Use Kubernetes Secrets with restricted RBAC.</td>
+    </tr>
+    <tr>
+      <td>Custom code remains in the templates (watermark logic, YAML translation, MiNiFi Toolkit conversion)</td>
+      <td>Implement it once in the Versioned Template Library and validate the configuration in pull requests.</td>
+    </tr>
+    <tr>
+      <td>Required processors missing in the MiNiFi Java distribution</td>
+      <td>Verify the distribution early and build the image with the required NAR bundles.</td>
+    </tr>
+    <tr>
+      <td>Insufficient performance for very large-volume flows or for loading into Teradata</td>
+      <td>Scale horizontally with one pod per load, use bulk loading options for the largest flows and verify the performance in the Proof of Concept.</td>
+    </tr>
+    <tr>
+      <td>Lower adoption of MiNiFi in the industry and weaker documentation</td>
+      <td>Rely on the Apache NiFi community and release line; define clear responsibilities for the platform and the templates.</td>
+    </tr>
+  </tbody>
+</table>
+<h2>Conclusion</h2>
+<p>MiNiFi provides the best balance of functional coverage, ready-made components, CI/CD and target architecture fit, and it allows all source types, including Kafka and Elasticsearch, to be handled with a single tool.</p>
+<p>AirPy remains a technically strong alternative and a fallback option. NiFi remains a technically strong option, particularly for streaming, but the MiNiFi deployment model offers the same processors with a simpler CI/CD and operating model. PowerCenter remains a stable short-term alternative with low adoption risk, but its licensing model, product lifecycle and limited strategic alignment reduce its suitability as the future target solution. Meltano was excluded after the Proof of Concept because of its runtime.</p>
+<p>The recommendation is therefore to adopt <strong>Apache MiNiFi (Java agent) run in Kubernetes and started from Airflow as the standard extraction tool</strong>, subject to successful validation of the items listed in the Recommendation.</p>
