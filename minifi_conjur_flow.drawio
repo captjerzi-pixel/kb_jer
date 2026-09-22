@@ -1,0 +1,90 @@
+<mxfile host="app.diagrams.net" agent="claude-code" version="24.7.17" type="device">
+  <diagram name="MiNiFi pod startup and Conjur secrets flow" id="minifi-conjur-flow">
+    <mxGraphModel dx="1400" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="950" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <!-- Airflow (external orchestrator) -->
+        <mxCell id="airflow1" value="SOGE on-prem Airflow&lt;br&gt;(KubernetesPodOperator)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E1D5E7;strokeColor=#9673A6;" vertex="1" parent="1">
+          <mxGeometry x="40" y="260" width="200" height="80" as="geometry" />
+        </mxCell>
+
+        <!-- Cluster boundary -->
+        <mxCell id="cluster1" value="Kubernetes cluster (shared, multi-tenant)" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=top;align=left;spacingLeft=10;spacingTop=8;fontStyle=1;dashed=1;fillColor=none;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="300" y="40" width="900" height="560" as="geometry" />
+        </mxCell>
+
+        <!-- Namespace boundary -->
+        <mxCell id="ns1" value="Namespace: crm-squad-ns" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=top;align=left;spacingLeft=10;spacingTop=8;fontStyle=1;dashed=1;fillColor=#F5F9FF;strokeColor=#6C8EBF;" vertex="1" parent="1">
+          <mxGeometry x="340" y="100" width="820" height="460" as="geometry" />
+        </mxCell>
+
+        <!-- Pod boundary -->
+        <mxCell id="pod1" value="Pod (ephemeral, 1 per run)" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=top;align=left;spacingLeft=10;spacingTop=8;fontStyle=1;fillColor=#FFF2CC;strokeColor=#D6B656;" vertex="1" parent="1">
+          <mxGeometry x="380" y="160" width="760" height="340" as="geometry" />
+        </mxCell>
+
+        <!-- Init container -->
+        <mxCell id="init1" value="initContainer:&lt;br&gt;secrets-provider&lt;br&gt;(CONTAINER_MODE=init)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#82B366;" vertex="1" parent="1">
+          <mxGeometry x="410" y="220" width="240" height="100" as="geometry" />
+        </mxCell>
+
+        <!-- Shared volume -->
+        <mxCell id="vol1" value="emptyDir (medium: Memory)&lt;br&gt;shared secrets volume" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F5F5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="690" y="235" width="200" height="70" as="geometry" />
+        </mxCell>
+
+        <!-- Main container -->
+        <mxCell id="main1" value="container:&lt;br&gt;minifi" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;" vertex="1" parent="1">
+          <mxGeometry x="930" y="220" width="180" height="100" as="geometry" />
+        </mxCell>
+
+        <!-- Conjur -->
+        <mxCell id="conjur1" value="CyberArk Conjur&lt;br&gt;authn-k8s&lt;br&gt;Safe / branch per squad" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F8CECC;strokeColor=#B85450;" vertex="1" parent="1">
+          <mxGeometry x="1260" y="200" width="220" height="110" as="geometry" />
+        </mxCell>
+
+        <!-- Source DB -->
+        <mxCell id="db1" value="Source DB&lt;br&gt;(Oracle / MSSQL / ...)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFE6CC;strokeColor=#D79B00;" vertex="1" parent="1">
+          <mxGeometry x="420" y="650" width="200" height="70" as="geometry" />
+        </mxCell>
+
+        <!-- S3 -->
+        <mxCell id="s31" value="Internal S3&lt;br&gt;(Parquet + watermark)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFE6CC;strokeColor=#D79B00;" vertex="1" parent="1">
+          <mxGeometry x="680" y="650" width="200" height="70" as="geometry" />
+        </mxCell>
+
+        <!-- Edges -->
+        <mxCell id="e1" value="1. create pod&lt;br&gt;(KubernetesPodOperator)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="airflow1" target="pod1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e2" value="2. authn-k8s:&lt;br&gt;SA JWT -&gt; secrets&lt;br&gt;(Safe/branch)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;startArrow=classic;startFill=1;endArrow=classic;endFill=1;" edge="1" parent="1" source="init1" target="conjur1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e3" value="3. write secrets,&lt;br&gt;exit" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="init1" target="vol1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e4" value="4. read secrets" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="vol1" target="main1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e5" value="5. extract data" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="main1" target="db1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e6" value="6. write Parquet&lt;br&gt;+ watermark" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="main1" target="s31">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e7" value="7. exit code" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;dashed=1;" edge="1" parent="1" source="pod1" target="airflow1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
