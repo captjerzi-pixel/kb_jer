@@ -23,35 +23,7 @@
 </ul>
 <p>MiNiFi was evaluated on the assumption that it runs in Kubernetes (K8s). Each ingest flow is started per run as a pod from the SOGE on-premises Airflow (KubernetesPodOperator). The Parquet files and the related metadata (watermark) are stored on the internal S3 storage, so the pod itself is stateless. The flow definition and the YAML configuration are versioned in the Git repository of the owning squad, in line with the Versioned Template Library (B2).</p>
 <p>In the scoring tables, AirPy and MiNiFi achieved clearly better results than NiFi, Informatica PowerCenter and Meltano. MiNiFi achieved the best result in the Functional Capabilities category, while AirPy achieved the best results in the Data Mesh alignment, security and operational categories.</p>
-<h2>Key Findings</h2>
-<h3>Apache MiNiFi (Java agent)</h3>
-<p>The MiNiFi Java agent runs the same processors as Apache NiFi (database, Kafka, Elasticsearch, Parquet and S3 processors) in a lightweight form without a user interface. Since NiFi 2, MiNiFi Java is part of the NiFi release line. The flow is a definition file kept in Git, which suits the template-based ownership model.</p>
-<p>
-  <strong>Key strengths:</strong>
-</p>
-<ul>
-  <li>One tool covers all source types, including Kafka and Elasticsearch. The alternative of using AirPy for batch sources and NiFi for Kafka and Elasticsearch would mean two tools, two skill sets, two CI/CD pipelines and two operating models.</li>
-  <li>Ready-made processors are used instead of a custom-built framework. This applies to database extraction, Parquet export and import, Kafka, Elasticsearch, S3 and incremental loading.</li>
-  <li>Best result among the alternatives in the Functional Capabilities category.</li>
-  <li>Strong CI/CD and Git integration: the flow definition and the YAML configuration are stored in Git, validated in pull requests, and the same image is promoted through the environments with environment-specific configuration.</li>
-  <li>Independent flows: each run is an isolated pod in the namespace of the owning squad, with Kubernetes RBAC and Airflow retries.</li>
-  <li>The incremental logic and the watermark stored on S3 are implemented once in the template, and the watermark can be corrected by editing a single object on S3.</li>
-  <li>No licensing costs. The core components are maintained by the Apache NiFi community.</li>
-  <li>Good alignment with the target architecture (Kubernetes, Airflow, S3).</li>
-</ul>
-<p>
-  <strong>Key limitations:</strong>
-</p>
-<ul>
-  <li>No internal NiFi or MiNiFi expertise is available at present. Squads only maintain YAML configuration, but the Platform Squad must build the know-how.</li>
-  <li>MiNiFi Java is a continuously running agent and no run-once mode is documented. A wrapper (or the NiFi Stateless runtime) is needed so that the pod finishes after processing and returns an exit code to Airflow.</li>
-  <li>Some custom code remains: the watermark logic and the translation of the YAML configuration into flow parameters in the template, and the MiNiFi Toolkit conversion in CI.</li>
-  <li>The runtime in the Proof of Concept was approximately 10 minutes, compared with approximately 5 minutes for AirPy.</li>
-  <li>CyberArk and password rotation have not yet been validated. The design assumes that Airflow retrieves the credentials for each run and passes them to the pod.</li>
-  <li>The availability of the required processors (Parquet, Kafka, Elasticsearch, AWS) in the MiNiFi Java distribution and the use of the internal S3-compatible storage must be verified.</li>
-  <li>Weaker documentation and lower adoption in the industry than the alternatives, because MiNiFi is used mainly as an edge data collection agent.</li>
-  <li>Compliance with the Société Générale Greenbook is assumed to be the same as for Apache NiFi and must be confirmed.</li>
-</ul>
+
 <h3>Airflow + Python (AirPy)</h3>
 <p>AirPy achieved strong results across most evaluation categories and demonstrated the best runtime performance during the Proof of Concept.</p>
 <p>
@@ -66,17 +38,19 @@
   <li>Strong operational capabilities, including monitoring, retry mechanisms, alerting, autorestarts, and SLA handling</li>
   <li>CyberArk integration and password rotation validated in the Proof of Concept</li>
   <li>Good alignment with Data Mesh principles and squad ownership</li>
+  <li>Ability to reuse existing Python libraries (PyArrow, pyodbc, pandas, connectors) for database access and Parquet generation, reducing the need for custom development and leveraging existing internal expertise.</li>
 </ul>
 <p>
   <strong>Key limitations:</strong>
 </p>
 <ul>
-  <li>A custom extraction framework must be developed and maintained in Airflow, including incremental loading, watermark management, schema validation, Parquet generation, and readers for Kafka and Elasticsearch, which are not available as ready-made components.</li>
+  <li>A custom extraction framework must be developed and maintained in Airflow, including incremental loading, watermark management, schema validation and Parquet generation.</li>
   <li>The solution depends on maintaining sufficient internal expertise and ownership of this framework.</li>
   <li>Python-based processing may not provide sufficient performance for all future high-volume workloads.</li>
   <li>Kafka and Elasticsearch would have to be handled by another tool (for example NiFi), which results in two tools instead of one.</li>
-  <li>In addition to the Société Générale on-premises Airflow platform, the solution would require an Airflow runtime within the KB on-premises environment. The preferred option is to deploy a dedicated KB worker connected to the Société Générale Airflow platform through CeleryExecutor. However, this model may be subject to security restrictions on the Société Générale side. If the required cross-environment connectivity is not approved, a standalone, fully operational Airflow deployment within the KB environment would be required.</li>
+  <li>The preferred solution would integrate with the SOGE on-premises Airflow platform through KubernetesPodOperator to execute Python scripts in the KB Kubernetes environment, eliminating the need for a dedicated Airflow runtime in KB. It introduces the same Kubernetes infrastructure and expertise requirements as the MiNiFi approach. The alternative would be to deploy a standalone Airflow instance in the KB on-premises environment, which would require maintaining two separate Airflow instances and their operational integration.</li>
 </ul>
+
 <h3>Apache NiFi</h3>
 <p>NiFi demonstrated strong technical capabilities, in particular for streaming workloads.</p>
 <p>
@@ -99,6 +73,7 @@
   <li>More complex integration with CyberArk and password rotation</li>
 </ul>
 <p>NiFi is technically capable, but it introduces additional operational, integration, and governance complexity that the MiNiFi deployment model (a flow file in Git, a pod started per run from Airflow) avoids while using the same processors.</p>
+
 <h3>Informatica PowerCenter</h3>
 <p>PowerCenter remains a mature and proven enterprise platform with significant internal adoption, existing expertise, and established operational processes.</p>
 <p>
@@ -124,6 +99,35 @@
   <li>Lower alignment with the target cloud architecture</li>
 </ul>
 <p>PowerCenter presents the lowest transformation and adoption risk, but it also provides the least strategic value for the future target architecture and retains dependency on a licensed platform with a limited lifecycle.</p>
+<h2>Key Findings</h2>
+
+<h3>Apache MiNiFi (Java agent)</h3>
+<p>The MiNiFi Java agent runs the same processors as Apache NiFi (database, Kafka, Elasticsearch, Parquet and S3 processors) in a lightweight form without a user interface. Since NiFi 2, MiNiFi Java is part of the NiFi release line. The flow is a definition file kept in Git, which suits the template-based ownership model.</p>
+<p>
+  <strong>Key strengths:</strong>
+</p>
+<ul>
+  <li>One tool covers all source types, including Kafka and Elasticsearch. The alternative of using AirPy for batch sources and NiFi for Kafka and Elasticsearch would mean two tools, two skill sets, two CI/CD pipelines and two operating models.</li>
+  <li>Ready-made processors are used instead of a custom-built framework. This applies to database extraction, Parquet export and import, Kafka, Elasticsearch, S3 and incremental loading.</li>
+  <li>Best result among the alternatives in the Functional Capabilities category.</li>
+  <li>Strong CI/CD and Git integration: the flow definition and the YAML configuration are stored in Git, validated in pull requests, and the same image is promoted through the environments with environment-specific configuration.</li>
+  <li>Independent flows: each run is an isolated pod in the namespace of the owning squad, with Kubernetes RBAC and Airflow retries.</li>
+  <li>The incremental logic and watermark management are implemented once in the template. For operational incident recovery, the watermark value should be configurable to any arbitrary value, enabling quick recovery without requiring manual intervention on the underlying storage (such as S3).</li>
+  <li>No licensing costs. The core components are maintained by the Apache NiFi community.</li>
+  <li>Good alignment with the target architecture (Kubernetes, Airflow, S3).</li>
+  <li>The Airflow-Kubernetes integration (KubernetesPodOperator) provides a reusable capability that delivers value beyond the ingest solution, supporting orchestration across the migration and other (Airflow On Prem SOGE&lt;-&gt;KB) platform use cases. This integration is supported by KB security.</li>
+</ul>
+<p>
+  <strong>Key limitations:</strong>
+</p>
+<ul>
+  <li>Platform Squad must build the know-how of NiFi and MiNiFi. Similarly, Kubernetes expertise is present in the Platform Squad, but not at a sufficient level to ensure long-term stability.</li>
+  <li>Cross-environment network connectivity must be established between the SOGE on-premises Airflow and the KB Kubernetes environment for KubernetesPodOperator to function. However, this is a standard REST API-based integration pattern and should be feasible to implement and support operationally.</li>
+  <li>MiNiFi Java is a continuously running agent and no run-once mode is documented. A wrapper (or the NiFi Stateless runtime) is needed so that the pod finishes after processing and returns an exit code to Airflow.</li>
+  <li>CyberArk and password rotation have not yet been validated. The design assumes that Airflow retrieves the credentials for each run and passes them to the pod.</li>
+  <li>Weaker documentation and lower adoption in the industry than the alternatives, because MiNiFi is used mainly as an edge data collection agent.</li>
+  <li>The runtime in the Proof of Concept was approximately 10 minutes, compared with approximately 5 minutes for AirPy.</li>
+</ul>
 <h2>Decision Summary</h2>
 <p>The following table summarizes the main decision factors identified during the evaluation. It is intended as a high-level overview; detailed scoring and supporting evidence are provided in the preceding sections.</p>
 <p>✅ <strong>Strong / Preferred</strong>
