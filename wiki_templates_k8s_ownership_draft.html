@@ -1,159 +1,121 @@
 <h2>Vlastnictví Kubernetes a Secrets (MiNiFi na Kubernetes)</h2>
-<p>Ingest flow v MiNiFi běží jako pody v <strong>jednom sdíleném Kubernetes clusteru</strong>, spouštěné ze SOGE on-premises Airflow (KubernetesPodOperator). Každý Business Unit squad dostane v rámci tohoto sdíleného clusteru vlastní <strong>namespace</strong> a <strong>ServiceAccount</strong>.</p>
-<p>Jde o výrazně menší závazek než provozovat Kubernetes cluster. Namespace je oplocená část clusteru, který provozuje někdo jiný; cluster je samotná provozovaná věc. Tabulky níže rozlišují, co patří sdílenému clusteru, co se zakládá jednorázově na squad a co squad řeší průběžně, den co den.</p>
-<h3>1. Úroveň clusteru (sdílené, ne na squad)</h3>
-<p>Tyto věci existují jednou pro celou platformu, bez ohledu na počet squadů.</p>
-<table class="wrapped">
+<p>Model: jeden sdílený cluster, multi-tenancy na úrovni namespace. Ingest flow = ephemeral pod, jeden na běh. Squad má vlastní namespace a ServiceAccount; izolace secretů stojí na Conjur Kubernetes Authenticatoru (authn-k8s) podle identity SA, ne na fyzickém oddělení clusterů.</p>
+<p>Tabulky níže rozlišují cluster-level (sdílené), per-squad setup (onboarding, jednorázově) a per-squad ongoing.</p>
+<h3>1. Cluster-level (sdílené)</h3>
+<table class="wrapped" style="border-collapse:collapse;width:100%;">
   <thead>
     <tr>
-      <th>Artefakt</th>
-      <th>Vlastník</th>
-      <th>Odpovědnost</th>
+      <th style="border:1px solid #999;padding:6px 8px;text-align:left;background:#f4f4f4;">Artefakt</th>
+      <th style="border:1px solid #999;padding:6px 8px;text-align:left;background:#f4f4f4;">Vlastník</th>
+      <th style="border:1px solid #999;padding:6px 8px;text-align:left;background:#f4f4f4;">Odpovědnost</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>Kubernetes cluster (control plane, uzly, upgrady, CNI, DNS, ingress)</td>
-      <td>Platform / infrastrukturní tým</td>
-      <td>Životní cyklus clusteru, kapacita, bezpečnostní patching, monitoring na úrovni platformy</td>
+      <td style="border:1px solid #999;padding:6px 8px;vertical-align:top;">Kubernetes cluster (control plane, uzly, upgrady, CNI, DNS, ingress)</td>
+      <td style="border:1px solid #999;padding:6px 8px;vertical-align:top;">Platform / infrastrukturní tým</td>
+      <td style="border:1px solid #999;padding:6px 8px;vertical-align:top;">Lifecycle clusteru, kapacita, patching, monitoring platformy</td>
     </tr>
     <tr>
-      <td>Instance CyberArk Conjur a Kubernetes Authenticator</td>
-      <td>Bezpečnostní tým / tým CyberArk</td>
-      <td>Provoz trezoru secretů a authenticatoru, který ověřuje identitu podů</td>
+      <td style="border:1px solid #999;padding:6px 8px;vertical-align:top;">Instance CyberArk Conjur a Kubernetes Authenticator (authn-k8s)</td>
+      <td style="border:1px solid #999;padding:6px 8px;vertical-align:top;">Bezpečnostní tým / tým CyberArk</td>
+      <td style="border:1px solid #999;padding:6px 8px;vertical-align:top;">Provoz vaultu a authenticatoru</td>
     </tr>
     <tr>
-      <td>SOGE on-premises Airflow platforma</td>
-      <td>Platform Squad (integrace) / SOGE (platforma)</td>
-      <td>Orchestrační platforma, ze které se spouští ingest pody (KubernetesPodOperator)</td>
-    </tr>
-    <tr>
-      <td>Verzovaný image šablony MiNiFi (Templates Library)</td>
-      <td>Platform Squad</td>
-      <td>Sestavení, testování, verzování a publikace šablony, jejíž kopii si každý squad nasazuje</td>
+      <td style="border:1px solid #999;padding:6px 8px;vertical-align:top;">Verzovaný image šablony MiNiFi (Templates Library)</td>
+      <td style="border:1px solid #999;padding:6px 8px;vertical-align:top;">Platform Squad</td>
+      <td style="border:1px solid #999;padding:6px 8px;vertical-align:top;">Build, test, verzování a publikace šablony</td>
     </tr>
   </tbody>
 </table>
-<h3>2. Na squad, zakládá se jednorázově (onboarding)</h3>
-<p>Vzniká ve chvíli, kdy squad začne ingest tool používat. Neopakuje se s každým flow, s každým během ani podle žádného pravidelného plánu. Squad si tyto manifesty sám nepíše &#8212; dodá vstupy (jaké connections, jaké cíle, očekávaný objem) a Platform Squad je založí, podobně jako se dnes zakládá nový Git repozitář nebo CI pipeline.</p>
-<table class="wrapped">
+<h3>2. Per-squad, onboarding (jednorázově)</h3>
+<p>Provisioning na vstup od squadu (connections, cíle, očekávaný objem), realizuje Platform Squad. Neopakuje se per flow ani per run.</p>
+<table class="wrapped" style="border-collapse:collapse;width:100%;">
   <thead>
     <tr>
-      <th>Artefakt</th>
-      <th>Vlastník</th>
-      <th>Odpovědnost</th>
+      <th style="border:1px solid #999;padding:6px 8px;text-align:left;background:#f4f4f4;">Artefakt</th>
+      <th style="border:1px solid #999;padding:6px 8px;text-align:left;background:#f4f4f4;">Vlastník</th>
+      <th style="border:1px solid #999;padding:6px 8px;text-align:left;background:#f4f4f4;">Odpovědnost</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>Namespace</td>
-      <td>Platform Squad</td>
-      <td>Založí se jednou na squad; hranice pro RBAC, kvóty a síťovou politiku</td>
+      <td style="border:1px solid #999;padding:6px 8px;vertical-align:top;">Namespace</td>
+      <td style="border:1px solid #999;padding:6px 8px;vertical-align:top;">Platform Squad</td>
+      <td style="border:1px solid #999;padding:6px 8px;vertical-align:top;">Boundary pro RBAC, quotas a NetworkPolicy</td>
     </tr>
     <tr>
-      <td>ServiceAccount</td>
-      <td>Platform Squad</td>
-      <td>Identita podu; navázaná na Conjur host daného squadu</td>
+      <td style="border:1px solid #999;padding:6px 8px;vertical-align:top;">ServiceAccount</td>
+      <td style="border:1px solid #999;padding:6px 8px;vertical-align:top;">Platform Squad</td>
+      <td style="border:1px solid #999;padding:6px 8px;vertical-align:top;">Pod identity, vázaná na Conjur host squadu</td>
     </tr>
     <tr>
-      <td>ResourceQuota / LimitRange</td>
-      <td>Platform Squad</td>
-      <td>Nastavené podle očekávaného objemu squadu; zabraňuje, aby jeden squad vyčerpal sdílenou kapacitu</td>
+      <td style="border:1px solid #999;padding:6px 8px;vertical-align:top;">ResourceQuota / LimitRange</td>
+      <td style="border:1px solid #999;padding:6px 8px;vertical-align:top;">Platform Squad</td>
+      <td style="border:1px solid #999;padding:6px 8px;vertical-align:top;">Sizing dle očekávaného objemu; brání resource starvation mezi squady</td>
     </tr>
     <tr>
-      <td>NetworkPolicy</td>
-      <td>Platform Squad</td>
-      <td>Povolí provoz jen ke zdrojům, S3 a Conjur uvedeným squadem; vše ostatní zakáže, včetně jiných namespace</td>
+      <td style="border:1px solid #999;padding:6px 8px;vertical-align:top;">NetworkPolicy</td>
+      <td style="border:1px solid #999;padding:6px 8px;vertical-align:top;">Platform Squad</td>
+      <td style="border:1px solid #999;padding:6px 8px;vertical-align:top;">Egress jen na deklarované connections, S3 a Conjur; default-deny zbytek včetně cross-namespace</td>
     </tr>
     <tr>
-      <td>Conjur host a permit oprávnění</td>
-      <td>Platform Squad (policy aplikovaná ve spolupráci s bezpečnostním týmem)</td>
-      <td>Omezí identitu ServiceAccount squadu jen na jeho vlastní secrety</td>
+      <td style="border:1px solid #999;padding:6px 8px;vertical-align:top;">Conjur host a permit</td>
+      <td style="border:1px solid #999;padding:6px 8px;vertical-align:top;">Platform Squad (koordinace se security)</td>
+      <td style="border:1px solid #999;padding:6px 8px;vertical-align:top;">Scope SA identity přes authn-k8s na celý branch/Safe squadu &#8212; jednorázově; jednotlivé secrety pak squad správuje sám</td>
     </tr>
     <tr>
-      <td>RoleBinding</td>
-      <td>Platform Squad</td>
-      <td>Určuje, kdo/co smí do namespace nasazovat &#8212; běžně jen Airflow, ne členové squadu ručně</td>
+      <td style="border:1px solid #999;padding:6px 8px;vertical-align:top;">RoleBinding</td>
+      <td style="border:1px solid #999;padding:6px 8px;vertical-align:top;">Platform Squad</td>
+      <td style="border:1px solid #999;padding:6px 8px;vertical-align:top;">Deploy do namespace jen přes servisní účet, ne squad manuálně</td>
     </tr>
   </tbody>
 </table>
-<h3>3. Na squad, průběžně</h3>
-<p>Co squad reálně dělá den co den. Pody se nespravují ručně &#8212; Airflow je pro každý běh automaticky vytváří a ruší.</p>
-<table class="wrapped">
+<h3>3. Per-squad, ongoing</h3>
+<p>Pody jsou ephemeral a per-run, bez manuální správy.</p>
+<table class="wrapped" style="border-collapse:collapse;width:100%;">
   <thead>
     <tr>
-      <th>Činnost</th>
-      <th>Vlastník</th>
-      <th>Poznámka</th>
+      <th style="border:1px solid #999;padding:6px 8px;text-align:left;background:#f4f4f4;">Činnost</th>
+      <th style="border:1px solid #999;padding:6px 8px;text-align:left;background:#f4f4f4;">Vlastník</th>
+      <th style="border:1px solid #999;padding:6px 8px;text-align:left;background:#f4f4f4;">Poznámka</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td><code>exports.yaml</code> a soubory se schématem</td>
-      <td>Business Squad</td>
-      <td>Stejné jako u zbytku modelu Versioned Template Library</td>
+      <td style="border:1px solid #999;padding:6px 8px;vertical-align:top;"><code>exports.yaml</code> a schema soubory</td>
+      <td style="border:1px solid #999;padding:6px 8px;vertical-align:top;">Business Squad</td>
+      <td style="border:1px solid #999;padding:6px 8px;vertical-align:top;">Součást Versioned Template Library</td>
     </tr>
     <tr>
-      <td>Žádost o navýšení kvóty</td>
-      <td>Business Squad žádá, Platform Squad aplikuje</td>
-      <td>Při růstu objemu</td>
+      <td style="border:1px solid #999;padding:6px 8px;vertical-align:top;">Navýšení kvóty namespace</td>
+      <td style="border:1px solid #999;padding:6px 8px;vertical-align:top;">Business Squad žádá, Platform Squad aplikuje?</td>
+      <td style="border:1px solid #999;padding:6px 8px;vertical-align:top;">Při růstu objemu</td>
     </tr>
     <tr>
-      <td>Žádost o nové připojení / cíl v NetworkPolicy</td>
-      <td>Business Squad žádá, Platform Squad aplikuje</td>
-      <td>Při přidání nového zdrojového nebo cílového systému</td>
+      <td style="border:1px solid #999;padding:6px 8px;vertical-align:top;">Nové connection / NetworkPolicy destination</td>
+      <td style="border:1px solid #999;padding:6px 8px;vertical-align:top;">Business Squad žádá, Platform Squad aplikuje?</td>
+      <td style="border:1px solid #999;padding:6px 8px;vertical-align:top;">Nový zdrojový nebo cílový systém</td>
     </tr>
     <tr>
-      <td>Žádost o nový secret v Conjur</td>
-      <td>Business Squad žádá, bezpečnostní tým aplikuje</td>
-      <td>Pro přihlašovací údaje nového připojení</td>
+      <td style="border:1px solid #999;padding:6px 8px;vertical-align:top;">Nový secret v Conjur</td>
+      <td style="border:1px solid #999;padding:6px 8px;vertical-align:top;">Business Squad (self-service)</td>
+      <td style="border:1px solid #999;padding:6px 8px;vertical-align:top;">Credentials nového connection; permit z onboardingu už kryje celý branch/Safe squadu, security tým se nezapojuje</td>
     </tr>
     <tr>
-      <td>Sledování stavu a logů flow</td>
-      <td>Business Squad</td>
-      <td>Airflow UI; <code>kubectl logs</code> omezené na vlastní namespace squadu</td>
+      <td style="border:1px solid #999;padding:6px 8px;vertical-align:top;">Stav a logy flow</td>
+      <td style="border:1px solid #999;padding:6px 8px;vertical-align:top;">Business Squad</td>
+      <td style="border:1px solid #999;padding:6px 8px;vertical-align:top;"><code>kubectl logs</code> scoped na vlastní namespace</td>
     </tr>
   </tbody>
 </table>
-<h3>4. Co Business Squad nikdy řešit nemusí</h3>
+<h3>4. Co Business Squad neřeší</h3>
 <ul>
-  <li>Upgrade verze Kubernetes ani provoz control plane</li>
-  <li>Sizing ani škálování node poolů</li>
-  <li>Konfiguraci CNI, DNS, ingress ani certifikátů</li>
-  <li>Patching podkladové platformy</li>
-  <li>Provoz trezoru CyberArk Conjur ani jeho authenticatoru</li>
-  <li>Sestavení ani údržbu monitoring stacku na úrovni platformy</li>
-  <li>Ruční správu podů &#8212; ty pro každý běh vytváří a ruší Airflow</li>
+  <li>Upgrade K8s / control plane</li>
+  <li>Sizing a škálování node poolů</li>
+  <li>CNI, DNS, ingress, cert management</li>
+  <li>Patching platformy</li>
+  <li>Provoz Conjur vaultu a authenticatoru</li>
+  <li>Monitoring stack na úrovni platformy</li>
+  <li>Manuální správu podů (ephemeral, per-run)</li>
 </ul>
-<h3>Shrnutí: namespace vs. cluster</h3>
-<table class="wrapped">
-  <thead>
-    <tr>
-      <th></th>
-      <th>Vlastní namespace (návrh)</th>
-      <th>Vlastní cluster (na squad)</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><strong>Co to je</strong></td>
-      <td>Oplocená část clusteru, který provozuje někdo jiný</td>
-      <td>Samotný cluster</td>
-    </tr>
-    <tr>
-      <td><strong>Jednorázová práce</strong></td>
-      <td>Pár manifestů, které založí Platform Squad podle vstupů od squadu</td>
-      <td>Postavit a zabezpečit celý cluster, &#215;60</td>
-    </tr>
-    <tr>
-      <td><strong>Průběžná práce</strong></td>
-      <td>Téměř nulová &#8212; žádosti o kvótu/připojení/secrety podle potřeby</td>
-      <td>Upgrady, škálování uzlů, patching, monitoring, pohotovost &#8212; &#215;60</td>
-    </tr>
-    <tr>
-      <td><strong>Izolace secretů</strong></td>
-      <td>Vynucuje CyberArk přes Kubernetes Authenticator, podle identity ServiceAccount squadu</td>
-      <td>Vynucuje fyzické oddělení</td>
-    </tr>
-  </tbody>
-</table>
