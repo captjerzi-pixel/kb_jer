@@ -47,7 +47,13 @@ Ze 4 zvažovaných konceptů (`wiki_concept.html`):
 
 ## 3. Historie hodnocení nástrojů
 
-**Pořadí událostí:** AirPy doporučeno jako první → Vendor navrhl zkusit **Meltano** → Meltano v PoC selhalo (export 80 mil. řádků ~4 h, řádově pomalejší než ostatní) → při hledání náhrady se objevilo **MiNiFi** → nové srovnání.
+**Pořadí událostí:**
+1. Do předchozího kola hodnocení za squad **DAKVI** byla zařazena řešení AirPy, NiFi a Infa; za squad bylo doporučeno **AirPy**.
+2. Na **ODP SRF** byla odsouhlasena cesta koncepce **B2 — Template Library**.
+3. Na základě podnětu dodavatele **BigHub** byla do hodnocení doplněna alternativa **Meltano**, následně i **MiNiFi**.
+4. Obě alternativy (Meltano i MiNiFi) byly ověřeny formou menšího Proof of Concept.
+5. Meltano v PoC selhalo (export 80 mil. řádků ~4 h, řádově pomalejší než ostatní) → vyřazeno.
+6. MiNiFi zůstalo ve hře → nové srovnání proti NiFi/AirPy/Infa.
 
 Alternativy v `wiki_eval.html`: AirPy, NiFi, Informatica PowerCenter (Infa), IDMC, Adoki, PNJ (PNJ a Adoki brzy vyřazeny), později přidány Meltano a MiNiFi.
 
@@ -84,6 +90,11 @@ Monitoring shodně 3, Alerting 3 vs 4, ostatní shodně (In-Flight Recovery 2, O
 |---|---|---|---|---|---|
 | Čas | 5 min | 8 min | 15 min | ~4 h | 10 min |
 | CyberArk + rotace | ✅ validováno | ✅ validováno | ❌ problémy (pak přepsáno na „-") | – | – (neověřeno) |
+
+### Proč bylo Meltano vyřazeno (3 důvody)
+1. **Výkon** — export 80 mil. řádků ~4 h, řádově pomalejší než AirPy (5 min), Infa (8 min), NiFi (15 min)
+2. **Příčina zpomalení (částečně):** Singer specifikace, na které Meltano staví, používá u větších objemů mechanismus **BATCH message** — extraktor zapíše data do mezilehlého úložiště (soubor/S3), target je pak teprve načte zpátky. Šlo by pravděpodobně optimalizovat, ale rozhodnuto dál nezkoumat (vyžadovalo by optimalizaci per flow, nejistý výsledek).
+3. **Meltano umí do Teradaty pouze nahrávat data** — `target-teradata` existuje, ale konektor pro export dat z Teradaty pro Meltano neexistuje (potvrzeno; vysvětluje skóre 7 v tabulce výše)
 
 ### Klíčové zjištění: PROČ se MiNiFi zlepšila oproti NiFi
 Stejné procesory NiFi, jiný **provozní model**: pod na běh z Airflow (K8s), flow jako soubor v Gitu, secrety přes Airflow/K8s Secret. Zlepšení je soustředěné v CI/CD a cloud alignment (Yaml consistency -7, Git Support -5, Cloud alignment -4), ne v jádru nástroje. Regrese: Incremental Loads (+2 horší), protože nepoužíváme nativní stav NiFi procesoru, ale vlastní watermark logiku.

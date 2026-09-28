@@ -9,16 +9,17 @@
 
 ### 1. Titulní snímek
 **Nadpis:** Ingest Tool pro DataMesh
-**Podnadpis:** Cílová architektura — MiNiFi na platformě Kubernetes
+**Podnadpis:** Doporučená architektura
 
-### 2. Rekapitulace předchozího rozhodování
-**Nadpis:** Rekapitulace předchozího rozhodování
+### 2. Rekapitulace předchozích návrhů
+**Nadpis:** Rekapitulace předchozích návrhů
 **Podnadpis:** Výchozí stav před aktuálním hodnocením
 
 **Text snímku:**
-- V předchozí fázi hodnocení bylo jako cílové řešení doporučeno Airflow + Python (AirPy)
-- Na základě podnětu dodavatele (Vendor) byla do hodnocení doplněna alternativa Meltano
-- Alternativa Meltano byla následně ověřena formou Proof of Concept
+- Do předchozího kola hodnocení za squad DAKVI byla zařazena řešení AirPy, NiFi a Infa; za squad bylo doporučeno AirPy
+- Následně byla na ODP SRF odsouhlasena cesta koncepce B2 — Template Library
+- Na základě podnětu dodavatele (BigHub) byla do hodnocení doplněna alternativa Meltano, následně i MiNiFi
+- Obě alternativy byly ověřeny formou menšího Proof of Concept
 
 ### 3. Vyřazení alternativy Meltano
 **Nadpis:** Vyřazení alternativy Meltano
@@ -28,6 +29,9 @@
 - Export 80 milionů záznamů trval v případě Meltano přibližně 4 hodiny
 - Ostatní hodnocené alternativy dosáhly výrazně kratších časů: AirPy 5 minut, Informatica 8 minut, Apache NiFi 15 minut
 - Výkon alternativy Meltano je o řád nižší než u ostatních hodnocených řešení
+- Část zpomalení je dána samotnou Singer specifikací, na které Meltano staví — pro přenos větších objemů využívá mechanismus BATCH message, kdy se data nejprve zapisují do mezilehlého úložiště a až následně se z něj načítají do cíle
+- Tento postup by pravděpodobně šlo optimalizovat, rozhodli jsme se však touto cestou dále nepokračovat — vyžadovalo by to specifickou optimalizaci pro jednotlivá flow a výsledek nebyl jistý
+- Meltano navíc umí do Teradaty data pouze nahrávat — konektor pro export dat z Teradaty pro tento nástroj neexistuje
 - Na základě těchto výsledků byla alternativa Meltano z dalšího hodnocení vyřazena
 
 ### 4. Architektura nezávislá na volbě nástroje
