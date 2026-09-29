@@ -16,7 +16,7 @@
 **Podnadpis:** Výchozí stav před aktuálním hodnocením
 
 **Text snímku:**
-- Do předchozího kola hodnocení za squad DAKVI byla zařazena řešení AirPy, NiFi a Infa; za squad bylo doporučeno AirPy
+- Do předchozího kola hodnocení za squad DAKVI byla zařazena řešení AirPy, NiFi a Infa; squad doporučil AirPy
 - Následně byla na ODP SRF odsouhlasena cesta koncepce B2 — Template Library
 - Na základě podnětu dodavatele (BigHub) byla do hodnocení doplněna alternativa Meltano, následně i MiNiFi
 - Obě alternativy byly ověřeny formou menšího Proof of Concept
@@ -25,14 +25,13 @@
 **Nadpis:** Vyřazení alternativy Meltano
 **Podnadpis:** Výsledky Proof of Concept
 
-**Text snímku:**
-- Export 80 milionů záznamů trval v případě Meltano přibližně 4 hodiny
-- Ostatní hodnocené alternativy dosáhly výrazně kratších časů: AirPy 5 minut, Informatica 8 minut, Apache NiFi 15 minut
-- Výkon alternativy Meltano je o řád nižší než u ostatních hodnocených řešení
-- Část zpomalení je dána samotnou Singer specifikací, na které Meltano staví — pro přenos větších objemů využívá mechanismus BATCH message, kdy se data nejprve zapisují do mezilehlého úložiště a až následně se z něj načítají do cíle
-- Tento postup by pravděpodobně šlo optimalizovat, rozhodli jsme se však touto cestou dále nepokračovat — vyžadovalo by to specifickou optimalizaci pro jednotlivá flow a výsledek nebyl jistý
-- Meltano navíc umí do Teradaty data pouze nahrávat — konektor pro export dat z Teradaty pro tento nástroj neexistuje
-- Na základě těchto výsledků byla alternativa Meltano z dalšího hodnocení vyřazena
+**Text snímku (zkráceno pro prezentaci):**
+- Export 80 mil. záznamů: cca 4 hodiny
+- Ostatní: AirPy 5 min, Informatica 8 min, NiFi 15 min — o řád rychlejší
+- Příčina (částečně): mechanismus BATCH v Singer specifikaci — zápis do meziúložiště, teprve pak načtení do cíle
+- Optimalizace možná, ale nešli jsme do ní — nejistý přínos, náročné per flow
+- Export z Teradaty: konektor neexistuje (jen import)
+- → Meltano vyřazeno z dalšího hodnocení
 
 ### 4. Architektura nezávislá na volbě nástroje
 **Nadpis:** Architektura zůstává nezávislá na volbě konkrétního nástroje
@@ -47,7 +46,7 @@
 
 ---
 
-## B) Co je MiNiFi (2 snímky)
+## B) Co je MiNiFi (3 snímky)
 
 ### 5. Co je MiNiFi
 **Nadpis:** Co je MiNiFi
@@ -61,7 +60,20 @@
 - Využívá stejné procesory jako NiFi — funkční rozsah je totožný
 - Neobsahuje webové uživatelské rozhraní — definice flow je uložena jako soubor ve verzovacím systému (Git)
 
-### 6. Proč MiNiFi vyhovuje našemu případu
+### 6. NiFi vs. MiNiFi — v čem se liší *(nový, zatím jen v draftu)*
+**Nadpis:** NiFi vs. MiNiFi — základní rozdíly
+**Podnadpis:** Rozdíl v produktu, ne v hodnocení (to je na snímku 8)
+
+| | NiFi | MiNiFi (Java) |
+|---|---|---|
+| Ovládání | Webové UI (editor flow v prohlížeči) | Bez UI — spouští se z příkazové řádky (`minifi.sh start/stop`) |
+| Definice flow | Sestavuje se interaktivně v UI, NiFi si ji drží interně | Soubor (JSON od NiFi 2), agent ho jen spustí |
+| Procesory | Plná sada | Stejná sada — od NiFi 2 sdílí stejný kód, žádné funkční omezení |
+| Clustering | Typicky cluster s UI/koordinací | Jeden samostatný agent, neklastrovaný v tomto smyslu |
+| Nároky na zdroje | Vyšší (celý stack včetně UI) | Nižší — odlehčený profil |
+| Vzdálená správa | Přes UI/API clusteru | Vlastní C2 (Command and Control) protokol pro správu více agentů |
+
+### 7. Proč MiNiFi vyhovuje našemu případu
 **Nadpis:** Proč MiNiFi vyhovuje našemu případu
 **Podnadpis:** Využití hotových komponent namísto vlastního vývoje
 
@@ -73,9 +85,9 @@
 
 ---
 
-## C) Hodnocení (4 snímky, přeuspořádáno)
+## C) Hodnocení (4 snímky)
 
-### 7. Srovnání NiFi a MiNiFi
+### 8. Srovnání NiFi a MiNiFi
 **Nadpis:** Srovnání NiFi a MiNiFi
 **Podnadpis:** Zdroj zlepšení hodnocení a jeho příčina
 
@@ -99,7 +111,7 @@ V oblasti podpory inkrementálních loadů dochází k mírnému zhoršení hodn
 
 *(Pozn. k přípravě: čísla jsou z wiki_eval.html, sekce 3–6. Při tvorbě vizuálu zvážit graf/waterfall místo tabulky.)*
 
-### 8. Zdůvodnění — proč nebyla vybrána alternativa AirPy
+### 9. Zdůvodnění — proč nebyla vybrána alternativa AirPy
 **Nadpis:** Zdůvodnění — proč nebyla vybrána alternativa AirPy
 **Podnadpis:** Silné hodnocení nemusí znamenat nejvhodnější volbu
 
@@ -109,7 +121,7 @@ V oblasti podpory inkrementálních loadů dochází k mírnému zhoršení hodn
 - Pro podporu Kafka a Elasticsearch by bylo nutné doplnit druhý nástroj (NiFi), což by znamenalo provoz dvou technologických sad a dvou CI/CD procesů
 - Řešení MiNiFi naopak pokrývá všechny zdrojové systémy jedním nástrojem s využitím hotových komponent namísto vlastního vývoje
 
-### 9. Výsledky Proof of Concept
+### 10. Výsledky Proof of Concept
 **Nadpis:** Výsledky Proof of Concept
 **Podnadpis:** Srovnání zbývajících alternativ
 
@@ -118,22 +130,22 @@ V oblasti podpory inkrementálních loadů dochází k mírnému zhoršení hodn
 | Export 80 milionů záznamů | 5 minut | 8 minut | 15 minut | 10 minut |
 | Integrace CyberArk a rotace hesel | validováno | validováno | zjištěny problémy | neověřeno |
 
-### 10. Decision Summary
+### 11. Decision Summary
 *(zařazeno až sem, za PoC — tabulka z wiki_eval_ch9_draft.html, sekce Decision Summary. Obsah k převzetí a přeformulování do formálního tónu: Runtime, Kafka/ES, Custom Code, Flow Generation, CI/CD, Operations, Incremental, Security, Squad Adoption, Licensing, Architecture, Scalability, Overall.)*
 
 ---
 
 ## D) Cílová architektura
 
-- [ ] 11. Celkový diagram
-- [ ] 12. Kubernetes model (zjednodušeně)
-- [x] 13. Airflow → Kubernetes přes REST API *(obsah rozpracován níže)*
-- [ ] 14. Bezpečnost — CyberArk/Conjur
-- [ ] 15. Zpracování dat uvnitř MiNiFi
-- [ ] 16. Bezstavovost a checkpoint
-- [ ] 17. Vlastnický model šablon
+- [ ] 12. Celkový diagram
+- [ ] 13. Kubernetes model (zjednodušeně)
+- [x] 14. Airflow → Kubernetes přes REST API *(obsah rozpracován níže)*
+- [ ] 15. Bezpečnost — CyberArk/Conjur
+- [ ] 16. Zpracování dat uvnitř MiNiFi
+- [ ] 17. Bezstavovost a checkpoint
+- [ ] 18. Vlastnický model šablon
 
-### 13. Airflow → Kubernetes přes REST API
+### 14. Airflow → Kubernetes přes REST API
 
 **Hlavní myšlenka:** `KubernetesPodOperator` v Airflow komunikuje s K8s API serverem prostřednictvím **standardního REST API** (`POST /api/v1/namespaces/{ns}/pods`, následně dotazování stavu a `GET .../pods/{name}/log`). Propojení SOGE Airflow a Kubernetes v prostředí KB je tedy realizováno výhradně formou **HTTPS REST volání**, bez potřeby speciálního protokolu.
 
@@ -174,23 +186,23 @@ with DAG(
 
 ## E) Rizika a doporučení
 
-- [ ] 18. Rizika a mitigace
-- [ ] 19. Otevřené body k ověření
-- [x] 20. Doporučení *(obsah rozpracován níže)*
-- [x] 21. Plánované next steps *(obsah rozpracován níže)*
-- [ ] 22. Závěr
+- [ ] 19. Rizika a mitigace
+- [ ] 20. Otevřené body k ověření
+- [x] 21. Doporučení *(obsah rozpracován níže)*
+- [x] 22. Plánované next steps *(obsah rozpracován níže)*
+- [ ] 23. Závěr
 
-### 20. Doporučení
+### 21. Doporučení
 - **Doporučený nástroj: Apache MiNiFi (Java agent), spouštěný jako pod v Kubernetes, per run z SOGE Airflow** — nahrazuje dříve doporučený AirPy
 - Hlavní důvody (shrnutí celé prezentace):
   - Jeden nástroj pro všechny zdroje včetně Kafka/Elasticsearch (žádná kombinace dvou toolů)
   - Hotové komponenty místo vlastního frameworku v Airflow
   - Nejlepší výsledek ve Functional Capabilities, silná CI/CD a Git integrace
   - Žádné licenční náklady, dobrá shoda s cílovou architekturou (K8s, Airflow, S3, Versioned Template Library)
-- AirPy zůstává technicky silnou alternativou, respektive náhradním řešením, pokud se validační body ze snímku 19 nepodaří naplnit
+- AirPy zůstává technicky silnou alternativou, respektive náhradním řešením, pokud se validační body ze snímku 20 nepodaří naplnit
 - **Požadovaný krok:** schválit MiNiFi jako cílové řešení a pokračovat ověřením otevřených bodů
 
-### 21. Plánované další kroky
+### 22. Plánované další kroky
 
 **Fáze 1 — technické ověření (PoC)**
 - CyberArk integrace + rotace hesel (Airflow → Secret → env var)
