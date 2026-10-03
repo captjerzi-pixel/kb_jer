@@ -1,0 +1,115 @@
+schemaVersion: 1
+description: generated from informatica.
+allowExtraColumns: true
+strictColumnOrder: false
+columns:
+  - { name: RECID, type: string } 
+  - { name: ACTIVITY, type: string } 
+  - { name: CALC_THRESHOLD, type: decimal } 
+  - { name: DAY_BASIS, type: string } 
+  - { name: ACCRUAL_RULE, type: string } 
+  - { name: COMPOUND_TYPE, type: string } 
+  - { name: NEGATIVE_RATE, type: string } 
+  - { name: RATE_TIER_TYPE, type: string } 
+  - { name: COMPARE_RATES, type: string } 
+  - { name: RFR_CONVENTION, type: string } 
+  - { name: RFR_LOOKBACK_TYPE, type: string } 
+  - { name: RFR_CALC_METHOD, type: string } 
+  - { name: RFR_LOOKBACK_DAYS, type: string } 
+  - { name: RFR_SPREAD_TREATMENT, type: string } 
+  - { name: RFR_PERIOD_DAY_COUNT, type: string } 
+  - { name: RFR_RESERVED_1, type: string } 
+  - { name: ROUNDING_RULE, type: string } 
+  - { name: RFR_FLOORING, type: string } 
+  - { name: RFR_BASE_MIN_RATE, type: decimal } 
+  - { name: USE_PRICING_GRID, type: string } 
+  - { name: USER_RATE_TYPE, type: string, required: false } 
+  - { name: USER_FIXED_RATE, type: decimal, required: false } 
+  - { name: USER_FLOATING_INDEX, type: string, required: false } 
+  - { name: USER_FLOATING_NOTICE, type: string, required: false } 
+  - { name: USER_PERIODIC_INDEX, type: string, required: false } 
+  - { name: USER_PERIODIC_PERIOD_TYPE, type: string, required: false } 
+  - { name: USER_PERIODIC_RATE, type: decimal, required: false } 
+  - { name: USER_PERIODIC_PERIOD, type: string, required: false } 
+  - { name: USER_PERIODIC_METHOD, type: string, required: false } 
+  - { name: USER_INITIAL_RESET_DATE, type: string, required: false } 
+  - { name: USER_PERIODIC_RESET, type: string, required: false } 
+  - { name: USER_CUSTOM_RATE, type: string, required: false } 
+  - { name: USER_LINKED_RATE, type: string, required: false } 
+  - { name: TIER_SOURCE, type: string } 
+  - { name: TIER_SOURCE_BALANCE, type: string } 
+  - { name: COMPOUND_YIELD_METHOD, type: string } 
+  - { name: REFER_LIMIT, type: string } 
+  - { name: MIN_INT_AMOUNT, type: decimal } 
+  - { name: MIN_INT_WAIVE, type: string } 
+  - { name: SUPPRESS_ACCRUAL, type: string } 
+  - { name: RELATIONSHIP_PRODUCT, type: string } 
+  - { name: RELATIONSHIP_OPERAND, type: string } 
+  - { name: RELATIONSHIP_MARGIN, type: decimal } 
+  - { name: RELATIONSHIP_VARIATION, type: string } 
+  - { name: RELATIONSHIP_FIXED_RATE, type: decimal } 
+  - { name: ACCOUNTING_MODE, type: string } 
+  - { name: DATE_CONVENTION, type: string } 
+  - { name: REFER_TO_ROUTINE, type: string } 
+  - { name: LINKED_ARRANGEMENT, type: string } 
+  - { name: LINKED_PROPERTY, type: string } 
+  - { name: INTEREST_METHOD, type: string } 
+  - { name: RATE_TYPE, type: string } 
+  - { name: ADV_INTEREST_ACCOUNTING, type: string } 
+  - { name: INTEREST_OVERRIDE_ROUTINE, type: string } 
+  - { name: ACTUAL_PROFIT_AMT, type: decimal } 
+  - { name: ORIG_PROFIT_AMOUNT, type: decimal } 
+  - { name: INTERNAL_BOOKING, type: string } 
+  - { name: CUSTOM_RATE_CALC, type: string } 
+  - { name: RUNTIME_RATE_CALC, type: string } 
+  - { name: ADJUST_TYPE, type: string } 
+  - { name: ADJUST_OPERAND, type: string } 
+  - { name: ADJUST_MARGIN, type: decimal } 
+  - { name: ADJUST_OVERRIDE_RATE, type: decimal } 
+  - { name: ADJUST_REASON, type: string } 
+  - { name: ADJUST_EXPIRY_DATE, type: date } 
+  - { name: REGIONAL_PRICING_LEVEL, type: string } 
+  - { name: REGIONAL_PRICING_CODE, type: string } 
+  - { name: REGIONAL_PRICING_OPERAND, type: string } 
+  - { name: REGIONAL_PRICING_MARGIN, type: decimal } 
+  - { name: REGIONAL_PRICING_FIXED_RATE, type: decimal } 
+  - { name: REGIONAL_PRODUCT, type: string } 
+  - { name: REGIONAL_PROPERTY_CONTROL, type: string } 
+  - { name: PROGRAM_LIMIT, type: string } 
+  - { name: PACKAGE_PRODUCT, type: string } 
+  - { name: RESERVED10, type: string, required: false } 
+  - { name: RESERVED9, type: string } 
+  - { name: RESERVED8, type: string } 
+  - { name: RESERVED7, type: string } 
+  - { name: PACKAGE_PROPERTY_CONTROL, type: string } 
+  - { name: PRIOR_DAYS, type: string } 
+  - { name: INITIATION_TYPE, type: string } 
+  - { name: SYS_RESERVE7, type: string } 
+  - { name: SYS_RESERVE6, type: string } 
+  - { name: SYS_RESERVE3, type: string } 
+  - { name: SYS_RESERVE2, type: string } 
+  - { name: SYS_RESERVE1, type: string } 
+  - { name: DEFAULT_ATTR_OPTION, type: string } 
+  - { name: DEFAULT_NEGOTIABLE, type: string } 
+  - { name: ID_COMP_1, type: string } 
+  - { name: ID_COMP_2, type: string } 
+  - { name: ID_COMP_3, type: string } 
+  - { name: ID_COMP_4, type: string } 
+  - { name: ID_COMP_5, type: string } 
+  - { name: ID_COMP_6, type: string } 
+  - { name: RESERVED2_ID, type: string } 
+  - { name: TARGET_PRODUCT, type: string } 
+  - { name: RECORD_STATUS, type: string } 
+  - { name: CURR_NO, type: string } 
+  - { name: AUTHORISER, type: string } 
+  - { name: CO_CODE, type: string } 
+  - { name: DEPT_CODE, type: string } 
+  - { name: AUDITOR_CODE, type: string } 
+  - { name: AUDIT_DATE_TIME, type: string } 
+  - { name: FT_TXN_TYPE, type: string } 
+  - { name: ADJUST_OPTION, type: string } 
+  - { name: CREATION_TIME_DL, type: decimal } 
+  - { name: BANKING_DATE_DL, type: date } 
+  - { name: SDS_COMPANY_CODE, type: string } 
+  - { name: SDS_MNEMONIC, type: string } 
+

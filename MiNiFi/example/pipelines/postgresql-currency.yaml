@@ -1,0 +1,18 @@
+pipelineName: postgresql-currency
+source:
+  type: postgresql
+  hostEnv: PSQL_HOSTNAME
+  databaseEnv: PSQL_DB
+  usernameEnv: PSQL_USERNAME
+  passwordEnv: PSQL_PASSWORD
+tables:
+  - schema: public
+    name: CURRENCY
+    query: SELECT * FROM public."CURRENCY"
+    schemaRef: ../schemas/postgresql-currency.schema.yaml
+    outputName: currency
+output:
+  s3Prefix: runs
+runtime:
+  tablesPerPod: 10
+  profile: medium

@@ -1,0 +1,26 @@
+pipelineName: postgresql-currency-incremental
+source:
+  type: postgresql
+  hostEnv: PSQL_HOSTNAME
+  databaseEnv: PSQL_DB
+  usernameEnv: PSQL_USERNAME
+  passwordEnv: PSQL_PASSWORD
+tables:
+  - schema: public
+    name: CURRENCY
+    query: SELECT * FROM public."CURRENCY"
+    schemaRef: ../schemas/postgresql-currency.schema.yaml
+    outputName: currency
+    incremental:
+      enabled: true
+      column: BANKING_DATE_DL
+      type: date
+      lowerBoundParam: EXTRACT_FROM_DATE
+      upperBoundParam: EXTRACT_TO_DATE
+      lowerInclusive: true
+      upperExclusive: true
+output:
+  s3Prefix: runs
+runtime:
+  tablesPerPod: 10
+  profile: medium

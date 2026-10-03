@@ -1,0 +1,23 @@
+ordinal_position,column_name,declared_type,is_nullable,default_value
+1,RECID,character varying(255),False,NULL
+2,EFFECTIVE_DATE,date,True,NULL
+3,LOCAL_TAX_PARAM,character varying(35),True,NULL
+4,CUST_CHK_RTN,character varying(20),True,NULL
+5,HIGHEST_TAX,character varying(5),True,NULL
+6,APPLY_SPLIT,character varying(5),True,NULL
+7,RESERVED5,character varying(60),True,NULL
+8,RESERVED4,character varying(60),True,NULL
+9,RESERVED3,character varying(60),True,NULL
+10,RESERVED1,character varying(60),True,NULL
+11,RECORD_STATUS,character varying(6),True,NULL
+12,CURR_NO,character varying(6),True,NULL
+13,AUTHORISER,character varying(100),True,NULL
+14,CO_CODE,character varying(11),True,NULL
+15,DEPT_CODE,character varying(4),True,NULL
+16,AUDITOR_CODE,character varying(16),True,NULL
+17,AUDIT_DATE_TIME,character varying(15),True,NULL
+18,JURIS_FLD_NAME,character varying(35),True,NULL
+19,CREATION_TIME_DL,"numeric(38,10)",False,NULL
+20,BANKING_DATE_DL,date,False,NULL
+21,SDS_COMPANY_CODE,character varying(50),False,NULL
+22,SDS_MNEMONIC,character varying(50),False,NULL

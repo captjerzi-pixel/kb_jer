@@ -1,0 +1,18 @@
+schemaVersion: 1
+description: generated from informatica.
+allowExtraColumns: true
+strictColumnOrder: false
+columns:
+  - { name: RECID, type: string } 
+  - { name: MV_REF, type: string } 
+  - { name: SV_REF, type: string } 
+  - { name: BANKING_DATE_DL, type: date } 
+  - { name: SDS_COMPANY_CODE, type: string } 
+  - { name: SDS_MNEMONIC, type: string } 
+  - { name: LINK_TYPE, type: string } 
+  - { name: LINK_ARRANGEMENT, type: string } 
+  - { name: LINK_PROPERTY, type: string } 
+  - { name: LINKED_BALANCE_TYPE, type: string } 
+  - { name: LINKED_SOURCE_CALC_TYPE, type: string } 
+  - { name: LINKED_MAX_OFFSET, type: decimal } 
+

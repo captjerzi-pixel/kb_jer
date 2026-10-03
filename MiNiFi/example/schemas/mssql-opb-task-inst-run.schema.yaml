@@ -1,0 +1,27 @@
+﻿schemaVersion: 1
+description: Expected MSSQL Informatica repository OPB_TASK_INST_RUN projection.
+allowExtraColumns: false
+strictColumnOrder: true
+columns:
+  - { name: SUBJECT_ID }
+  - { name: WORKFLOW_ID }
+  - { name: WORKFLOW_RUN_ID }
+  - { name: WORKLET_RUN_ID }
+  - { name: CHILD_RUN_ID }
+  - { name: INSTANCE_ID }
+  - { name: INSTANCE_NAME }
+  - { name: TASK_ID }
+  - { name: TASK_TYPE }
+  - { name: START_TIME }
+  - { name: END_TIME }
+  - { name: RUN_ERR_CODE }
+  - { name: RUN_ERR_MSG }
+  - { name: RUN_STATUS_CODE }
+  - { name: TASK_NAME }
+  - { name: RUN_MODE }
+  - { name: VERSION_NUMBER }
+  - { name: SERVER_ID }
+  - { name: SERVER_NAME }
+  - { name: FRAGMENT_ID }
+  - { name: SERVER_NODE_ID }
+  - { name: SERVER_NODE_NAME }

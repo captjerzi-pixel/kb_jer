@@ -1,0 +1,18 @@
+schemaVersion: 1
+description: generated from informatica.
+allowExtraColumns: true
+strictColumnOrder: false
+columns:
+  - { name: RECID, type: string } 
+  - { name: MV_REF, type: string } 
+  - { name: BANKING_DATE_DL, type: date } 
+  - { name: SDS_COMPANY_CODE, type: string } 
+  - { name: SDS_MNEMONIC, type: string } 
+  - { name: TYPE, type: string } 
+  - { name: BALANCE, type: decimal } 
+  - { name: DEBIT_MOVEMENT, type: decimal } 
+  - { name: CREDIT_MOVEMENT, type: decimal } 
+  - { name: LOCAL_BALANCE, type: decimal } 
+  - { name: LOCAL_DEBIT_MVE, type: decimal } 
+  - { name: LOCAL_CREDT_MVE, type: decimal } 
+

@@ -1,0 +1,16 @@
+pipelineName: wmt-test
+source:
+  type: oracle
+  databaseUrl: jdbc:oracle:thin:@DB730-WMT.TEST.KB.CZ:1521:DB730
+  usernameEnv: WMT_USERNAME
+  passwordEnv: WMT_PASSWORD
+tables:
+  - schema: ifpctest
+    name: READER_ORA_01
+    query: SELECT * from READER_ORA_01
+    schemaRef: ../schemas/READER_ORA_01.schema.yaml
+output:
+  s3Prefix: runs
+runtime:
+  tablesPerPod: 10
+  profile: small

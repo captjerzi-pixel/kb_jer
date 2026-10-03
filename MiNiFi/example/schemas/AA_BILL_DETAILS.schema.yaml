@@ -1,0 +1,53 @@
+schemaVersion: 1
+description: generated from informatica.
+allowExtraColumns: true
+strictColumnOrder: false
+columns:
+  - { name: RECID, type: string } 
+  - { name: ARRANGEMENT_ID, type: string } 
+  - { name: PAYMENT_DATE, type: date } 
+  - { name: ACTUAL_PAY_DATE, type: date } 
+  - { name: FINANCIAL_DATE, type: date } 
+  - { name: DEFER_DATE, type: date } 
+  - { name: EXPIRY_DATE, type: date } 
+  - { name: CURRENCY, type: string } 
+  - { name: OR_TOTAL_AMOUNT, type: decimal } 
+  - { name: OR_TOTAL_AMT_LCY, type: decimal } 
+  - { name: DELIN_OS_AMT, type: decimal } 
+  - { name: DELIN_OS_AMT_LCY, type: decimal } 
+  - { name: OS_TOTAL_AMOUNT, type: decimal } 
+  - { name: OS_TOTAL_AMT_LCY, type: decimal } 
+  - { name: OS_TOTAL_ADJ_AMT, type: decimal } 
+  - { name: OS_TOTAL_ADJ_AMT_LCY, type: decimal } 
+  - { name: NOTICE_REFERENCE, type: string } 
+  - { name: OR_TOT_AMOUNT_BNK, type: decimal } 
+  - { name: RESERVED_16, type: string } 
+  - { name: OS_TOT_AMOUNT_BNK, type: decimal } 
+  - { name: RESERVED_15, type: string } 
+  - { name: OS_TOT_ADJ_AMT_BNK, type: decimal } 
+  - { name: ADVANCE_PAYMENT, type: string } 
+  - { name: LAST_UPDATE_DATE, type: timestamp } 
+  - { name: ADVANCE_BILL, type: string } 
+  - { name: DUE_REFERENCE, type: string } 
+  - { name: DEFER_REFERENCE, type: string } 
+  - { name: PAYMENT_INDICATOR, type: string } 
+  - { name: MASTER_ARR_ID, type: string } 
+  - { name: MASTER_ISSUE_BILL_REF, type: string } 
+  - { name: MASTER_DEFER_REF, type: string } 
+  - { name: MASTER_DUE_REF, type: string } 
+  - { name: FINALISE_DATE, type: date } 
+  - { name: FINALISE_REFERENCE, type: string } 
+  - { name: PARTICIPANT_INDICATOR, type: string } 
+  - { name: PROMOTIONS_ARR_ID, type: string } 
+  - { name: CREATION_TIME_DL, type: decimal } 
+  - { name: BANKING_DATE_DL, type: date } 
+  - { name: SDS_COMPANY_CODE, type: string } 
+  - { name: SDS_MNEMONIC, type: string } 
+  - { name: LINKED_PORTFOLIO_ID, type: string } 
+  - { name: OR_TOTAL_AMOUNT_REC, type: decimal } 
+  - { name: OR_TOTAL_AMT_REC_LCY, type: decimal } 
+  - { name: OS_TOTAL_AMOUNT_REC, type: decimal } 
+  - { name: OS_TOTAL_AMT_REC_LCY, type: decimal } 
+  - { name: OS_TOTAL_ADJ_AMT_REC, type: decimal } 
+  - { name: OS_TOTAL_ADJ_AMT_REC_LCY, type: decimal } 
+

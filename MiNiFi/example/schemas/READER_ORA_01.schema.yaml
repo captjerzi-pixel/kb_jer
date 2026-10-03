@@ -1,0 +1,25 @@
+schemaVersion: 1
+description: manual create 2 
+allowExtraColumns: false
+strictColumnOrder: true
+columns:
+  - { name: TST01, type: clob } 
+  - { name: TST02, type: date } 
+  - { name: TST03, type: string }
+  - { name: TST04, type: number }
+  - { name: TST05, type: number }
+  - { name: TST06, type: number }
+  - { name: TST07, type: string }
+  - { name: TST08, type: datetime }
+  - { name: TST09, type: string }
+  - { name: TST10, type: string }
+  - { name: TST11, type: string }
+  - { name: TST13, type: date }
+  - { name: TST14, type: number }
+  - { name: TST15, type: number }
+  - { name: TST16, type: number }
+  - { name: TST19, type: number } 
+  - { name: TST20, type: number }
+  - { name: TST17, type: timestamp }
+  - { name: TST12, type: string }
+  - { name: TST18, type: string }

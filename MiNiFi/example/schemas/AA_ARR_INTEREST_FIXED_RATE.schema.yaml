@@ -1,0 +1,30 @@
+schemaVersion: 1
+description: generated from informatica.
+allowExtraColumns: true
+strictColumnOrder: false
+columns:
+  - { name: RECID, type: string } 
+  - { name: MV_REF, type: string } 
+  - { name: BANKING_DATE_DL, type: date } 
+  - { name: SDS_COMPANY_CODE, type: string } 
+  - { name: SDS_MNEMONIC, type: string } 
+  - { name: FIXED_RATE, type: decimal } 
+  - { name: FLOATING_INDEX, type: string } 
+  - { name: FLOATING_NOTICE, type: string } 
+  - { name: PERIODIC_INDEX, type: string } 
+  - { name: PERIODIC_PERIOD_TYPE, type: string } 
+  - { name: PERIODIC_RATE, type: decimal } 
+  - { name: PERIODIC_PERIOD, type: string } 
+  - { name: PERIODIC_METHOD, type: string } 
+  - { name: INITIAL_RESET_DATE, type: string } 
+  - { name: PERIODIC_RESET, type: string } 
+  - { name: CUSTOM_RATE, type: string } 
+  - { name: LINKED_RATE, type: string } 
+  - { name: USAGE_PERCENT, type: decimal } 
+  - { name: TIER_MIN_RATE, type: decimal } 
+  - { name: TIER_MAX_RATE, type: decimal } 
+  - { name: TIER_NEGATIVE_RATE, type: string } 
+  - { name: EFFECTIVE_RATE, type: decimal } 
+  - { name: TIER_AMOUNT, type: decimal } 
+  - { name: TIER_PERCENT, type: string } 
+

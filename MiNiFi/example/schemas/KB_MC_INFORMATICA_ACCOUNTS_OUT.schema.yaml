@@ -1,0 +1,42 @@
+schemaVersion: 1
+description: generated from informatica.
+allowExtraColumns: false
+strictColumnOrder: true
+columns:
+  - { name: BATCH_CODE, type: number } 
+  - { name: BANK_CODE, type: string } 
+  - { name: BANKING_CORE, type: string } 
+  - { name: ACCOUNT_NUMBER, type: string } 
+  - { name: APPLICATION_TYPE, type: string } 
+  - { name: ACCOUNT_TYPE, type: string } 
+  - { name: ACCOUNT_STATUS, type: string } 
+  - { name: CURRENT_BALANCE, type: number } 
+  - { name: ACCOUNT_CURRENCY, type: string } 
+  - { name: ACCOUNT_OWNER, type: string } 
+  - { name: ACCOUNT_NAME, type: string } 
+  - { name: ACCOUNT_CREATED, type: date } 
+  - { name: BRANCH, type: string } 
+  - { name: ACCOUNTING_CIRCLE, type: string } 
+  - { name: CORE_ACCOUNT_NUMBER, type: string } 
+  - { name: PART_KEY, type: date } 
+  - { name: STATEMENT_DESTINATION, type: string } 
+  - { name: STATEMENT_TYPE, type: string } 
+  - { name: STATEMENT_FREQUENCY, type: string } 
+  - { name: STATEMENT_DATE, type: date } 
+  - { name: STATEMENT_ADDRESS_LINE_1, type: string } 
+  - { name: STATEMENT_ADDRESS_LINE_2, type: string } 
+  - { name: STATEMENT_ADDRESS_LINE_3, type: string } 
+  - { name: STATEMENT_ZIP_CODE, type: string } 
+  - { name: STATEMENT_COUNTRY, type: string } 
+  - { name: BUSINESS_PRODUCT_ID, type: string } 
+  - { name: CLOSURE_DATE, type: date } 
+  - { name: POSTING_RESTRICTIONS, type: string } 
+  - { name: LOAN_BALANCE, type: number } 
+  - { name: CARD_BALANCE, type: number } 
+  - { name: CREDIT_CARD_LIMIT, type: number } 
+  - { name: AVAILABLE_BALANCE, type: number } 
+  - { name: DEBIT_HOLDS, type: number } 
+  - { name: CREDIT_HOLDS, type: number } 
+  - { name: OVER_DRAFT_LIMIT_1, type: number } 
+  - { name: OVER_DRAFT_LIMIT_2, type: number } 
+

@@ -1,0 +1,38 @@
+schemaVersion: 1
+description: generated from informatica.
+allowExtraColumns: true
+strictColumnOrder: false
+columns:
+  - { name: RECID, type: string } 
+  - { name: SYSTEM_IND, type: string } 
+  - { name: MI_CATEG_GROUP, type: string } 
+  - { name: MI_ENTRY_TYPE_DFT, type: string } 
+  - { name: MNEMONIC, type: string } 
+  - { name: AC_CONTINGENT, type: string } 
+  - { name: CONSOLIDATE_ENT, type: string } 
+  - { name: POSITION_TYPE, type: string } 
+  - { name: LOSS_GIVEN_DEFT, type: decimal } 
+  - { name: RESERVED_6, type: string, required: false } 
+  - { name: RESERVED_5, type: string } 
+  - { name: RESERVED_4, type: string } 
+  - { name: RESERVED_3, type: string } 
+  - { name: RESERVED_2, type: string } 
+  - { name: RESERVED_1, type: string } 
+  - { name: RECORD_STATUS, type: string } 
+  - { name: CURR_NO, type: string } 
+  - { name: AUTHORISER, type: string } 
+  - { name: CO_CODE, type: string } 
+  - { name: DEPT_CODE, type: string } 
+  - { name: AUDITOR_CODE, type: string } 
+  - { name: AUDIT_DATE_TIME, type: string } 
+  - { name: BUSINESS_MODEL, type: string } 
+  - { name: IFRS_CLASS, type: string } 
+  - { name: REPORT_BALANCE, type: string } 
+  - { name: CREATION_TIME_DL, type: decimal } 
+  - { name: BANKING_DATE_DL, type: date } 
+  - { name: SDS_COMPANY_CODE, type: string } 
+  - { name: SDS_MNEMONIC, type: string } 
+  - { name: L_EB_UPLOAD_REF, type: string } 
+  - { name: BLOCK_MARK, type: string } 
+  - { name: OBLAST, type: string } 
+

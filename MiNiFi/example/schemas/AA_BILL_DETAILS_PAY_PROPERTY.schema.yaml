@@ -1,0 +1,41 @@
+schemaVersion: 1
+description: generated from informatica.
+allowExtraColumns: true
+strictColumnOrder: false
+columns:
+  - { name: RECID, type: string } 
+  - { name: MV_REF, type: string } 
+  - { name: SV_REF, type: string } 
+  - { name: BANKING_DATE_DL, type: date } 
+  - { name: SDS_COMPANY_CODE, type: string } 
+  - { name: SDS_MNEMONIC, type: string } 
+  - { name: PAY_PROPERTY, type: string } 
+  - { name: OR_PR_AMT, type: decimal } 
+  - { name: OR_PR_AMT_LCY, type: decimal } 
+  - { name: OS_PR_AMT, type: decimal } 
+  - { name: OS_PR_AMT_LCY, type: decimal } 
+  - { name: SUS_PR_AMT, type: decimal } 
+  - { name: SUS_PR_AMT_LCY, type: decimal } 
+  - { name: OS_AD_PR_AMT, type: decimal } 
+  - { name: OS_AD_PR_AMT_LCY, type: decimal } 
+  - { name: OR_PR_BNK, type: decimal } 
+  - { name: RESERVED_5, type: string } 
+  - { name: OS_PR_BNK, type: decimal } 
+  - { name: RESERVED_3, type: string } 
+  - { name: SUS_PR_BNK, type: decimal } 
+  - { name: RESERVED_2, type: string } 
+  - { name: OS_ADJ_PR_BNK, type: decimal } 
+  - { name: RESERVED_1, type: string } 
+  - { name: WAIVE_PR_AMT, type: decimal } 
+  - { name: WAIVE_PR_AMT_LCY, type: decimal } 
+  - { name: OR_PR_AMT_REC, type: decimal } 
+  - { name: OR_PR_AMT_REC_LCY, type: decimal } 
+  - { name: OS_PR_AMT_REC, type: decimal } 
+  - { name: OS_PR_AMT_REC_LCY, type: decimal } 
+  - { name: SUS_PR_AMT_REC, type: decimal } 
+  - { name: SUS_PR_AMT_REC_LCY, type: decimal } 
+  - { name: OS_AD_PR_AMT_REC, type: decimal } 
+  - { name: OS_AD_PR_AMT_REC_LCY, type: decimal } 
+  - { name: WAIVE_PR_AMT_REC, type: decimal } 
+  - { name: WAIVE_PR_AMT_REC_LCY, type: decimal } 
+

@@ -1,0 +1,29 @@
+schemaVersion: 1
+description: generated from informatica.
+allowExtraColumns: true
+strictColumnOrder: false
+columns:
+  - { name: RECID, type: string } 
+  - { name: MV_REF, type: string } 
+  - { name: BANKING_DATE_DL, type: date } 
+  - { name: SDS_COMPANY_CODE, type: string } 
+  - { name: SDS_MNEMONIC, type: string } 
+  - { name: ASSET_APPLIC_ID, type: string } 
+  - { name: ASSET_CCY_MKT, type: string } 
+  - { name: ASSET_POS_TYPE, type: string } 
+  - { name: ASSET_CURRENCY, type: string } 
+  - { name: ASSET1, type: string } 
+  - { name: ASSET2, type: string } 
+  - { name: ASSET3, type: string } 
+  - { name: ASSET4, type: string } 
+  - { name: ASSET5, type: string } 
+  - { name: ASSET6, type: string } 
+  - { name: ASSET7, type: string } 
+  - { name: ASSET8, type: string } 
+  - { name: ASSET9, type: string } 
+  - { name: ASSET10, type: string } 
+  - { name: ASSET11, type: string } 
+  - { name: ASSET12, type: string } 
+  - { name: ASSET_TYPE, type: string } 
+  - { name: ASSET_EXT_DUP, type: string } 
+

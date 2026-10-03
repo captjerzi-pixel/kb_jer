@@ -1,0 +1,24 @@
+schemaVersion: 1
+description: generated from informatica.
+allowExtraColumns: true
+strictColumnOrder: false
+columns:
+  - { name: RECID, type: string } 
+  - { name: DEPOSITORY_GROUP, type: string } 
+  - { name: CHG_COM_ACCOUNT, type: string } 
+  - { name: CHG_ADV_REQD, type: string } 
+  - { name: CUSTOMER_COMPANY, type: string } 
+  - { name: SPLIT_CHARGE_ENTRY, type: string } 
+  - { name: REBUILD_CUSTOMER_CHARGE, type: string } 
+  - { name: RECORD_STATUS, type: string } 
+  - { name: CURR_NO, type: string } 
+  - { name: AUTHORISER, type: string } 
+  - { name: CO_CODE, type: string } 
+  - { name: DEPT_CODE, type: string } 
+  - { name: AUDITOR_CODE, type: string } 
+  - { name: AUDIT_DATE_TIME, type: string } 
+  - { name: CREATION_TIME_DL, type: decimal } 
+  - { name: BANKING_DATE_DL, type: date } 
+  - { name: SDS_COMPANY_CODE, type: string } 
+  - { name: SDS_MNEMONIC, type: string } 
+

@@ -1,0 +1,18 @@
+schemaVersion: 1
+description: generated from informatica.
+allowExtraColumns: true
+strictColumnOrder: false
+columns:
+  - { name: RECID, type: string } 
+  - { name: MV_REF, type: string } 
+  - { name: BANKING_DATE_DL, type: date } 
+  - { name: SDS_COMPANY_CODE, type: string } 
+  - { name: SDS_MNEMONIC, type: string } 
+  - { name: LEGAL_ID, type: string } 
+  - { name: LEGAL_DOC_NAME, type: string } 
+  - { name: LEGAL_HOLDER_NAME, type: string } 
+  - { name: LEGAL_ISS_AUTH, type: string } 
+  - { name: LEGAL_ISS_CTRY, type: string } 
+  - { name: LEGAL_ISS_DATE, type: date } 
+  - { name: LEGAL_EXP_DATE, type: date } 
+

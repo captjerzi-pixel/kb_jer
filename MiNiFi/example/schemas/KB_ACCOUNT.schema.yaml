@@ -1,0 +1,34 @@
+schemaVersion: 1
+description: generated from informatica.
+allowExtraColumns: true
+strictColumnOrder: false
+columns:
+  - { name: RECID, type: string } 
+  - { name: CUSTOMER, type: string } 
+  - { name: CATEGORY, type: string } 
+  - { name: CURRENCY, type: string } 
+  - { name: ACCOUNT_OFFICER, type: string } 
+  - { name: OPEN_ACTUAL_BAL, type: decimal } 
+  - { name: OPEN_CLEARED_BAL, type: decimal } 
+  - { name: ONLINE_ACTUAL_BAL, type: decimal } 
+  - { name: ONLINE_CLEARED_BAL, type: decimal } 
+  - { name: WORKING_BALANCE, type: decimal } 
+  - { name: CLOSURE_DATE, type: date } 
+  - { name: CLOSURE_REASON, type: string } 
+  - { name: ACCOUNT_NUMBER, type: string } 
+  - { name: ACCOUNT_IBAN, type: string } 
+  - { name: POSTING_RESTRICT, type: string } 
+  - { name: INACTIV_MARKER, type: string } 
+  - { name: RECORD_STATUS, type: string } 
+  - { name: CURR_NO, type: string } 
+  - { name: AUTHORISER, type: string } 
+  - { name: CO_CODE, type: string } 
+  - { name: DEPT_CODE, type: string } 
+  - { name: CREATION_TIME_DL, type: decimal } 
+  - { name: BANKING_DATE_DL, type: date } 
+  - { name: SDS_COMPANY_CODE, type: string } 
+  - { name: SDS_MNEMONIC, type: string } 
+  - { name: OPENING_DATE, type: date } 
+  - { name: POSITION_TYPE, type: string } 
+  - { name: CURRENCY_MARKET, type: string } 
+

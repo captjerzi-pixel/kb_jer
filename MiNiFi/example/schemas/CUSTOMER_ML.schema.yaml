@@ -1,0 +1,21 @@
+schemaVersion: 1
+description: generated from informatica.
+allowExtraColumns: true
+strictColumnOrder: false
+columns:
+  - { name: RECID, type: string } 
+  - { name: LANG_REF, type: string } 
+  - { name: BANKING_DATE_DL, type: date } 
+  - { name: SDS_COMPANY_CODE, type: string } 
+  - { name: SDS_MNEMONIC, type: string } 
+  - { name: SHORT_NAME, type: string } 
+  - { name: NAME_1, type: string } 
+  - { name: NAME_2, type: string } 
+  - { name: STREET, type: string } 
+  - { name: TOWN_COUNTRY, type: string } 
+  - { name: POST_CODE, type: string } 
+  - { name: COUNTRY, type: string } 
+  - { name: NAME_ALIAS, type: string } 
+  - { name: ADDRESS_ITEM1, type: string } 
+  - { name: ADDRESS_ITEM2, type: string } 
+

@@ -1,0 +1,71 @@
+schemaVersion: 1
+description: generated from informatica.
+allowExtraColumns: true
+strictColumnOrder: false
+columns:
+  - { name: RECID, type: string } 
+  - { name: ACTIVITY, type: string } 
+  - { name: LIMIT_REFERENCE, type: string } 
+  - { name: LIMIT_SERIAL, type: string } 
+  - { name: SINGLE_LIMIT, type: string } 
+  - { name: ALLOW_NETTING, type: string } 
+  - { name: LIMIT_AMOUNT, type: decimal } 
+  - { name: EXPIRY_DATE, type: date } 
+  - { name: REVIEW_FREQ, type: string } 
+  - { name: MANAGE_LIMIT, type: string } 
+  - { name: TOLERANCE_CCY, type: string } 
+  - { name: TOLERANCE_AMT, type: decimal } 
+  - { name: CUSTOMER_OD_STATUS, type: string } 
+  - { name: CREDIT_CHK_CONDITION, type: string } 
+  - { name: CREDIT_CHK_TXN_TYPE, type: string } 
+  - { name: USE_SECONDARY_LIMIT, type: string } 
+  - { name: SECONDARY_LIMIT_AMT, type: decimal } 
+  - { name: LIMIT, type: string } 
+  - { name: LIMIT_MATURITY, type: string } 
+  - { name: LIMIT_MATURITY_DATE, type: date } 
+  - { name: MAINTAIN_LIMIT_BALANCE, type: string } 
+  - { name: CHARGE_ACCOUNT, type: string } 
+  - { name: LIMIT_STYLE, type: string } 
+  - { name: VALIDATION_LIMIT, type: string } 
+  - { name: ADMIN_LIMIT_REF, type: string } 
+  - { name: ADMIN_LIMIT_SERIAL, type: string } 
+  - { name: ADMIN_LIMIT, type: string } 
+  - { name: MANAGE_ADMIN_LIMIT, type: string } 
+  - { name: CASH_FLOW_CHECK, type: string } 
+  - { name: ACCOUNT_OVERDRAWN_ID, type: string } 
+  - { name: ACT_BAL_TOT_OUT, type: decimal } 
+  - { name: CLRD_BAL_LIMIT, type: decimal } 
+  - { name: DATE_FIRST_OD, type: date } 
+  - { name: DATE_LAST_MOVE, type: date } 
+  - { name: CURR_OD_START_DATE, type: date } 
+  - { name: CURR_OD_DAYS, type: string } 
+  - { name: LAST_OD_FEE_DATE, type: date } 
+  - { name: FIXED_VARIABLE, type: string } 
+  - { name: RESERVED1, type: string } 
+  - { name: SYS_RESERVE7, type: string } 
+  - { name: SYS_RESERVE6, type: string } 
+  - { name: SYS_RESERVE3, type: string } 
+  - { name: SYS_RESERVE2, type: string } 
+  - { name: SYS_RESERVE1, type: string } 
+  - { name: DEFAULT_ATTR_OPTION, type: string } 
+  - { name: DEFAULT_NEGOTIABLE, type: string } 
+  - { name: ID_COMP_1, type: string } 
+  - { name: ID_COMP_2, type: string } 
+  - { name: ID_COMP_3, type: string } 
+  - { name: ID_COMP_4, type: string } 
+  - { name: ID_COMP_5, type: string } 
+  - { name: ID_COMP_6, type: string } 
+  - { name: RESERVED2_ID, type: string } 
+  - { name: TARGET_PRODUCT, type: string } 
+  - { name: RECORD_STATUS, type: string } 
+  - { name: CURR_NO, type: string } 
+  - { name: AUTHORISER, type: string } 
+  - { name: CO_CODE, type: string } 
+  - { name: DEPT_CODE, type: string } 
+  - { name: AUDITOR_CODE, type: string } 
+  - { name: AUDIT_DATE_TIME, type: string } 
+  - { name: CREATION_TIME_DL, type: decimal } 
+  - { name: BANKING_DATE_DL, type: date } 
+  - { name: SDS_COMPANY_CODE, type: string } 
+  - { name: SDS_MNEMONIC, type: string } 
+

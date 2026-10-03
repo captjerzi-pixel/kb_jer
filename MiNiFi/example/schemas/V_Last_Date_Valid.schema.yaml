@@ -1,0 +1,7 @@
+schemaVersion: 1
+description: generated from informatica.
+allowExtraColumns: true
+strictColumnOrder: false
+columns:
+  - { name: Date_Valid, type:, required: false } 
+

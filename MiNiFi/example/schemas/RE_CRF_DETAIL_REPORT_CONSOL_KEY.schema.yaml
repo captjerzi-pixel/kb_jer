@@ -1,0 +1,16 @@
+schemaVersion: 1
+description: generated from informatica.
+allowExtraColumns: true
+strictColumnOrder: false
+columns:
+  - { name: RECID, type: string } 
+  - { name: MV_REF, type: string } 
+  - { name: BANKING_DATE_DL, type: date } 
+  - { name: SDS_COMPANY_CODE, type: string } 
+  - { name: SDS_MNEMONIC, type: string } 
+  - { name: CONSOL_KEY, type: string } 
+  - { name: OPENING_BALANCE, type: string } 
+  - { name: DEBIT_MOVEMENT, type: string } 
+  - { name: CREDIT_MOVEMENT, type: string } 
+  - { name: CLOSING_BALANCE, type: string } 
+

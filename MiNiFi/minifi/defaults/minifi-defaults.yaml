@@ -1,0 +1,47 @@
+namespace: ci
+image: dockerhub.kb.cz/dpt-sq023/one-data-platform/minifi-java-base:0.1.0-SNAPSHOT
+imagePullSecret: dockerhub
+appName: minifi-java-parquet-ingestion
+jobNamePrefix: minifi-java
+runtimeConfigMapName: minifi-java-parquet-runtime
+flowConfigMapName: minifi-java-parquet-flow
+databaseSecretName: minifi-database
+s3SecretName: minifi-s3
+s3:
+  regionSelector: use-custom-region
+  region: us-east-1
+  retryCount: "10"
+  communicationsTimeout: 60 secs
+  multipartThreshold: 256 MB
+  multipartPartSize: 128 MB
+  useChunkedEncoding: "false"
+  usePathStyleAccess: "true"
+  truststorePath: /opt/minifi/minifi-current/conf/s3-truststore.p12
+  truststorePassword: changeit
+  truststoreType: PKCS12
+parquet:
+  compression: SNAPPY
+  rowGroupSize: 128 MB
+  pageSize: 1 MB
+hadoop:
+  configurationResources: /opt/minifi/minifi-current/conf/core-site.xml
+  defaultFs: file:///
+minifi:
+  runSchedule: 24 hours
+  runDuration: 12h
+  sensitivePropsKey: minifi-java-parquet-sample-key
+  rootLogLevel: INFO
+  processorLogLevel: WARN
+  statusPeriodSeconds: "60"
+  jobPollSeconds: "5"
+  jobIdleChecks: "1"
+  statusQueries:
+    - instance:health
+    - processor:all:health
+    - processor:all:stats
+    - connection:all:stats
+proxy:
+  httpProxy: http://cntlm.speed-default.svc.cluster.local:3128
+  httpsProxy: http://cntlm.speed-default.svc.cluster.local:3128
+  noProxy: localhost,127.0.0.1,dockerhub.kb.cz,git.kb.cz,jenkins,jenkins-agent,artifactory.kb.cz,.svc,.cluster.local
+  javaToolOptions: -Dhttp.proxyHost=cntlm.speed-default.svc.cluster.local -Dhttp.proxyPort=3128 -Dhttps.proxyHost=cntlm.speed-default.svc.cluster.local -Dhttps.proxyPort=3128 -Dhttp.nonProxyHosts=localhost|127.*|*.svc|*.cluster.local|dockerhub.kb.cz|git.kb.cz|jenkins|jenkins-agent|artifactory.kb.cz

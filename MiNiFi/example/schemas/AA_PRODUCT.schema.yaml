@@ -1,0 +1,23 @@
+schemaVersion: 1
+description: generated from informatica.
+allowExtraColumns: true
+strictColumnOrder: false
+columns:
+  - { name: RECID, type: string } 
+  - { name: PRODUCT_GROUP, type: string } 
+  - { name: EPP_PRODUCT_GROUP, type: string } 
+  - { name: EPP_PRODUCT_LINE, type: string } 
+  - { name: PRODUCT_STATUS, type: string } 
+  - { name: PRODUCT_INTEGRITY, type: string } 
+  - { name: PRF_AVAILABLE_DATE, type: date } 
+  - { name: PRF_EXPIRY_DATE, type: date } 
+  - { name: RESERVED_3, type: string } 
+  - { name: CAT_AVAILABLE_DATE, type: date } 
+  - { name: CAT_EXPIRY_DATE, type: date } 
+  - { name: LAST_PUBLISHED, type: date } 
+  - { name: GROUP_LEVEL, type: string } 
+  - { name: CREATION_TIME_DL, type: decimal } 
+  - { name: BANKING_DATE_DL, type: date } 
+  - { name: SDS_COMPANY_CODE, type: string } 
+  - { name: SDS_MNEMONIC, type: string } 
+

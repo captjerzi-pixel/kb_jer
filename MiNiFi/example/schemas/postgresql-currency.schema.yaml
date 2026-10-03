@@ -1,0 +1,56 @@
+﻿schemaVersion: 1
+description: Expected PostgreSQL T24 SDS CURRENCY table metadata captured from JDBC.
+allowExtraColumns: true
+strictColumnOrder: false
+columns:
+  - { name: RECID, type: string }
+  - { name: RANK, type: string }
+  - { name: NUMERIC_CCY_CODE, type: string }
+  - { name: NO_OF_DECIMALS, type: string }
+  - { name: QUOTATION_CODE, type: string }
+  - { name: QUOTATION_PIPS, type: string }
+  - { name: DAYS_DELIVERY, type: string }
+  - { name: DAYS_FORWARD, type: string }
+  - { name: INTEREST_DAY_BASIS, type: string }
+  - { name: RATE_ALLOWANCE, type: decimal }
+  - { name: FIXING_DATE, type: date }
+  - { name: MIN_ROUND_AMOUNT, type: decimal }
+  - { name: CASH_ONLY_ROUNDING, type: string }
+  - { name: MIN_ROUND_TYPE, type: string }
+  - { name: CASH_ROUND_TYPE, type: string }
+  - { name: PRECIOUS_METAL, type: string }
+  - { name: COUNTRY_CODE, type: string }
+  - { name: FIXED_RATE, type: decimal }
+  - { name: FIXED_CCY, type: string }
+  - { name: FIXED_START_DATE, type: date }
+  - { name: BASE_CCY_RANK, type: string }
+  - { name: AVAILABLE_DATE, type: date }
+  - { name: BLOCKED_DATE, type: date }
+  - { name: CUT_OFF_TIME, type: string }
+  - { name: CLS_CCY, type: string }
+  - { name: RESERVED14, type: string }
+  - { name: RESERVED13, type: string }
+  - { name: RESERVED12, type: string }
+  - { name: RESERVED11, type: string }
+  - { name: RESERVED10, type: string }
+  - { name: RESERVED9, type: string }
+  - { name: RESERVED8, type: string }
+  - { name: RESERVED7, type: string }
+  - { name: RESERVED6, type: string }
+  - { name: RESERVED5, type: string }
+  - { name: RESERVED4, type: string }
+  - { name: RESERVED3, type: string }
+  - { name: RESERVED2, type: string }
+  - { name: RESERVED1, type: string }
+  - { name: RECORD_STATUS, type: string }
+  - { name: CURR_NO, type: string }
+  - { name: AUTHORISER, type: string }
+  - { name: CO_CODE, type: string }
+  - { name: DEPT_CODE, type: string }
+  - { name: AUDITOR_CODE, type: string }
+  - { name: AUDIT_DATE_TIME, type: string }
+  - { name: DFT_CCY_UNIT, type: string }
+  - { name: CREATION_TIME_DL, type: decimal }
+  - { name: BANKING_DATE_DL, type: date }
+  - { name: SDS_COMPANY_CODE, type: string }
+  - { name: SDS_MNEMONIC, type: string }

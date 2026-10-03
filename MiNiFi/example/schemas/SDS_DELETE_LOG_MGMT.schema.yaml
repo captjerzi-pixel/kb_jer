@@ -1,0 +1,12 @@
+schemaVersion: 1
+description: generated from informatica.
+allowExtraColumns: true
+strictColumnOrder: false
+columns:
+  - { name: TABLE_NAME, type: string } 
+  - { name: RECID, type: string } 
+  - { name: SDS_COMPANY_CODE, type: string } 
+  - { name: SDS_MNEMONIC, type: string } 
+  - { name: BANKING_DATE_DL, type: date } 
+  - { name: CREATION_TIME_DL, type: decimal } 
+

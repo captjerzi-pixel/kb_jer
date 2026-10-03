@@ -1,0 +1,23 @@
+schemaVersion: 1
+description: generated from informatica.
+allowExtraColumns: true
+strictColumnOrder: false
+columns:
+  - { name: RECID, type: string } 
+  - { name: MV_REF, type: string } 
+  - { name: SV_REF, type: string } 
+  - { name: BANKING_DATE_DL, type: date } 
+  - { name: SDS_COMPANY_CODE, type: string } 
+  - { name: SDS_MNEMONIC, type: string } 
+  - { name: PERCENTAGE, type: decimal } 
+  - { name: START_DATE, type: string } 
+  - { name: END_DATE, type: string } 
+  - { name: NUM_PAYMENTS, type: string } 
+  - { name: CALC_AMOUNT, type: decimal } 
+  - { name: ACTUAL_AMT, type: decimal } 
+  - { name: BASE_DAY, type: string } 
+  - { name: CALC_NUM_PAYMENTS, type: string } 
+  - { name: RESERVED_12, type: string } 
+  - { name: RESERVED_11, type: string } 
+  - { name: ACTUAL_NUM_PAYMENTS, type: string } 
+

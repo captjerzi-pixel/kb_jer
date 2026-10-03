@@ -1,0 +1,72 @@
+schemaVersion: 1
+description: generated from informatica.
+allowExtraColumns: true
+strictColumnOrder: false
+columns:
+  - { name: RECID, type: string } 
+  - { name: ACCOUNT_NUMBER, type: string } 
+  - { name: COMPANY_CODE, type: string } 
+  - { name: AMOUNT_LCY, type: decimal } 
+  - { name: TRANSACTION_CODE, type: string } 
+  - { name: THEIR_REFERENCE, type: string } 
+  - { name: PL_CATEGORY, type: string } 
+  - { name: CUSTOMER_ID, type: string } 
+  - { name: ACCOUNT_OFFICER, type: string } 
+  - { name: PRODUCT_CATEGORY, type: string } 
+  - { name: VALUE_DATE, type: date } 
+  - { name: CURRENCY, type: string } 
+  - { name: AMOUNT_FCY, type: decimal } 
+  - { name: EXCHANGE_RATE, type: decimal } 
+  - { name: NEGOTIATED_REF_NUM, type: string } 
+  - { name: POSITION_TYPE, type: string } 
+  - { name: OUR_REFERENCE, type: string } 
+  - { name: REVERSAL_MARKER, type: string } 
+  - { name: EXPOSURE_DATE, type: date } 
+  - { name: CURRENCY_MARKET, type: string } 
+  - { name: DEPARTMENT_CODE, type: string } 
+  - { name: TRANS_REFERENCE, type: string } 
+  - { name: SYSTEM_ID, type: string } 
+  - { name: BOOKING_DATE, type: date } 
+  - { name: RECORD_STATUS, type: string } 
+  - { name: CURR_NO, type: string } 
+  - { name: AUTHORISER, type: string } 
+  - { name: SUSPENSE_CATEGORY, type: string } 
+  - { name: SUSPNSE_VALUE_DATE, type: date } 
+  - { name: SUPPRESS_POSITION, type: string } 
+  - { name: CRF_TYPE, type: string } 
+  - { name: CRF_TXN_CODE, type: string } 
+  - { name: CRF_CURRENCY, type: string } 
+  - { name: CRF_AMOUNT, type: decimal } 
+  - { name: CRF_MAT_DATE, type: string } 
+  - { name: CRF_PROD_CAT, type: string } 
+  - { name: PM_TYPE, type: string } 
+  - { name: DEALER_DESK, type: string } 
+  - { name: COUNTERPARTY, type: string } 
+  - { name: LIQUIDATION_MODE, type: string } 
+  - { name: REPAYMENT_DATE, type: date } 
+  - { name: OUTSTANDING_BAL, type: decimal } 
+  - { name: CONTRACT_INT_RATE, type: decimal } 
+  - { name: CONTRACT_INT_KEY, type: string } 
+  - { name: CYCLE_FORWARD, type: string } 
+  - { name: ORIG_LOCAL_EQUIV, type: decimal } 
+  - { name: ORIGINAL_AMOUNT, type: decimal } 
+  - { name: ORIGINAL_CCY, type: string } 
+  - { name: CONSOL_KEY, type: string } 
+  - { name: ORIGINAL_EXCH_RATE, type: decimal } 
+  - { name: CUS_PL_ACCOUNT, type: string } 
+  - { name: PROCESSING_DATE, type: string } 
+  - { name: RESERVED_7, type: string } 
+  - { name: RESERVED_6, type: string } 
+  - { name: RESERVED_5, type: string } 
+  - { name: ACCOUNTING_DATE, type: date } 
+  - { name: RESERVED_4, type: string, required: false } 
+  - { name: RESERVED_3, type: string } 
+  - { name: RESERVED_2, type: string } 
+  - { name: SOFT_ACCTNG_DTLS, type: string } 
+  - { name: RESERVED_8, type: string } 
+  - { name: NET_PARAM, type: string } 
+  - { name: CREATION_TIME_DL, type: decimal } 
+  - { name: BANKING_DATE_DL, type: date } 
+  - { name: SDS_COMPANY_CODE, type: string } 
+  - { name: SDS_MNEMONIC, type: string } 
+

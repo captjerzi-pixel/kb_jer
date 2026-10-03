@@ -1,0 +1,65 @@
+schemaVersion: 1
+description: generated from informatica.
+allowExtraColumns: true
+strictColumnOrder: false
+columns:
+  - { name: RECID, type: string } 
+  - { name: TXN_CODE_CR, type: string } 
+  - { name: TXN_CODE_DR, type: string } 
+  - { name: STO_TXN_CODE_CR, type: string } 
+  - { name: STO_TXN_CODE_DR, type: string } 
+  - { name: DR_CHARGE_TXN_CODE, type: string } 
+  - { name: DR_CHEQUE_TXN_CODE, type: string } 
+  - { name: FORW_VALUE_MAXIMUM, type: string } 
+  - { name: BACK_VALUE_MAXIMUM, type: string } 
+  - { name: DR_ADVICE_REQD_Y_N, type: string } 
+  - { name: CR_ADVICE_REQD_Y_N, type: string } 
+  - { name: BULK_TXN_CODE_CR, type: string } 
+  - { name: BULK_TXN_CODE_DR, type: string } 
+  - { name: ALLOW_EXCHANGE, type: string } 
+  - { name: MESSAGE_COND_ID, type: string } 
+  - { name: DEFAULT_DEAL_MKT, type: string } 
+  - { name: APPLICATION_FORMAT, type: string } 
+  - { name: NOSTRO_XFER_TYPE, type: string } 
+  - { name: RECALC_FWD_RATE, type: string } 
+  - { name: SEND_PAYMENT_Y_N, type: string } 
+  - { name: NO_BEN_CUST_Y_N, type: string } 
+  - { name: FWD_IN_TXN, type: string } 
+  - { name: BANK_PAYMENT, type: string } 
+  - { name: ALLOW_POST_CLOSE, type: string } 
+  - { name: MESSAGE_TYPE, type: string } 
+  - { name: SWIFT_ADDRESS, type: string } 
+  - { name: DB_AFTER_CR, type: string } 
+  - { name: DB_A_CR_MAX_DAYS, type: string } 
+  - { name: BEN_ACCOUNT_ONLY, type: string } 
+  - { name: EXPECTED_RECS, type: string } 
+  - { name: HIS_REVERSAL, type: string } 
+  - { name: IN_CHG_CODE, type: string } 
+  - { name: RESTRICT_CHARGES, type: string } 
+  - { name: TRANSFER_RULE, type: string } 
+  - { name: BACK_TO_BACK_FX, type: string } 
+  - { name: CHECK_TRANSPARENCY, type: string } 
+  - { name: SPLIT_EXPOSURE, type: string } 
+  - { name: RESERVED_1, type: string } 
+  - { name: RESERVED_12, type: string } 
+  - { name: RESERVED_11, type: string } 
+  - { name: RESERVED_10, type: string } 
+  - { name: RESERVED_9, type: string } 
+  - { name: RESERVED_8, type: string } 
+  - { name: RESERVED_7, type: string } 
+  - { name: RESERVED_6, type: string } 
+  - { name: RESERVED_5, type: string } 
+  - { name: RESERVED_4, type: string } 
+  - { name: RESERVED_3, type: string } 
+  - { name: RECORD_STATUS, type: string } 
+  - { name: CURR_NO, type: string } 
+  - { name: AUTHORISER, type: string } 
+  - { name: CO_CODE, type: string } 
+  - { name: DEPT_CODE, type: string } 
+  - { name: AUDITOR_CODE, type: string } 
+  - { name: AUDIT_DATE_TIME, type: string } 
+  - { name: CREATION_TIME_DL, type: decimal } 
+  - { name: BANKING_DATE_DL, type: date } 
+  - { name: SDS_COMPANY_CODE, type: string } 
+  - { name: SDS_MNEMONIC, type: string } 
+

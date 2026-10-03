@@ -1,0 +1,38 @@
+schemaVersion: 1
+description: generated from informatica.
+allowExtraColumns: true
+strictColumnOrder: false
+columns:
+  - { name: RECID, type: string } 
+  - { name: UPLOAD_TYPE, type: string } 
+  - { name: SYSTEM_FILE_NAME, type: string } 
+  - { name: FILE_NAME, type: string } 
+  - { name: STATUS, type: string } 
+  - { name: DESCRIPTION, type: string } 
+  - { name: TARGET_COMPANY, type: string } 
+  - { name: UPLOAD_SIZE, type: string } 
+  - { name: UPLOAD_USER, type: string } 
+  - { name: EXTERNAL_USER, type: string } 
+  - { name: HEADER_ID, type: string } 
+  - { name: SERVICE_STATUS, type: string } 
+  - { name: T24_FILE, type: string } 
+  - { name: UPLOAD_DATE, type: date } 
+  - { name: RESERVED_7, type: string, required: false } 
+  - { name: RESERVED_6, type: string, required: false } 
+  - { name: RESERVED_5, type: string, required: false } 
+  - { name: RESERVED_4, type: string } 
+  - { name: RESERVED_3, type: string } 
+  - { name: RESERVED_2, type: string } 
+  - { name: RESERVED_1, type: string } 
+  - { name: RECORD_STATUS, type: string } 
+  - { name: CURR_NO, type: string } 
+  - { name: AUTHORISER, type: string } 
+  - { name: CO_CODE, type: string } 
+  - { name: DEPT_CODE, type: string } 
+  - { name: AUDITOR_CODE, type: string } 
+  - { name: AUDIT_DATE_TIME, type: string } 
+  - { name: CREATION_TIME_DL, type: decimal } 
+  - { name: BANKING_DATE_DL, type: date } 
+  - { name: SDS_COMPANY_CODE, type: string } 
+  - { name: SDS_MNEMONIC, type: string } 
+

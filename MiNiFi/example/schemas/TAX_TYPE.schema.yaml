@@ -1,0 +1,28 @@
+schemaVersion: 1
+description: generated from informatica.
+allowExtraColumns: true
+strictColumnOrder: false
+columns:
+  - { name: RECID, type: string } 
+  - { name: EFFECTIVE_DATE, type: date } 
+  - { name: LOCAL_TAX_PARAM, type: string } 
+  - { name: CUST_CHK_RTN, type: string } 
+  - { name: HIGHEST_TAX, type: string } 
+  - { name: APPLY_SPLIT, type: string } 
+  - { name: RESERVED5, type: string } 
+  - { name: RESERVED4, type: string } 
+  - { name: RESERVED3, type: string } 
+  - { name: RESERVED1, type: string } 
+  - { name: RECORD_STATUS, type: string } 
+  - { name: CURR_NO, type: string } 
+  - { name: AUTHORISER, type: string } 
+  - { name: CO_CODE, type: string } 
+  - { name: DEPT_CODE, type: string } 
+  - { name: AUDITOR_CODE, type: string } 
+  - { name: AUDIT_DATE_TIME, type: string } 
+  - { name: JURIS_FLD_NAME, type: string } 
+  - { name: CREATION_TIME_DL, type: decimal } 
+  - { name: BANKING_DATE_DL, type: date } 
+  - { name: SDS_COMPANY_CODE, type: string } 
+  - { name: SDS_MNEMONIC, type: string } 
+

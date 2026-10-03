@@ -1,0 +1,166 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: minifi-java-opb-task-inst-run
+  namespace: ci
+  labels:
+    app.kubernetes.io/name: minifi-java-parquet-ingestion
+    app.kubernetes.io/component: opb-task-inst-run-poc
+spec:
+  backoffLimit: 0
+  activeDeadlineSeconds: 43200
+  ttlSecondsAfterFinished: 86400
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: minifi-java-parquet-ingestion
+        app.kubernetes.io/component: opb-task-inst-run-poc
+    spec:
+      restartPolicy: Never
+      imagePullSecrets:
+        - name: dockerhub
+      containers:
+        - name: minifi
+          image: dockerhub.kb.cz/dpt-sq023/one-data-platform/minifi-java-base:0.1.0-SNAPSHOT
+          imagePullPolicy: Always
+          command: ["/bin/bash", "-c"]
+          args:
+            - |
+              set -euo pipefail
+              conf_dir=/opt/minifi/minifi-current/conf
+              checkpoint_dir="${CHECKPOINT_ROOT}/${RUN_TIMESTAMP}/${TABLE_SCHEMA}/${TABLE_NAME}"
+              checkpoint_success="${checkpoint_dir}/_SUCCESS"
+              checkpoint_manifest="${checkpoint_dir}/manifest.json"
+              if [ -f "${checkpoint_success}" ]; then
+                echo "Checkpoint found for ${TABLE_SCHEMA}.${TABLE_NAME} at ${checkpoint_success}; skipping table."
+                exit 0
+              fi
+              mkdir -p "${conf_dir}" "${checkpoint_dir}"
+              s3_endpoint="${S3_HOST#http://}"
+              s3_endpoint="${s3_endpoint#https://}"
+              s3_endpoint="${s3_endpoint%%/*}"
+              echo "Preparing S3 truststore for ${s3_endpoint}"
+              keytool -printcert -rfc -sslserver "${s3_endpoint}" > /tmp/s3-cert-chain.pem
+              keytool -importcert -noprompt -storetype "${S3_TRUSTSTORE_TYPE}" -keystore "${S3_TRUSTSTORE_PATH}" -storepass "${S3_TRUSTSTORE_PASSWORD}" -alias s3-object-store -file /tmp/s3-cert-chain.pem >/dev/null
+              render_vars='${DATABASE_URL} ${DATABASE_DRIVER_CLASS} ${DATABASE_DRIVER_LOCATION} ${DATABASE_USER} ${DATABASE_PASSWORD} ${DATABASE_VALIDATION_QUERY} ${SQL_SELECT_QUERY} ${FETCH_SIZE} ${MAX_ROWS_PER_FLOW_FILE} ${OUTPUT_BATCH_SIZE} ${MAX_TIMER_DRIVEN_THREAD_COUNT} ${EXECUTE_SQL_CONCURRENCY} ${UPDATE_ATTRIBUTE_CONCURRENCY} ${PUT_PARQUET_CONCURRENCY} ${S3_UPLOAD_CONCURRENCY} ${S3_HOST} ${S3_ACCESS_KEY} ${S3_ACCESS_SECRET} ${S3_BUCKET_NAME} ${S3_REGION_SELECTOR} ${S3_REGION} ${S3_PREFIX} ${S3_COMMUNICATIONS_TIMEOUT} ${S3_MULTIPART_THRESHOLD} ${S3_MULTIPART_PART_SIZE} ${S3_USE_CHUNKED_ENCODING} ${S3_USE_PATH_STYLE_ACCESS} ${S3_TRUSTSTORE_PATH} ${S3_TRUSTSTORE_PASSWORD} ${S3_TRUSTSTORE_TYPE} ${S3_RETRY_COUNT} ${RUN_TIMESTAMP} ${TABLE_SCHEMA} ${TABLE_NAME} ${CHECKPOINT_ROOT} ${PARQUET_ROW_GROUP_SIZE} ${PARQUET_PAGE_SIZE} ${RUN_SCHEDULE} ${OUTPUT_FILENAME_PREFIX} ${PARQUET_COMPRESSION} ${HADOOP_CONFIGURATION_RESOURCES} ${NIFI_SENSITIVE_PROPS_KEY}'
+              envsubst "${render_vars}" < /opt/minifi/templates/bootstrap.conf.template > "${conf_dir}/bootstrap.conf"
+              envsubst "${render_vars}" < /opt/minifi/templates/minifi.properties.template > "${conf_dir}/minifi.properties"
+              envsubst "${render_vars}" < /opt/minifi/templates/minifi-env.properties.template > "${conf_dir}/minifi-env.properties"
+              sed -i "s|<root level=\"INFO\">|<root level=\"${MINIFI_ROOT_LOG_LEVEL:-INFO}\">|" "${conf_dir}/logback.xml"
+              sed -i "s|<logger name=\"org.apache.nifi.processors\" level=\"WARN\"/>|<logger name=\"org.apache.nifi.processors\" level=\"${MINIFI_PROCESSOR_LOG_LEVEL:-DEBUG}\"/>|" "${conf_dir}/logback.xml"
+              envsubst "${render_vars}" < /opt/minifi/templates/flow-jdbc-to-s3-parquet.json.raw.template > "${conf_dir}/flow.json.raw"
+              cat > "${conf_dir}/core-site.xml" <<EOF
+              <?xml version="1.0" encoding="UTF-8"?>
+              <configuration>
+                <property>
+                  <name>fs.defaultFS</name>
+                  <value>${HADOOP_DEFAULT_FS:-file:///}</value>
+                </property>
+              </configuration>
+              EOF
+              gzip -c "${conf_dir}/flow.json.raw" > "${conf_dir}/flow.json.gz"
+              echo "Starting MiNiFi Java JDBC to Parquet sample"
+              echo "Database URL: ${DATABASE_URL}"
+              echo "Output S3 prefix: ${S3_PREFIX}/${RUN_TIMESTAMP}/${TABLE_SCHEMA}/${TABLE_NAME}/data"
+              echo "Checkpoint path: ${checkpoint_success}"
+              /opt/minifi/minifi-current/bin/minifi.sh start
+              tail -n +1 -F /opt/minifi/minifi-current/logs/minifi-app.log /opt/minifi/minifi-current/logs/minifi-bootstrap.log &
+              tail_pid=$!
+              trap '/opt/minifi/minifi-current/bin/minifi.sh stop 2>/dev/null || true; kill ${tail_pid} 2>/dev/null || true' EXIT
+              poll_seconds="${MINIFI_JOB_POLL_SECONDS:-30}"
+              required_idle_checks="${MINIFI_JOB_IDLE_CHECKS:-3}"
+              idle_checks=0
+              previous_count=-1
+              deadline=$(( $(date +%s) + 43200 ))
+              while true; do
+                sleep "${poll_seconds}"
+                now=$(date +%s)
+                connection_report=$(/opt/minifi/minifi-current/bin/minifi.sh flowStatus 'connection:all:health' 2>/dev/null | sed -n 's/^.*Command //p' | tail -1 || true)
+                processor_report=$(/opt/minifi/minifi-current/bin/minifi.sh flowStatus 'processor:all:stats' 2>/dev/null | sed -n 's/^.*Command //p' | tail -1 || true)
+                queued_count=$(python3 -c 'import json,sys; data=json.loads(sys.argv[1]) if len(sys.argv)>1 and sys.argv[1] else {}; print(sum((c.get("connectionHealth") or {}).get("queuedCount",0) for c in (data.get("connectionStatusList") or [])))' "${connection_report}" 2>/dev/null || echo 999999)
+                active_threads=$(python3 -c 'import json,sys; data=json.loads(sys.argv[1]) if len(sys.argv)>1 and sys.argv[1] else {}; print(sum((p.get("processorStats") or {}).get("activeThreads",0) for p in (data.get("processorStatusList") or [])))' "${processor_report}" 2>/dev/null || echo 999999)
+                s3_sent=$(python3 -c 'import json,sys; data=json.loads(sys.argv[1]) if len(sys.argv)>1 and sys.argv[1] else {}; print(next(((p.get("processorStats") or {}).get("flowfilesSent",0) for p in (data.get("processorStatusList") or []) if p.get("id")=="put-s3-object"),0))' "${processor_report}" 2>/dev/null || echo 0)
+                s3_bytes=$(python3 -c 'import json,sys; data=json.loads(sys.argv[1]) if len(sys.argv)>1 and sys.argv[1] else {}; print(next(((p.get("processorStats") or {}).get("bytesRead",0) for p in (data.get("processorStatusList") or []) if p.get("id")=="put-s3-object"),0))' "${processor_report}" 2>/dev/null || echo 0)
+                echo "Job monitor: s3_sent=${s3_sent} s3_bytes=${s3_bytes} queued_count=${queued_count} active_threads=${active_threads} idle_checks=${idle_checks}/${required_idle_checks}"
+                if grep -q 'PutS3Object.*Failed to put' /opt/minifi/minifi-current/logs/minifi-app.log 2>/dev/null; then
+                  echo "Detected S3 upload failure in MiNiFi logs" >&2
+                  exit 1
+                fi
+                if [ "${s3_sent}" -gt 0 ] && [ "${queued_count}" = "0" ] && [ "${active_threads}" = "0" ] && [ "${s3_sent}" = "${previous_count}" ]; then
+                  idle_checks=$((idle_checks + 1))
+                else
+                  idle_checks=0
+                fi
+                previous_count="${s3_sent}"
+                if [ "${idle_checks}" -ge "${required_idle_checks}" ]; then
+                  echo "MiNiFi job is idle and output is stable; stopping."
+                  break
+                fi
+                if [ "${now}" -ge "${deadline}" ]; then
+                  echo "Timed out waiting for MiNiFi job completion" >&2
+                  exit 124
+                fi
+                /opt/minifi/minifi-current/bin/minifi.sh status >/tmp/minifi-status.log 2>&1 || { cat /tmp/minifi-status.log; exit 1; }
+              done
+              finished_at=$(date -u +%Y-%m-%dT%H:%M:%SZ)
+              cat > "${checkpoint_manifest}.tmp" <<EOF
+              {"runTimestamp":"${RUN_TIMESTAMP}","schema":"${TABLE_SCHEMA}","table":"${TABLE_NAME}","s3Prefix":"${S3_PREFIX}/${RUN_TIMESTAMP}/${TABLE_SCHEMA}/${TABLE_NAME}/data","objectCount":${previous_count},"bytesUploaded":${s3_bytes},"finishedAt":"${finished_at}"}
+              EOF
+              mv "${checkpoint_manifest}.tmp" "${checkpoint_manifest}"
+              echo "${finished_at}" > "${checkpoint_success}"
+              echo "Checkpoint written: ${checkpoint_success}"
+              cat "${checkpoint_manifest}"
+          envFrom:
+            - configMapRef:
+                name: minifi-java-parquet-runtime
+          env:
+            - name: DATABASE_USER
+              valueFrom:
+                secretKeyRef:
+                  name: minifi-database
+                  key: username
+            - name: DATABASE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: minifi-database
+                  key: password
+            - name: S3_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: minifi-s3
+                  key: host
+            - name: S3_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: minifi-s3
+                  key: accessKey
+            - name: S3_ACCESS_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: minifi-s3
+                  key: accessSecret
+            - name: S3_BUCKET_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: minifi-s3
+                  key: bucketName
+          resources:
+            requests:
+              cpu: "4"
+              memory: 8Gi
+            limits:
+              cpu: "4"
+              memory: 8Gi
+          volumeMounts:
+            - name: minifi-flow-templates
+              mountPath: /opt/minifi/templates
+              readOnly: true
+            - name: checkpoints
+              mountPath: /checkpoints
+      volumes:
+        - name: minifi-flow-templates
+          configMap:
+            name: minifi-java-parquet-flow
+        - name: checkpoints
+          persistentVolumeClaim:
+            claimName: minifi-checkpoints

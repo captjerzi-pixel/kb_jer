@@ -1,0 +1,42 @@
+schemaVersion: 1
+description: generated from informatica.
+allowExtraColumns: true
+strictColumnOrder: false
+columns:
+  - { name: RECID, type: string } 
+  - { name: ACTIVITY, type: string } 
+  - { name: NET_TAX, type: string } 
+  - { name: RESERVED_5, type: string } 
+  - { name: RESERVED_4, type: string } 
+  - { name: RESERVED_3, type: string } 
+  - { name: RESERVED_2, type: string } 
+  - { name: RESERVED_1, type: string } 
+  - { name: SYS_RESERVE7, type: string } 
+  - { name: SYS_RESERVE6, type: string } 
+  - { name: SYS_RESERVE3, type: string } 
+  - { name: SYS_RESERVE2, type: string } 
+  - { name: SYS_RESERVE1, type: string } 
+  - { name: DEFAULT_ATTR_OPTION, type: string } 
+  - { name: DEFAULT_NEGOTIABLE, type: string } 
+  - { name: ID_COMP_1, type: string } 
+  - { name: ID_COMP_2, type: string } 
+  - { name: ID_COMP_3, type: string } 
+  - { name: ID_COMP_4, type: string } 
+  - { name: ID_COMP_5, type: string } 
+  - { name: ID_COMP_6, type: string } 
+  - { name: RESERVED2_ID, type: string } 
+  - { name: TARGET_PRODUCT, type: string } 
+  - { name: RECORD_STATUS, type: string } 
+  - { name: CURR_NO, type: string } 
+  - { name: INPUTTER, type: string, required: false } 
+  - { name: DATE_TIME, type: string, required: false } 
+  - { name: AUTHORISER, type: string } 
+  - { name: CO_CODE, type: string } 
+  - { name: DEPT_CODE, type: string } 
+  - { name: AUDITOR_CODE, type: string } 
+  - { name: AUDIT_DATE_TIME, type: string } 
+  - { name: CREATION_TIME_DL, type: decimal } 
+  - { name: BANKING_DATE_DL, type: date } 
+  - { name: SDS_COMPANY_CODE, type: string } 
+  - { name: SDS_MNEMONIC, type: string } 
+

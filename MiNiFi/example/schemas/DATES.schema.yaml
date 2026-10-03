@@ -1,0 +1,37 @@
+schemaVersion: 1
+description: generated from informatica.
+allowExtraColumns: true
+strictColumnOrder: false
+columns:
+  - { name: RECID, type: string } 
+  - { name: TODAY, type: date } 
+  - { name: VERSION, type: string } 
+  - { name: LAST_WORKING_DAY, type: date } 
+  - { name: NEXT_WORKING_DAY, type: date } 
+  - { name: LOCAL_PAYMENT_DAY, type: date } 
+  - { name: LOCAL_DISPO_DAY, type: date } 
+  - { name: BACK_VALUE_MINIMUM, type: date } 
+  - { name: BACK_VALUE_MAXIMUM, type: date } 
+  - { name: FORW_VALUE_MINIMUM, type: date } 
+  - { name: FORW_VALUE_MAXIMUM, type: date } 
+  - { name: CO_BATCH_STATUS, type: string } 
+  - { name: PERIOD_END, type: date } 
+  - { name: ACCOUNTING_STAGE, type: string } 
+  - { name: JULIAN_DATE, type: string } 
+  - { name: CURRENT_DAY, type: string } 
+  - { name: LAST_PERIOD_END, type: date } 
+  - { name: BK_BAL_DATE_START, type: date } 
+  - { name: RESERVED_2, type: string } 
+  - { name: RESERVED_1, type: string } 
+  - { name: RECORD_STATUS, type: string } 
+  - { name: CURR_NO, type: string } 
+  - { name: AUTHORISER, type: string } 
+  - { name: CO_CODE, type: string } 
+  - { name: DEPT_CODE, type: string } 
+  - { name: AUDITOR_CODE, type: string } 
+  - { name: AUDIT_DATE_TIME, type: string } 
+  - { name: CREATION_TIME_DL, type: decimal } 
+  - { name: BANKING_DATE_DL, type: date } 
+  - { name: SDS_COMPANY_CODE, type: string } 
+  - { name: SDS_MNEMONIC, type: string } 
+

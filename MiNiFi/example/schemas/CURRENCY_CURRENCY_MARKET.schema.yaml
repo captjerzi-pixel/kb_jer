@@ -1,0 +1,29 @@
+schemaVersion: 1
+description: generated from informatica.
+allowExtraColumns: true
+strictColumnOrder: false
+columns:
+  - { name: RECID, type: string } 
+  - { name: MV_REF, type: string } 
+  - { name: BANKING_DATE_DL, type: date } 
+  - { name: SDS_COMPANY_CODE, type: string } 
+  - { name: SDS_MNEMONIC, type: string } 
+  - { name: CURRENCY_MARKET, type: string } 
+  - { name: QUOTATION_SUSP, type: string } 
+  - { name: MID_REVAL_RATE, type: decimal } 
+  - { name: DEFAULT_SPREAD, type: decimal } 
+  - { name: BUY_RATE, type: decimal } 
+  - { name: SELL_RATE, type: decimal } 
+  - { name: UPTO_SMALL_AMT, type: decimal } 
+  - { name: TRSY_SMALL_SPRD, type: decimal } 
+  - { name: CUST_SMALL_SPRD, type: decimal } 
+  - { name: NEGOTIABLE_AMT, type: decimal } 
+  - { name: TRSY_MED_SPREAD, type: decimal } 
+  - { name: CUST_MED_SPREAD, type: decimal } 
+  - { name: REVAL_RATE, type: decimal } 
+  - { name: DEFAULT_SPREAD_PERC, type: string } 
+  - { name: TRSY_SMALL_SPRD_PERC, type: string } 
+  - { name: CUST_SMALL_SPRD_PERC, type: string } 
+  - { name: TRSY_MEDIUM_SPRD_PERC, type: string } 
+  - { name: CUST_MEDIUM_SPRD_PERC, type: string } 
+
