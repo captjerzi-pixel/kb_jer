@@ -1,0 +1,51 @@
+schemaVersion: 1
+description: generated from informatica.
+allowExtraColumns: true
+strictColumnOrder: false
+columns:
+  - { name: RECID, type: string } 
+  - { name: CR_OPPORTUNITY, type: string } 
+  - { name: MAINTAIN_LIMIT_BALANCE, type: string } 
+  - { name: POOL_DATE, type: date } 
+  - { name: CURRENCY, type: string } 
+  - { name: CO_CODE, type: string } 
+  - { name: ARR_STATUS, type: string } 
+  - { name: START_DATE, type: date } 
+  - { name: PRODUCT_LINE, type: string } 
+  - { name: PRODUCT_GROUP, type: string } 
+  - { name: EPP_PRODUCT_LINE, type: string } 
+  - { name: EPP_PRODUCT_GROUP, type: string } 
+  - { name: ORIG_CONTRACT_DATE, type: date } 
+  - { name: PLAN_SELECT_METHOD, type: string } 
+  - { name: ELIGIBILITY_REVIEW, type: string } 
+  - { name: REWARDS_ARR_ID, type: string } 
+  - { name: CLOSURE_REASON, type: string } 
+  - { name: ACTIVE_PRODUCT, type: string } 
+  - { name: EARLY_PROCESSING, type: string } 
+  - { name: MASTER_ARRANGEMENT, type: string } 
+  - { name: MASTER_CCY, type: string } 
+  - { name: ARRANGEMENT_LINK_TYPE, type: string } 
+  - { name: REMARKS, type: string } 
+  - { name: BUNDLE_LINK_DATE, type: date } 
+  - { name: BUNDLE_LINK_TYPE, type: string } 
+  - { name: BUNDLE_ARR_ID, type: string } 
+  - { name: ACTIVE_BRANCH, type: string } 
+  - { name: ACTIVE_LINE_OF_BUSINESS, type: string } 
+  - { name: ACTIVE_CHANNEL, type: string } 
+  - { name: MASTER_TYPE, type: string } 
+  - { name: GROUP_LEVEL, type: string } 
+  - { name: OFFSET_TYPE, type: string } 
+  - { name: BALANCE_TREATMENT, type: string } 
+  - { name: SYSTEM_REFERENCE, type: string } 
+  - { name: BASE_CONTRACT_REFERENCE, type: string } 
+  - { name: COMPANY_REFERENCE, type: string } 
+  - { name: NOTICE_ACCOUNT, type: string } 
+  - { name: CLOSURE_TYPE, type: string } 
+  - { name: LIMIT_CHARGE_ACCOUNT, type: string } 
+  - { name: CREATION_TIME_DL, type: decimal } 
+  - { name: BANKING_DATE_DL, type: date } 
+  - { name: SDS_COMPANY_CODE, type: string } 
+  - { name: SDS_MNEMONIC, type: string } 
+  - { name: LEASE_TYPE, type: string } 
+  - { name: METERING_CLASS, type: string } 
+

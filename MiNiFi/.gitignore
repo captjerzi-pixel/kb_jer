@@ -1,0 +1,26 @@
+# Local secrets
+.env
+.env.*
+env
+
+tmp
+
+# Local agent notes
+agent-instruction.md
+
+# Python/build artifacts
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Local Airflow state
+airflow.db
+airflow.cfg
+logs/
+standalone_admin_password.txt
+minifi/rendered/
+
+jrz_notes.txt
+
+# Requirements
+requirements.txt

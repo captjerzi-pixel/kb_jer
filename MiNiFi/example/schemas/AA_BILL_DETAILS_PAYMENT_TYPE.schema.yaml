@@ -1,0 +1,22 @@
+schemaVersion: 1
+description: generated from informatica.
+allowExtraColumns: true
+strictColumnOrder: false
+columns:
+  - { name: RECID, type: string } 
+  - { name: MV_REF, type: string } 
+  - { name: BANKING_DATE_DL, type: date } 
+  - { name: SDS_COMPANY_CODE, type: string } 
+  - { name: SDS_MNEMONIC, type: string } 
+  - { name: PAYMENT_TYPE, type: string } 
+  - { name: BILL_DATE, type: date } 
+  - { name: BILL_TYPE, type: string } 
+  - { name: BILL_FINAL_DATE, type: date } 
+  - { name: PAYMENT_METHOD, type: string } 
+  - { name: PAYMENT_AMOUNT, type: decimal } 
+  - { name: PAYMENT_AMT_LCY, type: decimal } 
+  - { name: PAYMENT_AMT_BNK, type: decimal } 
+  - { name: RESERVED_6, type: string } 
+  - { name: PAYMENT_AMOUNT_REC, type: decimal } 
+  - { name: PAYMENT_AMT_REC_LCY, type: decimal } 
+

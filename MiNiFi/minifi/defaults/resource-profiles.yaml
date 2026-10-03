@@ -1,0 +1,31 @@
+profiles:
+  small:
+    cpu: "1"
+    memory: 2Gi
+    maxTimerDrivenThreadCount: "8"
+    executeSqlConcurrency: "1"
+    updateAttributeConcurrency: "2"
+    s3UploadConcurrency: "2"
+    fetchSize: "25000"
+    maxRowsPerFlowFile: "25000"
+    outputBatchSize: "2"
+  medium:
+    cpu: "2"
+    memory: 4Gi
+    maxTimerDrivenThreadCount: "16"
+    executeSqlConcurrency: "1"
+    updateAttributeConcurrency: "3"
+    s3UploadConcurrency: "5"
+    fetchSize: "50000"
+    maxRowsPerFlowFile: "50000"
+    outputBatchSize: "5"
+  large:
+    cpu: "4"
+    memory: 8Gi
+    maxTimerDrivenThreadCount: "32"
+    executeSqlConcurrency: "1"
+    updateAttributeConcurrency: "4"
+    s3UploadConcurrency: "10"
+    fetchSize: "50000"
+    maxRowsPerFlowFile: "50000"
+    outputBatchSize: "5"

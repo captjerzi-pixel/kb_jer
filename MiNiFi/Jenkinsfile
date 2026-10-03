@@ -1,0 +1,11 @@
+assemblyPipelineLibrary("docker-image") {
+    dockerParams = [
+        HTTP_PROXY: "http://cntlm.speed-default:3128",
+        HTTPS_PROXY: "http://cntlm.speed-default:3128",
+        http_proxy: "http://cntlm.speed-default:3128",
+        https_proxy: "http://cntlm.speed-default:3128",
+        NO_PROXY: "localhost,127.0.0.1,dockerhub.kb.cz,git.kb.cz,jenkins,jenkins-agent,artifactory.kb.cz",
+        no_proxy: "localhost,127.0.0.1,dockerhub.kb.cz,git.kb.cz,jenkins,jenkins-agent,artifactory.kb.cz",
+        format: "oci",
+    ]
+}

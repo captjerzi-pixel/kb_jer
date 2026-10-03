@@ -1,0 +1,26 @@
+schemaVersion: 1
+description: generated from informatica.
+allowExtraColumns: true
+strictColumnOrder: false
+columns:
+  - { name: RECID, type: string } 
+  - { name: MV_REF, type: string } 
+  - { name: BANKING_DATE_DL, type: date } 
+  - { name: SDS_COMPANY_CODE, type: string } 
+  - { name: SDS_MNEMONIC, type: string } 
+  - { name: PROFT_APPLIC_ID, type: string } 
+  - { name: PROFIT1, type: string } 
+  - { name: PROFIT2, type: string } 
+  - { name: PROFIT3, type: string } 
+  - { name: PROFIT4, type: string } 
+  - { name: PROFIT5, type: string } 
+  - { name: PROFIT6, type: string } 
+  - { name: PROFIT7, type: string } 
+  - { name: PROFIT8, type: string } 
+  - { name: PROFIT9, type: string } 
+  - { name: PROFIT10, type: string } 
+  - { name: PROFIT11, type: string } 
+  - { name: PROFIT12, type: string } 
+  - { name: PROFT_CURRENCY, type: string } 
+  - { name: PROFT_EXT_DUP, type: string } 
+

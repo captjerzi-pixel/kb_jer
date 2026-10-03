@@ -1,0 +1,66 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: minifi-java-parquet-runtime
+  namespace: ci
+  labels:
+    app.kubernetes.io/name: minifi-java-parquet-ingestion
+    app.kubernetes.io/component: postgresql-currency-poc
+    minifi.kb.cz/source-type: jdbc-postgresql
+data:
+  HTTP_PROXY: "http://cntlm.speed-default.svc.cluster.local:3128"
+  HTTPS_PROXY: "http://cntlm.speed-default.svc.cluster.local:3128"
+  http_proxy: "http://cntlm.speed-default.svc.cluster.local:3128"
+  https_proxy: "http://cntlm.speed-default.svc.cluster.local:3128"
+  NO_PROXY: "localhost,127.0.0.1,dockerhub.kb.cz,git.kb.cz,jenkins,jenkins-agent,artifactory.kb.cz,.svc,.cluster.local"
+  no_proxy: "localhost,127.0.0.1,dockerhub.kb.cz,git.kb.cz,jenkins,jenkins-agent,artifactory.kb.cz,.svc,.cluster.local"
+  JAVA_TOOL_OPTIONS: "-Dhttp.proxyHost=cntlm.speed-default.svc.cluster.local -Dhttp.proxyPort=3128 -Dhttps.proxyHost=cntlm.speed-default.svc.cluster.local -Dhttps.proxyPort=3128 -Dhttp.nonProxyHosts=localhost|127.*|*.svc|*.cluster.local|dockerhub.kb.cz|git.kb.cz|jenkins|jenkins-agent|artifactory.kb.cz"
+  DATABASE_URL: "jdbc:postgresql://${PSQL_HOSTNAME}/${PSQL_DB}"
+  DATABASE_DRIVER_CLASS: "org.postgresql.Driver"
+  DATABASE_DRIVER_LOCATION: "/opt/minifi/jdbc-drivers/postgresql-jdbc.jar"
+  DATABASE_VALIDATION_QUERY: "SELECT 1"
+  SQL_SELECT_QUERY: >-
+    SELECT * FROM public."CURRENCY"
+  FETCH_SIZE: "50000"
+  MAX_ROWS_PER_FLOW_FILE: "50000"
+  OUTPUT_BATCH_SIZE: "5"
+  MAX_TIMER_DRIVEN_THREAD_COUNT: "32"
+  EXECUTE_SQL_CONCURRENCY: "1"
+  UPDATE_ATTRIBUTE_CONCURRENCY: "4"
+  PUT_PARQUET_CONCURRENCY: "10"
+  S3_UPLOAD_CONCURRENCY: "10"
+  S3_REGION_SELECTOR: "use-custom-region"
+  S3_REGION: "us-east-1"
+  S3_PREFIX: "runs"
+  RUN_TIMESTAMP: "${RUN_TIMESTAMP}"
+  TABLE_SCHEMA: "public"
+  TABLE_NAME: "CURRENCY"
+  CHECKPOINT_ROOT: "/checkpoints/runs"
+  S3_RETRY_COUNT: "10"
+  S3_COMMUNICATIONS_TIMEOUT: "60 secs"
+  S3_MULTIPART_THRESHOLD: "256 MB"
+  S3_MULTIPART_PART_SIZE: "128 MB"
+  S3_USE_CHUNKED_ENCODING: "false"
+  S3_USE_PATH_STYLE_ACCESS: "true"
+  S3_TRUSTSTORE_PATH: "/opt/minifi/minifi-current/conf/s3-truststore.p12"
+  S3_TRUSTSTORE_PASSWORD: "changeit"
+  S3_TRUSTSTORE_TYPE: "PKCS12"
+  RUN_SCHEDULE: "24 hours"
+  OUTPUT_FILENAME_PREFIX: "currency"
+  PARQUET_COMPRESSION: "SNAPPY"
+  PARQUET_ROW_GROUP_SIZE: "128 MB"
+  PARQUET_PAGE_SIZE: "1 MB"
+  HADOOP_CONFIGURATION_RESOURCES: "/opt/minifi/minifi-current/conf/core-site.xml"
+  HADOOP_DEFAULT_FS: "file:///"
+  MINIFI_RUN_DURATION: "12h"
+  NIFI_SENSITIVE_PROPS_KEY: "minifi-java-parquet-sample-key"
+  MINIFI_ROOT_LOG_LEVEL: "INFO"
+  MINIFI_PROCESSOR_LOG_LEVEL: "WARN"
+  MINIFI_STATUS_PERIOD_SECONDS: "60"
+  MINIFI_JOB_POLL_SECONDS: "30"
+  MINIFI_JOB_IDLE_CHECKS: "3"
+  MINIFI_STATUS_QUERIES: |-
+    instance:health
+    processor:all:health
+    processor:all:stats
+    connection:all:stats

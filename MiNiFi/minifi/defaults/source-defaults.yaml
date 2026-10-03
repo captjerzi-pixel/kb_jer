@@ -1,0 +1,17 @@
+sources:
+  mssql:
+    driverClass: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    driverLocation: /opt/minifi/jdbc-drivers/mssql-jdbc.jar
+    validationQuery: SELECT 1
+  postgresql:
+    driverClass: org.postgresql.Driver
+    driverLocation: /opt/minifi/jdbc-drivers/postgresql-jdbc.jar
+    validationQuery: SELECT 1
+  oracle:
+    driverClass: oracle.jdbc.OracleDriver
+    driverLocation: /opt/minifi/jdbc-drivers/oracle-jdbc.jar
+    validationQuery: SELECT 1 FROM DUAL
+  teradata:
+    driverClass: com.teradata.jdbc.TeraDriver
+    driverLocation: /opt/minifi/jdbc-drivers/teradata-jdbc.jar
+    validationQuery: SELECT 1

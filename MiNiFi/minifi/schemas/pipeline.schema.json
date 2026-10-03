@@ -1,0 +1,244 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "pipelineName",
+    "source",
+    "tables",
+    "output",
+    "runtime"
+  ],
+  "properties": {
+    "pipelineName": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9-]{1,61}[a-z0-9]$"
+    },
+    "queryLimit": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "finalizerTestFail": {
+      "type": "boolean",
+      "description": "Test hook: fail after data and sidecars are uploaded but before manifest publication. Keep false for normal runs."
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "usernameEnv",
+        "passwordEnv"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "mssql",
+            "postgresql",
+            "oracle",
+            "teradata"
+          ]
+        },
+        "databaseUrl": {
+          "type": "string",
+          "minLength": 1
+        },
+        "hostEnv": {
+          "type": "string",
+          "pattern": "^[A-Z][A-Z0-9_]*$"
+        },
+        "databaseEnv": {
+          "type": "string",
+          "pattern": "^[A-Z][A-Z0-9_]*$"
+        },
+        "usernameEnv": {
+          "type": "string",
+          "pattern": "^[A-Z][A-Z0-9_]*$"
+        },
+        "passwordEnv": {
+          "type": "string",
+          "pattern": "^[A-Z][A-Z0-9_]*$"
+        },
+        "validationQuery": {
+          "type": "string",
+          "minLength": 1
+        },
+        "tcpProxy": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "enabled",
+            "upstreamHost",
+            "upstreamPort"
+          ],
+          "properties": {
+            "enabled": {
+              "type": "boolean"
+            },
+            "listenHost": {
+              "type": "string",
+              "minLength": 1
+            },
+            "listenPort": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 65535
+            },
+            "upstreamHost": {
+              "type": "string",
+              "minLength": 1
+            },
+            "upstreamPort": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 65535
+            },
+            "upstreamConnectTimeoutSeconds": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 300
+            }
+          }
+        }
+      },
+      "oneOf": [
+        {
+          "required": [
+            "databaseUrl"
+          ]
+        },
+        {
+          "required": [
+            "hostEnv",
+            "databaseEnv"
+          ]
+        }
+      ]
+    },
+    "tables": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "schema",
+          "name"
+        ],
+        "properties": {
+          "schema": {
+            "type": "string",
+            "pattern": "^[A-Za-z_][A-Za-z0-9_]*$"
+          },
+          "name": {
+            "type": "string",
+            "pattern": "^[A-Za-z_][A-Za-z0-9_#$]*$"
+          },
+          "query": {
+            "type": "string",
+            "minLength": 1
+          },
+          "outputName": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9_-]+$"
+          },
+          "schemaRef": {
+            "type": "string",
+            "minLength": 1
+          },
+          "incremental": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "enabled",
+              "column"
+            ],
+            "properties": {
+              "enabled": {
+                "type": "boolean"
+              },
+              "column": {
+                "type": "string",
+                "pattern": "^[A-Za-z_][A-Za-z0-9_]*$"
+              },
+              "type": {
+                "type": "string",
+                "enum": [
+                  "timestamp",
+                  "date",
+                  "number"
+                ]
+              },
+              "lowerBoundParam": {
+                "type": "string",
+                "pattern": "^[A-Z][A-Z0-9_]*$"
+              },
+              "upperBoundParam": {
+                "type": "string",
+                "pattern": "^[A-Z][A-Z0-9_]*$"
+              },
+              "lowerInclusive": {
+                "type": "boolean"
+              },
+              "upperExclusive": {
+                "type": "boolean"
+              },
+              "queryAlias": {
+                "type": "string",
+                "pattern": "^[A-Za-z_][A-Za-z0-9_]*$"
+              }
+            },
+            "anyOf": [
+              {
+                "required": [
+                  "lowerBoundParam"
+                ]
+              },
+              {
+                "required": [
+                  "upperBoundParam"
+                ]
+              }
+            ]
+          }
+        }
+      }
+    },
+    "output": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "s3Prefix"
+      ],
+      "properties": {
+        "s3Prefix": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9._/-]+$"
+        }
+      }
+    },
+    "runtime": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "profile"
+      ],
+      "properties": {
+        "profile": {
+          "type": "string",
+          "enum": [
+            "small",
+            "medium",
+            "large"
+          ]
+        },
+        "tablesPerPod": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 50
+        }
+      }
+    }
+  }
+}

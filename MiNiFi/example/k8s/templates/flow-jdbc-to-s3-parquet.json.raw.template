@@ -1,0 +1,407 @@
+{
+  "encodingVersion": {
+    "majorVersion": 2,
+    "minorVersion": 0
+  },
+  "maxTimerDrivenThreadCount": ${MAX_TIMER_DRIVEN_THREAD_COUNT},
+  "registries": [],
+  "parameterContexts": [],
+  "parameterProviders": [],
+  "controllerServices": [],
+  "reportingTasks": [],
+  "templates": [],
+  "rootGroup": {
+    "identifier": "986876a4-5cbd-388c-9671-5d25092768c7",
+    "instanceIdentifier": "156e2ddd-51e8-4b09-a8d3-01eb57b69603",
+    "name": "MiNiFi MSSQL to Parquet",
+    "comments": "Extracts a configurable MSSQL query and writes Parquet files.",
+    "position": {
+      "x": 0.0,
+      "y": 0.0
+    },
+    "processGroups": [],
+    "remoteProcessGroups": [],
+    "processors": [
+      {
+        "identifier": "9a01dbbd-b957-3846-bb3a-c025456388b7",
+        "instanceIdentifier": "execute-sql-record",
+        "name": "execute-sql-record",
+        "comments": "Reads rows from the configured MSSQL query as records.",
+        "position": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "type": "org.apache.nifi.processors.standard.ExecuteSQLRecord",
+        "bundle": {
+          "group": "org.apache.nifi.minifi",
+          "artifact": "minifi-standard-nar",
+          "version": "2.12.0"
+        },
+        "properties": {
+          "Database Connection Pooling Service": "jdbc-pool",
+          "SQL select query": "${SQL_SELECT_QUERY}",
+          "Fetch Size": "${FETCH_SIZE}",
+          "Max Rows Per Flow File": "${MAX_ROWS_PER_FLOW_FILE}",
+          "Output Batch Size": "${OUTPUT_BATCH_SIZE}",
+          "Record Writer": "parquet-record-writer",
+          "Normalize Table/Column Names": "false"
+        },
+        "propertyDescriptors": {},
+        "style": {},
+        "schedulingPeriod": "${RUN_SCHEDULE}",
+        "schedulingStrategy": "TIMER_DRIVEN",
+        "executionNode": "ALL",
+        "penaltyDuration": "30 sec",
+        "yieldDuration": "1 sec",
+        "bulletinLevel": "WARN",
+        "runDurationMillis": 0,
+        "concurrentlySchedulableTaskCount": ${EXECUTE_SQL_CONCURRENCY},
+        "autoTerminatedRelationships": [
+          "failure"
+        ],
+        "scheduledState": "ENABLED",
+        "retryCount": 10,
+        "retriedRelationships": [],
+        "backoffMechanism": "PENALIZE_FLOWFILE",
+        "maxBackoffPeriod": "10 mins",
+        "componentType": "PROCESSOR",
+        "groupIdentifier": "986876a4-5cbd-388c-9671-5d25092768c7"
+      },
+      {
+        "identifier": "486e5c5c-cc90-30bf-b75a-f088c8c40ee2",
+        "instanceIdentifier": "parquet-filename",
+        "name": "parquet-filename",
+        "comments": "Assigns deterministic Parquet object names for overwrite-safe table reruns.",
+        "position": {
+          "x": 450.0,
+          "y": 0.0
+        },
+        "type": "org.apache.nifi.processors.attributes.UpdateAttribute",
+        "bundle": {
+          "group": "org.apache.nifi.minifi",
+          "artifact": "minifi-update-attribute-nar",
+          "version": "2.12.0"
+        },
+        "properties": {
+          "filename": "part-${fragment.index:padLeft(6,'0')}.parquet"
+        },
+        "propertyDescriptors": {},
+        "style": {},
+        "schedulingPeriod": "0 sec",
+        "schedulingStrategy": "TIMER_DRIVEN",
+        "executionNode": "ALL",
+        "penaltyDuration": "30 sec",
+        "yieldDuration": "1 sec",
+        "bulletinLevel": "WARN",
+        "runDurationMillis": 0,
+        "concurrentlySchedulableTaskCount": ${UPDATE_ATTRIBUTE_CONCURRENCY},
+        "autoTerminatedRelationships": [
+          "failure"
+        ],
+        "scheduledState": "ENABLED",
+        "retryCount": 10,
+        "retriedRelationships": [],
+        "backoffMechanism": "PENALIZE_FLOWFILE",
+        "maxBackoffPeriod": "10 mins",
+        "componentType": "PROCESSOR",
+        "groupIdentifier": "986876a4-5cbd-388c-9671-5d25092768c7"
+      },
+      {
+        "identifier": "4be44719-ad15-3804-b84f-13ff83bf34df",
+        "instanceIdentifier": "put-s3-object",
+        "name": "put-s3-object",
+        "comments": "Uploads Parquet FlowFile content using native NiFi S3 processor.",
+        "position": {
+          "x": 900.0,
+          "y": 450.0
+        },
+        "type": "org.apache.nifi.processors.aws.s3.PutS3Object",
+        "bundle": {
+          "group": "org.apache.nifi",
+          "artifact": "nifi-aws-nar",
+          "version": "2.12.0"
+        },
+        "properties": {
+          "Bucket": "${S3_BUCKET_NAME}",
+          "Object Key": "${S3_PREFIX}/${RUN_TIMESTAMP}/${TABLE_SCHEMA}/${TABLE_NAME}/data/${filename}",
+          "Region": "${S3_REGION_SELECTOR}",
+          "Custom Region": "${S3_REGION}",
+          "AWS Credentials Provider Service": "aws-credentials-provider",
+          "Endpoint Override URL": "${S3_HOST}",
+          "Resource Transfer Source": "FLOWFILE_CONTENT",
+          "Storage Class": "STANDARD",
+          "Communications Timeout": "${S3_COMMUNICATIONS_TIMEOUT}",
+          "Multipart Threshold": "${S3_MULTIPART_THRESHOLD}",
+          "Multipart Part Size": "${S3_MULTIPART_PART_SIZE}",
+          "Use Chunked Encoding": "${S3_USE_CHUNKED_ENCODING}",
+          "Use Path Style Access": "${S3_USE_PATH_STYLE_ACCESS}",
+          "SSL Context Service": "s3-ssl-context"
+        },
+        "propertyDescriptors": {},
+        "style": {},
+        "schedulingPeriod": "0 sec",
+        "schedulingStrategy": "TIMER_DRIVEN",
+        "executionNode": "ALL",
+        "penaltyDuration": "30 sec",
+        "yieldDuration": "1 sec",
+        "bulletinLevel": "WARN",
+        "runDurationMillis": 0,
+        "concurrentlySchedulableTaskCount": ${S3_UPLOAD_CONCURRENCY},
+        "autoTerminatedRelationships": [
+          "success",
+          "failure"
+        ],
+        "scheduledState": "ENABLED",
+        "retryCount": ${S3_RETRY_COUNT},
+        "retriedRelationships": [
+          "failure"
+        ],
+        "backoffMechanism": "PENALIZE_FLOWFILE",
+        "maxBackoffPeriod": "10 mins",
+        "componentType": "PROCESSOR",
+        "groupIdentifier": "986876a4-5cbd-388c-9671-5d25092768c7"
+      }
+    ],
+    "inputPorts": [],
+    "outputPorts": [],
+    "connections": [
+      {
+        "identifier": "9d7edc17-2d36-3c5a-a9c3-ce7d885ea560",
+        "instanceIdentifier": "sql-to-filename",
+        "name": "sql-to-filename",
+        "source": {
+          "id": "9a01dbbd-b957-3846-bb3a-c025456388b7",
+          "type": "PROCESSOR",
+          "groupId": "986876a4-5cbd-388c-9671-5d25092768c7",
+          "name": "execute-sql-record",
+          "comments": ""
+        },
+        "destination": {
+          "id": "486e5c5c-cc90-30bf-b75a-f088c8c40ee2",
+          "type": "PROCESSOR",
+          "groupId": "986876a4-5cbd-388c-9671-5d25092768c7",
+          "name": "parquet-filename",
+          "comments": ""
+        },
+        "labelIndex": 1,
+        "zIndex": 0,
+        "selectedRelationships": [
+          "success"
+        ],
+        "availableRelationships": [
+          "success",
+          "failure"
+        ],
+        "backPressureObjectThreshold": 10000,
+        "backPressureDataSizeThreshold": "1 GB",
+        "flowFileExpiration": "0 sec",
+        "prioritizers": [],
+        "componentType": "CONNECTION",
+        "groupIdentifier": "986876a4-5cbd-388c-9671-5d25092768c7"
+      },
+      {
+        "identifier": "3c175968-f09a-335d-9645-6eb04287688c",
+        "instanceIdentifier": "filename-to-s3",
+        "name": "filename-to-s3",
+        "source": {
+          "id": "486e5c5c-cc90-30bf-b75a-f088c8c40ee2",
+          "type": "PROCESSOR",
+          "groupId": "986876a4-5cbd-388c-9671-5d25092768c7",
+          "name": "parquet-filename",
+          "comments": ""
+        },
+        "destination": {
+          "id": "4be44719-ad15-3804-b84f-13ff83bf34df",
+          "type": "PROCESSOR",
+          "groupId": "986876a4-5cbd-388c-9671-5d25092768c7",
+          "name": "put-s3-object",
+          "comments": ""
+        },
+        "labelIndex": 1,
+        "zIndex": 0,
+        "selectedRelationships": [
+          "success"
+        ],
+        "availableRelationships": [
+          "success",
+          "failure"
+        ],
+        "backPressureObjectThreshold": 10000,
+        "backPressureDataSizeThreshold": "1 GB",
+        "flowFileExpiration": "0 sec",
+        "prioritizers": [],
+        "componentType": "CONNECTION",
+        "groupIdentifier": "986876a4-5cbd-388c-9671-5d25092768c7"
+      }
+    ],
+    "labels": [],
+    "funnels": [],
+    "controllerServices": [
+      {
+        "identifier": "a4f5aa5d-492f-32ce-b33b-7d40af923580",
+        "instanceIdentifier": "jdbc-pool",
+        "name": "jdbc-pool",
+        "comments": "MSSQL JDBC connection pool.",
+        "position": {
+          "x": 0.0,
+          "y": 300.0
+        },
+        "type": "org.apache.nifi.dbcp.DBCPConnectionPool",
+        "bundle": {
+          "group": "org.apache.nifi",
+          "artifact": "nifi-dbcp-service-nar",
+          "version": "2.12.0"
+        },
+        "properties": {
+          "Database Connection URL": "${DATABASE_URL}",
+          "Database Driver Class Name": "${DATABASE_DRIVER_CLASS}",
+          "Database Driver Location(s)": "${DATABASE_DRIVER_LOCATION}",
+          "Database User": "${DATABASE_USER}",
+          "Password": "${DATABASE_PASSWORD}",
+          "Max Wait Time": "30 sec",
+          "Max Total Connections": "2",
+          "Validation-query": "${DATABASE_VALIDATION_QUERY}"
+        },
+        "propertyDescriptors": {},
+        "controllerServiceApis": [
+          {
+            "type": "org.apache.nifi.dbcp.DBCPService",
+            "bundle": {
+              "group": "org.apache.nifi",
+              "artifact": "nifi-standard-services-api-nar",
+              "version": "2.12.0"
+            }
+          }
+        ],
+        "scheduledState": "ENABLED",
+        "bulletinLevel": "WARN",
+        "componentType": "CONTROLLER_SERVICE",
+        "groupIdentifier": "986876a4-5cbd-388c-9671-5d25092768c7"
+      },
+      {
+        "identifier": "6a26ed4e-3d99-3a3d-8b1e-1b365bb9072b",
+        "instanceIdentifier": "parquet-record-writer",
+        "name": "parquet-record-writer",
+        "comments": "Writes JDBC records directly as Parquet FlowFile content.",
+        "position": {
+          "x": 300.0,
+          "y": 300.0
+        },
+        "type": "org.apache.nifi.parquet.ParquetRecordSetWriter",
+        "bundle": {
+          "group": "org.apache.nifi",
+          "artifact": "nifi-parquet-nar",
+          "version": "2.12.0"
+        },
+        "properties": {
+          "Schema Write Strategy": "no-schema",
+          "Schema Access Strategy": "inherit-record-schema",
+          "Compression Type": "${PARQUET_COMPRESSION}",
+          "Row Group Size": "${PARQUET_ROW_GROUP_SIZE}",
+          "Page Size": "${PARQUET_PAGE_SIZE}",
+          "Enable Dictionary Encoding": "true"
+        },
+        "propertyDescriptors": {},
+        "controllerServiceApis": [
+          {
+            "type": "org.apache.nifi.serialization.RecordSetWriterFactory",
+            "bundle": {
+              "group": "org.apache.nifi",
+              "artifact": "nifi-standard-services-api-nar",
+              "version": "2.12.0"
+            }
+          }
+        ],
+        "scheduledState": "ENABLED",
+        "bulletinLevel": "WARN",
+        "componentType": "CONTROLLER_SERVICE",
+        "groupIdentifier": "986876a4-5cbd-388c-9671-5d25092768c7"
+      },
+      {
+        "identifier": "2eb9af39-5341-34bb-ab93-cbad4855f458",
+        "instanceIdentifier": "s3-ssl-context",
+        "name": "s3-ssl-context",
+        "comments": "Trusts the configured S3-compatible object store certificate chain.",
+        "position": {
+          "x": 1200.0,
+          "y": 300.0
+        },
+        "type": "org.apache.nifi.ssl.StandardRestrictedSSLContextService",
+        "bundle": {
+          "group": "org.apache.nifi",
+          "artifact": "nifi-ssl-context-service-nar",
+          "version": "2.12.0"
+        },
+        "properties": {
+          "Truststore Filename": "${S3_TRUSTSTORE_PATH}",
+          "Truststore Password": "${S3_TRUSTSTORE_PASSWORD}",
+          "Truststore Type": "${S3_TRUSTSTORE_TYPE}",
+          "TLS Protocol": "TLS"
+        },
+        "propertyDescriptors": {},
+        "controllerServiceApis": [
+          {
+            "type": "org.apache.nifi.ssl.SSLContextProvider",
+            "bundle": {
+              "group": "org.apache.nifi",
+              "artifact": "nifi-standard-services-api-nar",
+              "version": "2.12.0"
+            }
+          }
+        ],
+        "scheduledState": "ENABLED",
+        "bulletinLevel": "WARN",
+        "componentType": "CONTROLLER_SERVICE",
+        "groupIdentifier": "986876a4-5cbd-388c-9671-5d25092768c7"
+      },
+      {
+        "identifier": "1a351824-316b-3ff1-b406-d96050b98719",
+        "instanceIdentifier": "aws-credentials-provider",
+        "name": "aws-credentials-provider",
+        "comments": "Static S3 credentials loaded from Kubernetes Secret at render time.",
+        "position": {
+          "x": 900.0,
+          "y": 300.0
+        },
+        "type": "org.apache.nifi.processors.aws.credentials.provider.service.AWSCredentialsProviderControllerService",
+        "bundle": {
+          "group": "org.apache.nifi",
+          "artifact": "nifi-aws-nar",
+          "version": "2.12.0"
+        },
+        "properties": {
+          "Use Default Credentials": "false",
+          "Access Key ID": "${S3_ACCESS_KEY}",
+          "Secret Access Key": "${S3_ACCESS_SECRET}",
+          "Use Anonymous Credentials": "false"
+        },
+        "propertyDescriptors": {},
+        "controllerServiceApis": [
+          {
+            "type": "org.apache.nifi.processors.aws.credentials.provider.AwsCredentialsProviderService",
+            "bundle": {
+              "group": "org.apache.nifi",
+              "artifact": "nifi-aws-service-api-nar",
+              "version": "2.12.0"
+            }
+          }
+        ],
+        "scheduledState": "ENABLED",
+        "bulletinLevel": "WARN",
+        "componentType": "CONTROLLER_SERVICE",
+        "groupIdentifier": "986876a4-5cbd-388c-9671-5d25092768c7"
+      }
+    ],
+    "variables": {},
+    "defaultFlowFileExpiration": "0 sec",
+    "defaultBackPressureObjectThreshold": 10000,
+    "defaultBackPressureDataSizeThreshold": "1 GB",
+    "scheduledState": "ENABLED",
+    "executionEngine": "INHERITED",
+    "maxConcurrentTasks": 1,
+    "statelessFlowTimeout": "1 min",
+    "componentType": "PROCESS_GROUP",
+    "flowFileConcurrency": "UNBOUNDED",
+    "flowFileOutboundPolicy": "STREAM_WHEN_AVAILABLE"
+  }
+}

@@ -1,0 +1,41 @@
+schemaVersion: 1
+description: generated from informatica.
+allowExtraColumns: true
+strictColumnOrder: false
+columns:
+  - { name: RECID, type: string } 
+  - { name: RATE, type: decimal } 
+  - { name: CATEGORY, type: string } 
+  - { name: TR_CODE_DR, type: string } 
+  - { name: TR_CODE_CR, type: string } 
+  - { name: DEFAULT_CCY, type: string } 
+  - { name: TAX_OPERAND, type: string } 
+  - { name: ROUNDING_RULE, type: string } 
+  - { name: TAX_IN_LOCAL, type: string } 
+  - { name: TAX_DETAILS, type: string } 
+  - { name: UNIQUE_SUFFIX, type: string } 
+  - { name: TAX_BASE, type: string } 
+  - { name: RESERVED21, type: string } 
+  - { name: CURRENCY_MARKET, type: string } 
+  - { name: CALC_ROUTINE, type: string } 
+  - { name: TAX_EXCHANGE_RATE, type: string } 
+  - { name: SUSP_CATEGORY, type: string } 
+  - { name: BASE_AMT_ROUTINE, type: string } 
+  - { name: RESERVED9, type: string } 
+  - { name: RESERVED10, type: string } 
+  - { name: RESERVED16, type: string } 
+  - { name: RESERVED17, type: string } 
+  - { name: RESERVED18, type: string } 
+  - { name: RECORD_STATUS, type: string } 
+  - { name: CURR_NO, type: string } 
+  - { name: AUTHORISER, type: string } 
+  - { name: CO_CODE, type: string } 
+  - { name: DEPT_CODE, type: string } 
+  - { name: AUDITOR_CODE, type: string } 
+  - { name: AUDIT_DATE_TIME, type: string } 
+  - { name: MIN_TAX_THR, type: string } 
+  - { name: CREATION_TIME_DL, type: decimal } 
+  - { name: BANKING_DATE_DL, type: date } 
+  - { name: SDS_COMPANY_CODE, type: string } 
+  - { name: SDS_MNEMONIC, type: string } 
+

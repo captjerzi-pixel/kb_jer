@@ -1,0 +1,36 @@
+schemaVersion: 1
+description: generated from informatica.
+allowExtraColumns: true
+strictColumnOrder: false
+columns:
+  - { name: RECID, type: string } 
+  - { name: REPORTING_TYPE, type: string } 
+  - { name: FIN_SYSTEM, type: string } 
+  - { name: LINKED_LIVE_TYPE, type: string } 
+  - { name: FWD_LINKED_TYPE, type: string } 
+  - { name: SELF_BALANCING, type: string } 
+  - { name: SUSPEND_BALANCE, type: string } 
+  - { name: ACTIVITY_UPDATE, type: string } 
+  - { name: SUB_TYPE_ALLOWED, type: string } 
+  - { name: SUB_TYPE_ACTIVITY, type: string } 
+  - { name: MOVEMENT_SUPPRESS, type: string } 
+  - { name: MIS_UPDATE, type: string } 
+  - { name: ENTRY_TYPE, type: string } 
+  - { name: SIGNED_TYPE, type: string } 
+  - { name: EXCLUDE_CR_CHECK, type: string } 
+  - { name: IFP_BALANCE, type: string } 
+  - { name: EVENT_BALANCE_NAME, type: string } 
+  - { name: REDUCE_LIMIT, type: string } 
+  - { name: SIGN_RESTRICTED, type: string } 
+  - { name: RECORD_STATUS, type: string } 
+  - { name: CURR_NO, type: string } 
+  - { name: AUTHORISER, type: string } 
+  - { name: CO_CODE, type: string } 
+  - { name: DEPT_CODE, type: string } 
+  - { name: AUDITOR_CODE, type: string } 
+  - { name: AUDIT_DATE_TIME, type: string } 
+  - { name: CREATION_TIME_DL, type: decimal } 
+  - { name: BANKING_DATE_DL, type: date } 
+  - { name: SDS_COMPANY_CODE, type: string } 
+  - { name: SDS_MNEMONIC, type: string } 
+

@@ -1,0 +1,17 @@
+java=java
+run.as=
+lib.dir=./lib
+conf.dir=./conf
+graceful.shutdown.seconds=20
+
+java.arg.1=-Djava.awt.headless=true
+java.arg.2=-Xms512m
+java.arg.3=-Xmx2048m
+java.arg.4=-Dsun.net.http.allowRestrictedHeaders=true
+java.arg.5=-Djava.net.preferIPv4Stack=true
+java.arg.6=-Djava.security.egd=file:/dev/urandom
+
+nifi.minifi.flow.config=./conf/flow.json.gz
+nifi.minifi.flow.use.parent.ssl=false
+nifi.minifi.sensitive.props.key=${NIFI_SENSITIVE_PROPS_KEY}
+nifi.minifi.sensitive.props.algorithm=NIFI_PBKDF2_AES_GCM_256

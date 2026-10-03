@@ -1,0 +1,96 @@
+schemaVersion: 1
+description: generated from informatica.
+allowExtraColumns: true
+strictColumnOrder: false
+columns:
+  - { name: RECID, type: string } 
+  - { name: ACTIVITY, type: string } 
+  - { name: CATEGORY, type: string } 
+  - { name: CURRENCY, type: string } 
+  - { name: CURRENCY_MARKET, type: string } 
+  - { name: MNEMONIC, type: string } 
+  - { name: CUSTOMER_REFERENCE, type: string } 
+  - { name: POSITION_TYPE, type: string } 
+  - { name: BASE_DATE_TYPE, type: string } 
+  - { name: ANNIVERSARY, type: string } 
+  - { name: ACCOUNT_REFERENCE, type: string } 
+  - { name: ORIGINATION_REF, type: string } 
+  - { name: DATE_CONVENTION, type: string } 
+  - { name: DATE_ADJUSTMENT, type: string } 
+  - { name: OTHER_BUS_DAY_CENTRE, type: string } 
+  - { name: PORTFOLIO_ID, type: string } 
+  - { name: INACTIVE_MONTHS, type: string } 
+  - { name: PASSBOOK, type: string } 
+  - { name: SHADOW_ACCOUNT, type: string } 
+  - { name: GENERATE_IBAN, type: string } 
+  - { name: ACCOUNTING_COMPANY, type: string } 
+  - { name: BASE_DATE_KEY, type: string } 
+  - { name: BALANCE_TREATMENT, type: string } 
+  - { name: LINK_AC_NUMBER, type: string } 
+  - { name: BUNDLE_ARRANGEMENT, type: string } 
+  - { name: PARENT_ACCOUNT, type: string } 
+  - { name: EXTERNAL_POSTING, type: string } 
+  - { name: HVT_FLAG, type: string } 
+  - { name: MULTI_CURRENCY, type: string } 
+  - { name: PARENT_BV_DATE, type: date } 
+  - { name: ALLOWED_BV_DATE, type: date } 
+  - { name: BALANCE_CONVERSION_MKT, type: string } 
+  - { name: EARLY_PROCESSING, type: string } 
+  - { name: ON_RESTRUCTURE, type: string } 
+  - { name: ACCOUNT_ALIAS, type: string } 
+  - { name: DELINK_WITH_BALANCE, type: string } 
+  - { name: BENEFICIARY, type: string } 
+  - { name: LIMIT_ACCOUNT, type: string } 
+  - { name: BASE_CURRENCY_RATE, type: decimal } 
+  - { name: OFFER_NOTICE_DAYS, type: string } 
+  - { name: OFFER_EXECUTION, type: string } 
+  - { name: PARENT_LINK_TYPE, type: string } 
+  - { name: LINK_TYPE_EXCEPTION, type: string } 
+  - { name: FUNDING_METHOD, type: string } 
+  - { name: SYS_RESERVE7, type: string } 
+  - { name: SYS_RESERVE6, type: string } 
+  - { name: SYS_RESERVE3, type: string } 
+  - { name: SYS_RESERVE2, type: string } 
+  - { name: SYS_RESERVE1, type: string } 
+  - { name: DEFAULT_ATTR_OPTION, type: string } 
+  - { name: DEFAULT_NEGOTIABLE, type: string } 
+  - { name: ID_COMP_1, type: string } 
+  - { name: ID_COMP_2, type: string } 
+  - { name: ID_COMP_3, type: string } 
+  - { name: ID_COMP_4, type: string } 
+  - { name: ID_COMP_5, type: string } 
+  - { name: ID_COMP_6, type: string } 
+  - { name: RESERVED2_ID, type: string } 
+  - { name: TARGET_PRODUCT, type: string } 
+  - { name: RECORD_STATUS, type: string } 
+  - { name: CURR_NO, type: string } 
+  - { name: AUTHORISER, type: string } 
+  - { name: CO_CODE, type: string } 
+  - { name: DEPT_CODE, type: string } 
+  - { name: AUDITOR_CODE, type: string } 
+  - { name: AUDIT_DATE_TIME, type: string } 
+  - { name: L_TEST_FIELD, type: string } 
+  - { name: L_OBJECT_CODE, type: string } 
+  - { name: ITF_TAX_EXEMPT, type: string } 
+  - { name: L_AC_UA_REF, type: string } 
+  - { name: CREATION_TIME_DL, type: decimal } 
+  - { name: BANKING_DATE_DL, type: date } 
+  - { name: SDS_COMPANY_CODE, type: string } 
+  - { name: SDS_MNEMONIC, type: string } 
+  - { name: L_POST_REMOVE, type: string } 
+  - { name: LEASE_TYPE, type: string } 
+  - { name: ASSET_REFERENCE, type: string } 
+  - { name: ASSET_CLASS, type: string } 
+  - { name: ASSET_TYPE, type: string } 
+  - { name: L_DISPLAY_CCY, type: string } 
+  - { name: L_TERM_DAYS, type: string } 
+  - { name: RESERVED_11, type: string, required: false } 
+  - { name: RESERVED_12, type: string, required: false } 
+  - { name: RESERVED_13, type: string, required: false } 
+  - { name: RESERVED_14, type: string, required: false } 
+  - { name: RESERVED_15, type: string, required: false } 
+  - { name: RESERVED_16, type: string, required: false } 
+  - { name: BASE_CCY_ACC_REFERENCE, type: string } 
+  - { name: BASE_CCY_ARR_REFERENCE, type: string } 
+  - { name: L_ANCESTOR_ARR, type: string } 
+

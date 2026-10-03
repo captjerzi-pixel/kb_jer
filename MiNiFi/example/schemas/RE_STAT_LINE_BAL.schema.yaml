@@ -1,0 +1,30 @@
+schemaVersion: 1
+description: generated from informatica.
+allowExtraColumns: true
+strictColumnOrder: false
+columns:
+  - { name: RECID, type: string } 
+  - { name: OPEN_BAL, type: decimal } 
+  - { name: OPEN_BAL_LCL, type: decimal } 
+  - { name: CR_MOVEMENT, type: decimal } 
+  - { name: CR_MVMT_LCL, type: decimal } 
+  - { name: DB_MOVEMENT, type: decimal } 
+  - { name: DB_MVMT_LCL, type: decimal } 
+  - { name: CLOSING_BAL, type: decimal } 
+  - { name: CLOSING_BAL_LCL, type: decimal } 
+  - { name: MVMT_A_SPLIT, type: string } 
+  - { name: MVMT_P_SPLIT, type: string } 
+  - { name: MVMT_R_SPLIT, type: string } 
+  - { name: CR_MVMT_YTD, type: string } 
+  - { name: CR_MVMT_MTH, type: string } 
+  - { name: CR_MVMT_YTD_LCL, type: string } 
+  - { name: CR_MVMT_MTH_LCL, type: string } 
+  - { name: DB_MVMT_YTD, type: string } 
+  - { name: DB_MVMT_MTH, type: string } 
+  - { name: DB_MVMT_YTD_LCL, type: string } 
+  - { name: DB_MVMT_MTH_LCL, type: string } 
+  - { name: CREATION_TIME_DL, type: decimal } 
+  - { name: BANKING_DATE_DL, type: date } 
+  - { name: SDS_COMPANY_CODE, type: string } 
+  - { name: SDS_MNEMONIC, type: string } 
+

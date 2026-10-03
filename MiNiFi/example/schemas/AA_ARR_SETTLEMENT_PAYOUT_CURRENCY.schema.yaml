@@ -1,0 +1,20 @@
+schemaVersion: 1
+description: generated from informatica.
+allowExtraColumns: true
+strictColumnOrder: false
+columns:
+  - { name: RECID, type: string } 
+  - { name: MV_REF, type: string } 
+  - { name: BANKING_DATE_DL, type: date } 
+  - { name: SDS_COMPANY_CODE, type: string } 
+  - { name: SDS_MNEMONIC, type: string } 
+  - { name: PAYOUT_CURRENCY, type: string } 
+  - { name: PAYOUT_CUSTOMER, type: string } 
+  - { name: PAYOUT_PRD_GROUP, type: string } 
+  - { name: PAYOUT_PRODUCT, type: string } 
+  - { name: PAYOUT_SETTLE_ACTIVITY, type: string } 
+  - { name: PAYOUT_SETTLEMENT, type: string } 
+  - { name: PAYOUT_AC_CR_RULE, type: string } 
+  - { name: PAYOUT_RC_TYPE, type: string } 
+  - { name: PAYOUT_RC_CONDITION, type: string } 
+

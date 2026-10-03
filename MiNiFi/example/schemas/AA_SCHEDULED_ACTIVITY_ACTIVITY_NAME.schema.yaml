@@ -1,0 +1,15 @@
+schemaVersion: 1
+description: generated from informatica.
+allowExtraColumns: true
+strictColumnOrder: false
+columns:
+  - { name: RECID, type: string } 
+  - { name: MV_REF, type: string } 
+  - { name: BANKING_DATE_DL, type: date } 
+  - { name: SDS_COMPANY_CODE, type: string } 
+  - { name: SDS_MNEMONIC, type: string } 
+  - { name: ACTIVITY_NAME, type: string } 
+  - { name: LAST_DATE, type: date } 
+  - { name: EVENT_DATE, type: date } 
+  - { name: NEXT_DATE, type: date } 
+

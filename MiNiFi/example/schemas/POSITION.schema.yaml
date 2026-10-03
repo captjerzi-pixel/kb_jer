@@ -1,0 +1,15 @@
+schemaVersion: 1
+description: generated from informatica.
+allowExtraColumns: true
+strictColumnOrder: false
+columns:
+  - { name: RECID, type: string } 
+  - { name: AMOUNT_1, type: string } 
+  - { name: AMOUNT_2, type: string } 
+  - { name: LCY_AMOUNT, type: string } 
+  - { name: FWD_REVAL_POSTED, type: string } 
+  - { name: CREATION_TIME_DL, type: decimal } 
+  - { name: BANKING_DATE_DL, type: date } 
+  - { name: SDS_COMPANY_CODE, type: string } 
+  - { name: SDS_MNEMONIC, type: string } 
+

@@ -1,0 +1,40 @@
+schemaVersion: 1
+description: generated from informatica.
+allowExtraColumns: true
+strictColumnOrder: false
+columns:
+  - { name: RECID, type: string } 
+  - { name: TYPE, type: string } 
+  - { name: SEQ, type: string } 
+  - { name: STATUS, type: string } 
+  - { name: T24_REFERENCE, type: string } 
+  - { name: BANK, type: string } 
+  - { name: EB_SYSTEM_ID, type: string } 
+  - { name: CHANNEL, type: string } 
+  - { name: DEALER_DESK, type: string } 
+  - { name: SOURCE_ID, type: string } 
+  - { name: ACCOUNT, type: string } 
+  - { name: PL_CATEGORY, type: string } 
+  - { name: AMOUNT, type: decimal } 
+  - { name: SIGN, type: string } 
+  - { name: CURRENCY, type: string } 
+  - { name: ACCOUNT_OFFICER, type: string } 
+  - { name: VALUE_DATE, type: date } 
+  - { name: ACCOUNTING_DATE, type: date } 
+  - { name: COMPANY, type: string } 
+  - { name: EXCH_RATE, type: decimal } 
+  - { name: KBI_ACCT_ID, type: string } 
+  - { name: ENTRY_NUM_DEBIT, type: string } 
+  - { name: ENTRY_NUM_CREDIT, type: string } 
+  - { name: RECORD_STATUS, type: string } 
+  - { name: CURR_NO, type: string } 
+  - { name: AUTHORISER, type: string } 
+  - { name: CO_CODE, type: string } 
+  - { name: DEPT_CODE, type: string } 
+  - { name: AUDITOR_CODE, type: string } 
+  - { name: AUDIT_DATE_TIME, type: string } 
+  - { name: CREATION_TIME_DL, type: decimal } 
+  - { name: BANKING_DATE_DL, type: date } 
+  - { name: SDS_COMPANY_CODE, type: string } 
+  - { name: SDS_MNEMONIC, type: string } 
+

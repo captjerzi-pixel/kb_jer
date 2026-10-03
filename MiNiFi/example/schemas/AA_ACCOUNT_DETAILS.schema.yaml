@@ -1,0 +1,62 @@
+schemaVersion: 1
+description: generated from informatica.
+allowExtraColumns: true
+strictColumnOrder: false
+columns:
+  - { name: RECID, type: string } 
+  - { name: VALUE_DATE, type: date } 
+  - { name: START_DATE, type: date } 
+  - { name: DRAWDOWN_END_DATE, type: date } 
+  - { name: PAYMENT_START_DATE, type: date } 
+  - { name: MATURITY_DATE, type: date } 
+  - { name: ARR_AGE_STATUS, type: string } 
+  - { name: RENEWAL_DATE, type: date } 
+  - { name: COOLING_DATE, type: date } 
+  - { name: CANCEL_DATE, type: date } 
+  - { name: BASE_DATE, type: date } 
+  - { name: ALL_AGE_STATUS, type: string } 
+  - { name: SUSPENDED, type: string } 
+  - { name: REPORT_END_DATE, type: date } 
+  - { name: TAKEOVER_ARR, type: string } 
+  - { name: PAYMENT_END_DATE, type: date } 
+  - { name: BILLS_SETTLED_CNT, type: string } 
+  - { name: STATIC_UPDATE, type: string } 
+  - { name: CHARGEOFF_DATE, type: date } 
+  - { name: CHARGEOFF_TYPE, type: string } 
+  - { name: OVERDRAFT_STATUS, type: string } 
+  - { name: RESERVED_OD, type: string } 
+  - { name: PRIMARY_OD_DATE, type: date } 
+  - { name: ONLINE_CAPITALISE, type: string } 
+  - { name: LAST_ACTIVE_TXN_DATE, type: date } 
+  - { name: ARR_DORMANCY_STATUS, type: string } 
+  - { name: PENDING_ADJUSTMENT_DATE, type: date } 
+  - { name: BRANCH, type: string } 
+  - { name: LINE_OF_BUSINESS, type: string } 
+  - { name: DEFER_CLOSURE_DATE, type: date } 
+  - { name: FULL_CHARGEOFF, type: string } 
+  - { name: BASE_CCY_RATE, type: decimal } 
+  - { name: BASE_CCY_AMOUNT, type: decimal } 
+  - { name: CUR_RESTRUCTURE_STATUS, type: string } 
+  - { name: RISK_STAGE, type: string } 
+  - { name: BASE_CCY_OVD_AMOUNT, type: decimal } 
+  - { name: COMMT_EXPIRY_DATE, type: date } 
+  - { name: COMMITMENT_STATUS, type: string } 
+  - { name: MANUAL_AGEING, type: string } 
+  - { name: BASE_CCY_TOT_AMOUNT, type: decimal } 
+  - { name: BASE_CCY_CUR_AMOUNT, type: decimal } 
+  - { name: OFFER_DATE, type: date } 
+  - { name: ROLLOVER_STATUS, type: string } 
+  - { name: CONTRACT_PERIOD, type: string } 
+  - { name: RENEWAL_PERIOD, type: date } 
+  - { name: PERIODIC_PERIOD, type: string } 
+  - { name: REVOLVING, type: string } 
+  - { name: IAS_CLASSIFICATION, type: string } 
+  - { name: FUNDING_METHOD, type: string } 
+  - { name: ROLLOVER_AMOUNT, type: decimal } 
+  - { name: CREATION_TIME_DL, type: decimal } 
+  - { name: BANKING_DATE_DL, type: date } 
+  - { name: SDS_COMPANY_CODE, type: string } 
+  - { name: SDS_MNEMONIC, type: string } 
+  - { name: FACILITY_TYPE, type: string } 
+  - { name: PRODUCT_CODE, type: string } 
+

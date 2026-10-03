@@ -1,0 +1,60 @@
+schemaVersion: 1
+description: generated from informatica.
+allowExtraColumns: true
+strictColumnOrder: false
+columns:
+  - { name: RECID, type: string } 
+  - { name: ACCOUNT_NUMBER, type: string } 
+  - { name: SIGN, type: string } 
+  - { name: AMOUNT_LCY, type: decimal } 
+  - { name: TRANSACTION_CODE, type: string } 
+  - { name: THEIR_REFERENCE, type: string } 
+  - { name: PL_CATEGORY, type: string } 
+  - { name: CUSTOMER_ID, type: string } 
+  - { name: ACCOUNT_OFFICER, type: string } 
+  - { name: PRODUCT_CATEGORY, type: string } 
+  - { name: VALUE_DATE, type: date } 
+  - { name: CURRENCY, type: string } 
+  - { name: AMOUNT_FCY, type: decimal } 
+  - { name: EXCHANGE_RATE, type: decimal } 
+  - { name: NEG_REF_NO, type: string } 
+  - { name: POSITION_TYPE, type: string } 
+  - { name: OUR_REFERENCE, type: string } 
+  - { name: REVERSAL_MARKER, type: string } 
+  - { name: EXPOSURE_DATE, type: date } 
+  - { name: CURRENCY_MARKET, type: string } 
+  - { name: DEPARTMENT_CODE, type: string } 
+  - { name: DEALER_DESK, type: string } 
+  - { name: BANK_SORT_CDE, type: string } 
+  - { name: CHEQUE_NUMBER, type: string } 
+  - { name: ACCOUNTING_DATE, type: date } 
+  - { name: CONTINGENT_ACCT, type: string } 
+  - { name: CHEQ_TYPE, type: string } 
+  - { name: TFS_REFERENCE, type: string } 
+  - { name: ACCOUNTING_COMPANY, type: string } 
+  - { name: RESERVED_4, type: string } 
+  - { name: RESERVED_3, type: string } 
+  - { name: RESERVED_2, type: string } 
+  - { name: RESERVED_1, type: string } 
+  - { name: RECORD_STATUS, type: string } 
+  - { name: CURR_NO, type: string } 
+  - { name: AUTHORISER, type: string } 
+  - { name: CO_CODE, type: string } 
+  - { name: DEPT_CODE, type: string } 
+  - { name: AUDITOR_CODE, type: string } 
+  - { name: AUDIT_DATE_TIME, type: string } 
+  - { name: IBLC_COUNTRY, type: string } 
+  - { name: L_FT_SYM_VAR, type: string } 
+  - { name: L_FT_SYM_CONST, type: string } 
+  - { name: L_FT_SYM_SPEC, type: string } 
+  - { name: L_FT_PART_BBAN, type: string } 
+  - { name: L_DC_CST_CTR, type: string } 
+  - { name: L_DC_SVC_CDE, type: string } 
+  - { name: L_DC_DEL_ACT, type: string } 
+  - { name: L_DC_DEL_AGR, type: string } 
+  - { name: L_DC_DEL_REQ, type: string } 
+  - { name: CREATION_TIME_DL, type: decimal } 
+  - { name: BANKING_DATE_DL, type: date } 
+  - { name: SDS_COMPANY_CODE, type: string } 
+  - { name: SDS_MNEMONIC, type: string } 
+

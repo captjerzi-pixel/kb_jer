@@ -1,0 +1,22 @@
+schemaVersion: 1
+description: generated from informatica.
+allowExtraColumns: true
+strictColumnOrder: false
+columns:
+  - { name: RECID, type: string } 
+  - { name: MV_REF, type: string } 
+  - { name: BANKING_DATE_DL, type: date } 
+  - { name: SDS_COMPANY_CODE, type: string } 
+  - { name: SDS_MNEMONIC, type: string } 
+  - { name: CASH_FLOW_DATE, type: date } 
+  - { name: CASH_FLOW_TYPE, type: string } 
+  - { name: CASH_FLOW_AMT, type: decimal } 
+  - { name: CASHFLOW_CCY, type: string } 
+  - { name: AMOUNT, type: decimal } 
+  - { name: EXCLUDE_OPTION, type: string } 
+  - { name: RESERVED_5, type: string } 
+  - { name: RESERVED_3, type: string } 
+  - { name: RESERVED_2, type: string } 
+  - { name: RESERVED_1, type: string } 
+  - { name: APR_CALC_EXCLUDE, type: string } 
+

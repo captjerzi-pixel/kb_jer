@@ -1,0 +1,19 @@
+pipelineName: postgresql-tax-type-finalizer-fail
+finalizerTestFail: true
+source:
+  type: postgresql
+  hostEnv: PSQL_HOSTNAME
+  databaseEnv: PSQL_DB
+  usernameEnv: PSQL_USERNAME
+  passwordEnv: PSQL_PASSWORD
+tables:
+  - schema: public
+    name: TAX_TYPE
+    query: SELECT * FROM public."TAX_TYPE"
+    schemaRef: ../schemas/postgresql-tax_type.schema.yaml
+    outputName: tax_type
+output:
+  s3Prefix: runs
+runtime:
+  tablesPerPod: 10
+  profile: medium

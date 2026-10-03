@@ -1,0 +1,21 @@
+schemaVersion: 1
+description: generated from informatica.
+allowExtraColumns: true
+strictColumnOrder: false
+columns:
+  - { name: RECID, type: string } 
+  - { name: TYPE, type: string } 
+  - { name: TOTAL_PRINT, type: string } 
+  - { name: SUPRESSION, type: string } 
+  - { name: SPACE_BEFORE, type: string } 
+  - { name: SPACE_AFTER, type: string } 
+  - { name: ASSET_SIGN, type: string } 
+  - { name: ASSET_OPP_LINE, type: string } 
+  - { name: PROFIT_LINE_SIGN, type: string } 
+  - { name: PROFIT_OPP_LINE, type: string } 
+  - { name: PROFIT_PERIOD, type: string } 
+  - { name: CREATION_TIME_DL, type: decimal } 
+  - { name: BANKING_DATE_DL, type: date } 
+  - { name: SDS_COMPANY_CODE, type: string } 
+  - { name: SDS_MNEMONIC, type: string } 
+

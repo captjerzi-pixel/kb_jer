@@ -1,0 +1,42 @@
+schemaVersion: 1
+description: generated from informatica.
+allowExtraColumns: true
+strictColumnOrder: false
+columns:
+  - { name: RECID, type: string } 
+  - { name: MV_REF, type: string } 
+  - { name: BANKING_DATE_DL, type: date } 
+  - { name: SDS_COMPANY_CODE, type: string } 
+  - { name: SDS_MNEMONIC, type: string } 
+  - { name: PROPERTY, type: string } 
+  - { name: OR_PROP_AMOUNT, type: decimal } 
+  - { name: OR_PROP_AMT_LCY, type: decimal } 
+  - { name: OS_PROP_AMOUNT, type: decimal } 
+  - { name: OS_PROP_AMT_LCY, type: decimal } 
+  - { name: POS_PROP_AMOUNT, type: decimal } 
+  - { name: NEG_PROP_AMOUNT, type: decimal } 
+  - { name: OS_ADJ_PROP_AMT, type: decimal } 
+  - { name: OS_ADJ_PROP_AMT_LCY, type: decimal } 
+  - { name: SUS_PROP_AMOUNT, type: decimal } 
+  - { name: SUS_PROP_AMT_LCY, type: decimal } 
+  - { name: OR_PROP_AMT_BNK, type: decimal } 
+  - { name: RESERVED_13, type: string } 
+  - { name: OS_PROP_AMT_BNK, type: decimal } 
+  - { name: RESERVED_12, type: string } 
+  - { name: OS_ADJ_PROP_BNK, type: decimal } 
+  - { name: RESERVED_11, type: string } 
+  - { name: SUS_PROP_BNK, type: decimal } 
+  - { name: PROP_PAYMENT_INDICATOR, type: string } 
+  - { name: WAIVE_PROP_AMOUNT, type: decimal } 
+  - { name: WAIVE_PROP_AMT_LCY, type: decimal } 
+  - { name: OR_PROP_AMOUNT_REC, type: decimal } 
+  - { name: OR_PROP_AMT_REC_LCY, type: decimal } 
+  - { name: OS_PROP_AMOUNT_REC, type: decimal } 
+  - { name: OS_PROP_AMT_REC_LCY, type: decimal } 
+  - { name: OS_ADJ_PROP_AMT_REC, type: decimal } 
+  - { name: OS_ADJ_PROP_AMT_REC_LCY, type: decimal } 
+  - { name: SUS_PROP_AMOUNT_REC, type: decimal } 
+  - { name: SUS_PROP_AMT_REC_LCY, type: decimal } 
+  - { name: WAIVE_PROP_AMOUNT_REC, type: decimal } 
+  - { name: WAIVE_PROP_AMT_REC_LCY, type: decimal } 
+

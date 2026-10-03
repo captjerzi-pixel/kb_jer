@@ -1,0 +1,25 @@
+pipelineName: mssql-opb-task-inst-run
+queryLimit: 1000000
+source:
+  type: mssql
+  databaseUrl: jdbc:sqlserver://127.0.0.1:1433;databaseName=RepositoryIFPC;encrypt=true;trustServerCertificate=true
+  usernameEnv: MSSQL_USERNAME
+  passwordEnv: MSSQL_PASSWORD
+  tcpProxy:
+    enabled: true
+    listenHost: 127.0.0.1
+    listenPort: 1433
+    upstreamHost: vssql38.ds.kb.cz
+    upstreamPort: 1433
+    upstreamConnectTimeoutSeconds: 15
+tables:
+  - schema: dbo
+    name: OPB_TASK_INST_RUN
+    query: SELECT SUBJECT_ID, WORKFLOW_ID, WORKFLOW_RUN_ID, WORKLET_RUN_ID, CHILD_RUN_ID, INSTANCE_ID, INSTANCE_NAME, TASK_ID, TASK_TYPE, START_TIME, END_TIME, RUN_ERR_CODE, RUN_ERR_MSG, RUN_STATUS_CODE, TASK_NAME, RUN_MODE, VERSION_NUMBER, SERVER_ID, SERVER_NAME, FRAGMENT_ID, SERVER_NODE_ID, SERVER_NODE_NAME FROM dbo.OPB_TASK_INST_RUN
+    schemaRef: ../schemas/mssql-opb-task-inst-run.schema.yaml
+    outputName: opb_task_inst_run
+output:
+  s3Prefix: runs
+runtime:
+  tablesPerPod: 10
+  profile: large

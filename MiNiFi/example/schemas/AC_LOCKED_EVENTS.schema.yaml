@@ -1,0 +1,72 @@
+schemaVersion: 1
+description: generated from informatica.
+allowExtraColumns: true
+strictColumnOrder: false
+columns:
+  - { name: RECID, type: string } 
+  - { name: ACCOUNT_NUMBER, type: string } 
+  - { name: DESCRIPTION, type: string } 
+  - { name: FROM_DATE, type: date } 
+  - { name: TO_DATE, type: date } 
+  - { name: LOCKED_AMOUNT, type: decimal } 
+  - { name: RC_RETRY, type: string } 
+  - { name: RC_DETAIL_ID, type: string } 
+  - { name: BLOCK_PRIORITY, type: string } 
+  - { name: TRANS_REF, type: string } 
+  - { name: PAYMENT_AMT, type: decimal } 
+  - { name: PAYMENT_CCY, type: string } 
+  - { name: ADD_DETAIL_REQ_SOURCE, type: string } 
+  - { name: RESERVE_ALT_KEY, type: string } 
+  - { name: LOCKED_TYPE, type: string } 
+  - { name: ACCOUNT_LINK, type: string } 
+  - { name: LINK_STATUS, type: string } 
+  - { name: TXN_SIGN, type: string } 
+  - { name: FA_STATUS, type: string } 
+  - { name: RESERVATION_ID, type: string } 
+  - { name: FUNDS_APPROVED, type: string } 
+  - { name: JOURNAL_ID, type: string } 
+  - { name: MERCHANT_FLAG, type: string } 
+  - { name: TRANSACTION_CODE, type: string } 
+  - { name: RECORD_STATUS, type: string } 
+  - { name: CURR_NO, type: string } 
+  - { name: AUTHORISER, type: string } 
+  - { name: CO_CODE, type: string } 
+  - { name: DEPT_CODE, type: string } 
+  - { name: AUDITOR_CODE, type: string } 
+  - { name: AUDIT_DATE_TIME, type: string } 
+  - { name: L_AC_HOLD_STAT, type: string } 
+  - { name: L_AC_HOLD_DATE, type: date } 
+  - { name: L_BAL_CKH_REQD, type: string } 
+  - { name: L_AC_HLDCR_ACCT, type: string } 
+  - { name: L_AC_HLDCR_REF, type: string } 
+  - { name: L_EB_CARD_SNUM, type: string } 
+  - { name: L_AC_PUR_AMT, type: decimal } 
+  - { name: L_AC_CHBK_AMT, type: decimal } 
+  - { name: L_AC_HLD_ADV, type: string } 
+  - { name: L_EB_CARD_MERCH, type: string } 
+  - { name: L_EB_CID_MASK, type: string } 
+  - { name: L_AC_HOLDER, type: string } 
+  - { name: L_AC_CARD_TTY, type: string } 
+  - { name: L_AC_CARD_MCITY, type: string } 
+  - { name: L_AC_CARD_MCTRY, type: string } 
+  - { name: L_AC_CARD_TDATE, type: date } 
+  - { name: L_AC_CARD_TTIME, type: string } 
+  - { name: L_EB_CARD_AUCDE, type: string } 
+  - { name: L_AC_CARD_MCODE, type: string } 
+  - { name: L_AC_AVAIL_AMT, type: string } 
+  - { name: L_FT_CARD_TTYP, type: string } 
+  - { name: L_EB_UA_AMOUNT, type: string } 
+  - { name: L_AC_HLD_CCY, type: string } 
+  - { name: L_UA_PROCESS, type: string } 
+  - { name: L_AC_HD_ALT_KEY, type: string } 
+  - { name: L_AC_HD_ORG_AMT, type: decimal } 
+  - { name: L_AC_HD_ORG_CCY, type: string } 
+  - { name: CREATION_TIME_DL, type: decimal } 
+  - { name: BANKING_DATE_DL, type: date } 
+  - { name: SDS_COMPANY_CODE, type: string } 
+  - { name: SDS_MNEMONIC, type: string } 
+  - { name: L_EB_UA_PRV_AMT, type: string } 
+  - { name: L_PAY_TYPE, type: string } 
+  - { name: L_GSFT_REG_NUM, type: string } 
+  - { name: L_GSFT_DOCUMENT, type: string } 
+

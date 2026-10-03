@@ -1,0 +1,29 @@
+schemaVersion: 1
+description: generated from informatica.
+allowExtraColumns: true
+strictColumnOrder: false
+columns:
+  - { name: RECID, type: string } 
+  - { name: DESC_1, type: string } 
+  - { name: DESC_2, type: string } 
+  - { name: DESC_3, type: string } 
+  - { name: REPORT_LINES_ID, type: string } 
+  - { name: LINE_TYPE, type: string } 
+  - { name: L_DATE_TIME, type: string } 
+  - { name: REPORT_TYPE, type: string } 
+  - { name: REPORT_NAME, type: string } 
+  - { name: REPORT_CONTENT, type: string } 
+  - { name: COMPANY_ID, type: string } 
+  - { name: REPORT_LINE_NO, type: string } 
+  - { name: RECORD_STATUS, type: string } 
+  - { name: CURR_NO, type: string } 
+  - { name: AUTHORISER, type: string } 
+  - { name: CO_CODE, type: string } 
+  - { name: DEPT_CODE, type: string } 
+  - { name: AUDITOR_CODE, type: string } 
+  - { name: AUDIT_DATE_TIME, type: string } 
+  - { name: CREATION_TIME_DL, type: decimal } 
+  - { name: BANKING_DATE_DL, type: date } 
+  - { name: SDS_COMPANY_CODE, type: string } 
+  - { name: SDS_MNEMONIC, type: string } 
+

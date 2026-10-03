@@ -1,0 +1,57 @@
+schemaVersion: 1
+description: generated from informatica.
+allowExtraColumns: true
+strictColumnOrder: false
+columns:
+  - { name: RECID, type: string } 
+  - { name: ACTIVITY, type: string } 
+  - { name: AMOUNT, type: decimal } 
+  - { name: CHANGE_AMOUNT, type: decimal } 
+  - { name: TERM, type: string } 
+  - { name: REVOLVING, type: string } 
+  - { name: UPDATE_COMMT_LIMIT, type: string } 
+  - { name: MATURITY_DATE, type: date } 
+  - { name: MAT_DATE_TYPE, type: string } 
+  - { name: MAT_DATE_CONVENTION, type: string } 
+  - { name: EXPIRY_DATE, type: string } 
+  - { name: TERM_TOL_DAYS, type: string } 
+  - { name: COMMITMENT_DRAWDOWN, type: string } 
+  - { name: ON_MATURITY, type: string } 
+  - { name: UPDATE_UTILISATION, type: string } 
+  - { name: UPDATE_COMMIT_ON_CAP, type: string } 
+  - { name: CANCEL_PERIOD, type: string } 
+  - { name: COOLING_PERIOD, type: string } 
+  - { name: FULL_COMMITTMENT_ACTIVITY, type: string } 
+  - { name: TRANCHES, type: string } 
+  - { name: AVAILABILITY_DATE, type: date } 
+  - { name: FACILITY_TYPE, type: string } 
+  - { name: EXPIRE_TO_MATURITY_PERIOD, type: string } 
+  - { name: FWD_ACCTING, type: string } 
+  - { name: COMMITMENT_REVERSAL, type: string } 
+  - { name: SYS_RESERVE7, type: string } 
+  - { name: SYS_RESERVE6, type: string } 
+  - { name: SYS_RESERVE3, type: string } 
+  - { name: SYS_RESERVE2, type: string } 
+  - { name: SYS_RESERVE1, type: string } 
+  - { name: DEFAULT_ATTR_OPTION, type: string } 
+  - { name: DEFAULT_NEGOTIABLE, type: string } 
+  - { name: ID_COMP_1, type: string } 
+  - { name: ID_COMP_2, type: string } 
+  - { name: ID_COMP_3, type: string } 
+  - { name: ID_COMP_4, type: string } 
+  - { name: ID_COMP_5, type: string } 
+  - { name: ID_COMP_6, type: string } 
+  - { name: RESERVED2_ID, type: string } 
+  - { name: TARGET_PRODUCT, type: string } 
+  - { name: RECORD_STATUS, type: string } 
+  - { name: CURR_NO, type: string } 
+  - { name: AUTHORISER, type: string } 
+  - { name: CO_CODE, type: string } 
+  - { name: DEPT_CODE, type: string } 
+  - { name: AUDITOR_CODE, type: string } 
+  - { name: AUDIT_DATE_TIME, type: string } 
+  - { name: CREATION_TIME_DL, type: decimal } 
+  - { name: BANKING_DATE_DL, type: date } 
+  - { name: SDS_COMPANY_CODE, type: string } 
+  - { name: SDS_MNEMONIC, type: string } 
+

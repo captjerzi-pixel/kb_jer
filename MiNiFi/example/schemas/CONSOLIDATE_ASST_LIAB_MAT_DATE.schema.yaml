@@ -1,0 +1,20 @@
+schemaVersion: 1
+description: generated from informatica.
+allowExtraColumns: true
+strictColumnOrder: false
+columns:
+  - { name: RECID, type: string } 
+  - { name: MV_REF, type: string } 
+  - { name: SV_REF, type: string } 
+  - { name: BANKING_DATE_DL, type: date } 
+  - { name: SDS_COMPANY_CODE, type: string } 
+  - { name: SDS_MNEMONIC, type: string } 
+  - { name: MAT_DATE, type: string } 
+  - { name: VALUE_DATE, type: date } 
+  - { name: REPAY_DATE, type: date } 
+  - { name: INTER_RATE, type: decimal } 
+  - { name: INTER_KEY, type: string } 
+  - { name: INTER_SPREAD, type: decimal } 
+  - { name: SCHD_AMOUNT, type: decimal } 
+  - { name: SCHD_LCL_AMT, type: decimal } 
+

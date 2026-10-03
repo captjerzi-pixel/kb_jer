@@ -1,0 +1,28 @@
+schemaVersion: 1
+description: generated from informatica.
+allowExtraColumns: true
+strictColumnOrder: false
+columns:
+  - { name: RECID, type: string } 
+  - { name: APPLIC_ID, type: string } 
+  - { name: CURRENCY_MARKET, type: string } 
+  - { name: POSITION_TYPE, type: string } 
+  - { name: CURRENCY, type: string } 
+  - { name: CATEGORY, type: string } 
+  - { name: SECTOR, type: string } 
+  - { name: PARTYTYPE, type: string } 
+  - { name: ACCTOFFICER, type: string } 
+  - { name: TIME, type: string } 
+  - { name: RISK_STAGE, type: string } 
+  - { name: VARIABLE_7, type: string } 
+  - { name: VARIABLE_8, type: string } 
+  - { name: VARIABLE_9, type: string } 
+  - { name: VARIABLE_10, type: string } 
+  - { name: VARIABLE_11, type: string } 
+  - { name: VARIABLE_12, type: string } 
+  - { name: DATE_LAST_UPDATE, type: date } 
+  - { name: CREATION_TIME_DL, type: decimal } 
+  - { name: BANKING_DATE_DL, type: date } 
+  - { name: SDS_COMPANY_CODE, type: string } 
+  - { name: SDS_MNEMONIC, type: string } 
+

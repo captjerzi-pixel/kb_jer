@@ -1,0 +1,47 @@
+schemaVersion: 1
+description: generated from informatica.
+allowExtraColumns: true
+strictColumnOrder: false
+columns:
+  - { name: RECID, type: string } 
+  - { name: DATA_CAPTURE, type: string } 
+  - { name: CHEQUE_IND, type: string } 
+  - { name: MANDATORY_REF_NO, type: string } 
+  - { name: DEBIT_CREDIT_IND, type: string } 
+  - { name: IMMEDIATE_CHARGE, type: string } 
+  - { name: DEFAULT_VALUE_DATE, type: string } 
+  - { name: EXPOSURE_DATE, type: string } 
+  - { name: TURNOVER_CHARGE, type: string } 
+  - { name: SWIFT_NARRATIVE, type: string } 
+  - { name: UNIT_COST, type: decimal } 
+  - { name: INITIATION, type: string } 
+  - { name: SHORT_DESC, type: string } 
+  - { name: STMT_NARR, type: string } 
+  - { name: STMT_NARR_REF, type: string } 
+  - { name: FORCE_DEF_EXP_DATE, type: string } 
+  - { name: NARR_TYPE, type: string } 
+  - { name: COMBINE_PROD_CAT, type: string } 
+  - { name: COMBINE_SYSTEM_ID, type: string } 
+  - { name: EXP_KEY, type: string } 
+  - { name: CHQ_TYPE, type: string } 
+  - { name: UPDATE_INT_POOLS, type: string } 
+  - { name: DISPO_EXEMPT, type: string } 
+  - { name: TRANSACTION_TYPE, type: string } 
+  - { name: MERCHANT_FLAG, type: string } 
+  - { name: VALIDATE_COUNTER_PARTY, type: string } 
+  - { name: RESERVED_4, type: string } 
+  - { name: RESERVED_3, type: string } 
+  - { name: RESERVED_2, type: string } 
+  - { name: RESERVED_1, type: string } 
+  - { name: RECORD_STATUS, type: string } 
+  - { name: CURR_NO, type: string } 
+  - { name: AUTHORISER, type: string } 
+  - { name: CO_CODE, type: string } 
+  - { name: DEPT_CODE, type: string } 
+  - { name: AUDITOR_CODE, type: string } 
+  - { name: AUDIT_DATE_TIME, type: string } 
+  - { name: CREATION_TIME_DL, type: decimal } 
+  - { name: BANKING_DATE_DL, type: date } 
+  - { name: SDS_COMPANY_CODE, type: string } 
+  - { name: SDS_MNEMONIC, type: string } 
+

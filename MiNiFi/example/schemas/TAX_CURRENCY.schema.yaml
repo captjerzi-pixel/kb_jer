@@ -1,0 +1,23 @@
+schemaVersion: 1
+description: generated from informatica.
+allowExtraColumns: true
+strictColumnOrder: false
+columns:
+  - { name: RECID, type: string } 
+  - { name: MV_REF, type: string } 
+  - { name: BANKING_DATE_DL, type: date } 
+  - { name: SDS_COMPANY_CODE, type: string } 
+  - { name: SDS_MNEMONIC, type: string } 
+  - { name: CURRENCY, type: string } 
+  - { name: OVERALL_MIN_AMT, type: decimal } 
+  - { name: OVERALL_MAX_AMT, type: decimal } 
+  - { name: BASE_ROUND_TYPE, type: string } 
+  - { name: BASE_ROUND_UNIT, type: decimal } 
+  - { name: ROUNDING_TYPE, type: string } 
+  - { name: ROUNDING_UNIT, type: decimal } 
+  - { name: RESERVED11, type: string } 
+  - { name: RESERVED12, type: string } 
+  - { name: RESERVED13, type: string } 
+  - { name: RESERVED14, type: string } 
+  - { name: RESERVED15, type: string } 
+

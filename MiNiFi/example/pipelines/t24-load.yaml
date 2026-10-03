@@ -1,0 +1,1315 @@
+pipelineName: wf-t24-load
+queryLimit: 1000
+source:
+  type: postgresql
+  hostEnv: PSQL_HOSTNAME
+  databaseEnv: PSQL_DB
+  usernameEnv: PSQL_USERNAME
+  passwordEnv: PSQL_PASSWORD
+tables:
+  - schema: informatica 
+    name: AA_ACCOUNT_DETAILS
+    query: SELECT * FROM "AA_ACCOUNT_DETAILS"
+    schemaRef: ../schemas/AA_ACCOUNT_DETAILS.schema.yaml
+  - schema: informatica 
+    name: AA_ACCOUNT_DETAILS_ACTUAL_RENEW_DATE
+    query: SELECT * FROM public."AA_ACCOUNT_DETAILS_ACTUAL_RENEW_DATE"
+    schemaRef: ../schemas/AA_ACCOUNT_DETAILS_ACTUAL_RENEW_DATE.schema.yaml
+  - schema: informatica 
+    name: AA_ARR_ACCOUNT
+    query: SELECT * FROM public."AA_ARR_ACCOUNT"
+    schemaRef: ../schemas/AA_ARR_ACCOUNT.schema.yaml
+  - schema: informatica 
+    name: AA_ARR_ACCOUNT_ALT_ID_TYPE
+    query: SELECT * FROM public."AA_ARR_ACCOUNT_ALT_ID_TYPE"
+    schemaRef: ../schemas/AA_ARR_ACCOUNT_ALT_ID_TYPE.schema.yaml
+  - schema: informatica 
+    name: AA_ARR_ACCOUNT_BLOCKING_REASON
+    query: SELECT * FROM public."AA_ARR_ACCOUNT_BLOCKING_REASON"
+    schemaRef: ../schemas/AA_ARR_ACCOUNT_BLOCKING_REASON.schema.yaml
+  - schema: informatica 
+    name: AA_ARR_ACCOUNT_DATE_TIME
+    query: SELECT * FROM public."AA_ARR_ACCOUNT_DATE_TIME"
+    schemaRef: ../schemas/AA_ARR_ACCOUNT_DATE_TIME.schema.yaml
+  - schema: informatica 
+    name: AA_ARR_ACCOUNT_POSTING_RESTRICT
+    query: SELECT * FROM public."AA_ARR_ACCOUNT_POSTING_RESTRICT"
+    schemaRef: ../schemas/AA_ARR_ACCOUNT_POSTING_RESTRICT.schema.yaml
+  - schema: informatica 
+    name: AA_ARR_BALANCE_MAINTENANCE
+    query: SELECT * FROM public."AA_ARR_BALANCE_MAINTENANCE"
+    schemaRef: ../schemas/AA_ARR_BALANCE_MAINTENANCE.schema.yaml
+  - schema: informatica 
+    name: AA_ARR_BALANCE_MAINTENANCE_ADJ_BAL_TYPE
+    query: SELECT * FROM public."AA_ARR_BALANCE_MAINTENANCE_ADJ_BAL_TYPE"
+    schemaRef: ../schemas/AA_ARR_BALANCE_MAINTENANCE_ADJ_BAL_TYPE.schema.yaml
+  - schema: informatica 
+    name: AA_ARR_BALANCE_MAINTENANCE_ADJUST_PROP
+    query: SELECT * FROM public."AA_ARR_BALANCE_MAINTENANCE_ADJUST_PROP"
+    schemaRef: ../schemas/AA_ARR_BALANCE_MAINTENANCE_ADJUST_PROP.schema.yaml
+  - schema: informatica 
+    name: AA_ARR_BALANCE_MAINTENANCE_BILL_REF
+    query: SELECT * FROM public."AA_ARR_BALANCE_MAINTENANCE_BILL_REF"
+    schemaRef: ../schemas/AA_ARR_BALANCE_MAINTENANCE_BILL_REF.schema.yaml
+  - schema: informatica 
+    name: AA_ARR_BALANCE_MAINTENANCE_PROPERTY
+    query: SELECT * FROM public."AA_ARR_BALANCE_MAINTENANCE_PROPERTY"
+    schemaRef: ../schemas/AA_ARR_BALANCE_MAINTENANCE_PROPERTY.schema.yaml
+  - schema: informatica 
+    name: AA_ARR_INTEREST
+    query: SELECT * FROM public."AA_ARR_INTEREST"
+    schemaRef: ../schemas/AA_ARR_INTEREST.schema.yaml
+  - schema: informatica 
+    name: AA_ARR_INTEREST_DATE_TIME
+    query: SELECT * FROM public."AA_ARR_INTEREST_DATE_TIME"
+    schemaRef: ../schemas/AA_ARR_INTEREST_DATE_TIME.schema.yaml
+  - schema: informatica 
+    name: AA_ARR_INTEREST_FIXED_RATE
+    query: SELECT * FROM public."AA_ARR_INTEREST_FIXED_RATE"
+    schemaRef: ../schemas/AA_ARR_INTEREST_FIXED_RATE.schema.yaml
+  - schema: informatica 
+    name: AA_ARR_INTEREST_MARGIN_TYPE
+    query: SELECT * FROM public."AA_ARR_INTEREST_MARGIN_TYPE"
+    schemaRef: ../schemas/AA_ARR_INTEREST_MARGIN_TYPE.schema.yaml
+  - schema: informatica 
+    name: AA_ARR_INTEREST_USER_MARGIN_TYPE
+    query: SELECT * FROM public."AA_ARR_INTEREST_USER_MARGIN_TYPE"
+    schemaRef: ../schemas/AA_ARR_INTEREST_USER_MARGIN_TYPE.schema.yaml
+  - schema: informatica 
+    name: AA_ARR_LIMIT
+    query: SELECT * FROM public."AA_ARR_LIMIT"
+    schemaRef: ../schemas/AA_ARR_LIMIT.schema.yaml
+  - schema: informatica 
+    name: AA_ARR_LIMIT_DATE_TIME
+    query: SELECT * FROM public."AA_ARR_LIMIT_DATE_TIME"
+    schemaRef: ../schemas/AA_ARR_LIMIT_DATE_TIME.schema.yaml
+  - schema: informatica 
+    name: AA_ARR_PAYMENT_SCHEDULE
+    query: SELECT * FROM public."AA_ARR_PAYMENT_SCHEDULE"
+    schemaRef: ../schemas/AA_ARR_PAYMENT_SCHEDULE.schema.yaml
+  - schema: informatica 
+    name: AA_ARR_PAYMENT_SCHEDULE_DATE_TIME
+    query: SELECT * FROM public."AA_ARR_PAYMENT_SCHEDULE_DATE_TIME"
+    schemaRef: ../schemas/AA_ARR_PAYMENT_SCHEDULE_DATE_TIME.schema.yaml
+  - schema: informatica 
+    name: AA_ARR_PAYMENT_SCHEDULE_PAYMENT_TYPE
+    query: SELECT * FROM public."AA_ARR_PAYMENT_SCHEDULE_PAYMENT_TYPE"
+    schemaRef: ../schemas/AA_ARR_PAYMENT_SCHEDULE_PAYMENT_TYPE.schema.yaml
+  - schema: informatica 
+    name: AA_ARR_PAYMENT_SCHEDULE_PERCENTAGE
+    query: SELECT * FROM public."AA_ARR_PAYMENT_SCHEDULE_PERCENTAGE"
+    schemaRef: ../schemas/AA_ARR_PAYMENT_SCHEDULE_PERCENTAGE.schema.yaml
+  - schema: informatica 
+    name: AA_ARR_PAYMENT_SCHEDULE_PROPERTY
+    query: SELECT * FROM public."AA_ARR_PAYMENT_SCHEDULE_PROPERTY"
+    schemaRef: ../schemas/AA_ARR_PAYMENT_SCHEDULE_PROPERTY.schema.yaml
+  - schema: informatica 
+    name: AA_ARR_SETTLEMENT
+    query: SELECT * FROM public."AA_ARR_SETTLEMENT"
+    schemaRef: ../schemas/AA_ARR_SETTLEMENT.schema.yaml
+  - schema: informatica 
+    name: AA_ARR_SETTLEMENT_DD_MANDATE_REF
+    query: SELECT * FROM public."AA_ARR_SETTLEMENT_DD_MANDATE_REF"
+    schemaRef: ../schemas/AA_ARR_SETTLEMENT_DD_MANDATE_REF.schema.yaml
+  - schema: informatica 
+    name: AA_ARR_SETTLEMENT_PAYIN_CURRENCY
+    query: SELECT * FROM public."AA_ARR_SETTLEMENT_PAYIN_CURRENCY"
+    schemaRef: ../schemas/AA_ARR_SETTLEMENT_PAYIN_CURRENCY.schema.yaml
+  - schema: informatica 
+    name: AA_ARR_SETTLEMENT_PAYOUT_ACCOUNT
+    query: SELECT * FROM public."AA_ARR_SETTLEMENT_PAYOUT_ACCOUNT"
+    schemaRef: ../schemas/AA_ARR_SETTLEMENT_PAYOUT_ACCOUNT.schema.yaml
+  - schema: informatica 
+    name: AA_ARR_SETTLEMENT_PAYOUT_CURRENCY
+    query: SELECT * FROM public."AA_ARR_SETTLEMENT_PAYOUT_CURRENCY"
+    schemaRef: ../schemas/AA_ARR_SETTLEMENT_PAYOUT_CURRENCY.schema.yaml
+  - schema: informatica 
+    name: AA_ARR_TAX
+    query: SELECT * FROM public."AA_ARR_TAX"
+    schemaRef: ../schemas/AA_ARR_TAX.schema.yaml
+  - schema: informatica 
+    name: AA_ARR_TAX_PROP_TAX_COND
+    query: SELECT * FROM public."AA_ARR_TAX_PROP_TAX_COND"
+    schemaRef: ../schemas/AA_ARR_TAX_PROP_TAX_COND.schema.yaml
+  - schema: informatica 
+    name: AA_ARR_TAX_PROPERTY
+    query: SELECT * FROM public."AA_ARR_TAX_PROPERTY"
+    schemaRef: ../schemas/AA_ARR_TAX_PROPERTY.schema.yaml
+  - schema: informatica 
+    name: AA_ARR_TERM_AMOUNT
+    query: SELECT * FROM public."AA_ARR_TERM_AMOUNT"
+    schemaRef: ../schemas/AA_ARR_TERM_AMOUNT.schema.yaml
+  - schema: informatica 
+    name: AA_ARR_TERM_AMOUNT_DATE_TIME
+    query: SELECT * FROM public."AA_ARR_TERM_AMOUNT_DATE_TIME"
+    schemaRef: ../schemas/AA_ARR_TERM_AMOUNT_DATE_TIME.schema.yaml
+  - schema: informatica 
+    name: AA_ARRANGEMENT
+    query: SELECT * FROM public."AA_ARRANGEMENT"
+    schemaRef: ../schemas/AA_ARRANGEMENT.schema.yaml
+  - schema: informatica 
+    name: AA_ARRANGEMENT_LINK_DATE
+    query: SELECT * FROM public."AA_ARRANGEMENT_LINK_DATE"
+    schemaRef: ../schemas/AA_ARRANGEMENT_LINK_DATE.schema.yaml
+  - schema: informatica 
+    name: AA_ARRANGEMENT_LINK_TYPE
+    query: SELECT * FROM public."AA_ARRANGEMENT_LINK_TYPE"
+    schemaRef: ../schemas/AA_ARRANGEMENT_LINK_TYPE.schema.yaml
+  - schema: informatica 
+    name: AA_ARRANGEMENT_PRODUCT
+    query: SELECT * FROM public."AA_ARRANGEMENT_PRODUCT"
+    schemaRef: ../schemas/AA_ARRANGEMENT_PRODUCT.schema.yaml
+  - schema: informatica 
+    name: AA_ARRANGEMENT_VARIATION_EFF_DATE
+    query: SELECT * FROM public."AA_ARRANGEMENT_VARIATION_EFF_DATE"
+    schemaRef: ../schemas/AA_ARRANGEMENT_VARIATION_EFF_DATE.schema.yaml
+  - schema: informatica 
+    name: AA_BILL_DETAILS
+    query: SELECT * FROM public."AA_BILL_DETAILS"
+    schemaRef: ../schemas/AA_BILL_DETAILS.schema.yaml
+  - schema: informatica 
+    name: AA_BILL_DETAILS_BILL_STATUS
+    query: SELECT * FROM public."AA_BILL_DETAILS_BILL_STATUS"
+    schemaRef: ../schemas/AA_BILL_DETAILS_BILL_STATUS.schema.yaml
+  - schema: informatica 
+    name: AA_BILL_DETAILS_PAY_PROPERTY
+    query: SELECT * FROM public."AA_BILL_DETAILS_PAY_PROPERTY"
+    schemaRef: ../schemas/AA_BILL_DETAILS_PAY_PROPERTY.schema.yaml
+  - schema: informatica 
+    name: AA_BILL_DETAILS_PAYMENT_TYPE
+    query: SELECT * FROM public."AA_BILL_DETAILS_PAYMENT_TYPE"
+    schemaRef: ../schemas/AA_BILL_DETAILS_PAYMENT_TYPE.schema.yaml
+  - schema: informatica 
+    name: AA_BILL_DETAILS_PROPERTY
+    query: SELECT * FROM public."AA_BILL_DETAILS_PROPERTY"
+    schemaRef: ../schemas/AA_BILL_DETAILS_PROPERTY.schema.yaml
+  - schema: informatica 
+    name: AA_BILL_DETAILS_REPAY_REF
+    query: SELECT * FROM public."AA_BILL_DETAILS_REPAY_REF"
+    schemaRef: ../schemas/AA_BILL_DETAILS_REPAY_REF.schema.yaml
+  - schema: informatica 
+    name: AA_BILL_DETAILS_SETTLE_STATUS
+    query: SELECT * FROM public."AA_BILL_DETAILS_SETTLE_STATUS"
+    schemaRef: ../schemas/AA_BILL_DETAILS_SETTLE_STATUS.schema.yaml
+  - schema: informatica 
+    name: AA_BILL_DETAILS_WRITEOFF_REF
+    query: SELECT * FROM public."AA_BILL_DETAILS_WRITEOFF_REF"
+    schemaRef: ../schemas/AA_BILL_DETAILS_WRITEOFF_REF.schema.yaml
+  - schema: informatica 
+    name: AA_KBWW_REP_SCHED_DATES
+    query: SELECT * FROM public."AA_KBWW_REP_SCHED_DATES"
+    schemaRef: ../schemas/AA_KBWW_REP_SCHED_DATES.schema.yaml
+  - schema: informatica 
+    name: AA_KBWW_REP_SCHED_DATES_DUE_DATES
+    query: SELECT * FROM public."AA_KBWW_REP_SCHED_DATES_DUE_DATES"
+    schemaRef: ../schemas/AA_KBWW_REP_SCHED_DATES_DUE_DATES.schema.yaml
+  - schema: informatica 
+    name: AA_KBWW_REP_SCHED_EXPORT
+    query: SELECT * FROM public."AA_KBWW_REP_SCHED_EXPORT"
+    schemaRef: ../schemas/AA_KBWW_REP_SCHED_EXPORT.schema.yaml
+  - schema: informatica 
+    name: AA_KBWW_REP_SCHED_EXPORT_DUE_METHOD
+    query: SELECT * FROM public."AA_KBWW_REP_SCHED_EXPORT_DUE_METHOD"
+    schemaRef: ../schemas/AA_KBWW_REP_SCHED_EXPORT_DUE_METHOD.schema.yaml
+  - schema: informatica 
+    name: AA_KBWW_REP_SCHED_EXPORT_DUE_TYPE
+    query: SELECT * FROM public."AA_KBWW_REP_SCHED_EXPORT_DUE_TYPE"
+    schemaRef: ../schemas/AA_KBWW_REP_SCHED_EXPORT_DUE_TYPE.schema.yaml
+  - schema: informatica 
+    name: AA_PRODUCT
+    query: SELECT * FROM public."AA_PRODUCT"
+    schemaRef: ../schemas/AA_PRODUCT.schema.yaml
+  - schema: informatica 
+    name: AA_PRODUCT_AVAILABLE_COMPANY
+    query: SELECT * FROM public."AA_PRODUCT_AVAILABLE_COMPANY"
+    schemaRef: ../schemas/AA_PRODUCT_AVAILABLE_COMPANY.schema.yaml
+  - schema: informatica 
+    name: AA_PRODUCT_AVAILABLE_COUNTRY
+    query: SELECT * FROM public."AA_PRODUCT_AVAILABLE_COUNTRY"
+    schemaRef: ../schemas/AA_PRODUCT_AVAILABLE_COUNTRY.schema.yaml
+  - schema: informatica 
+    name: AA_PRODUCT_AVAILABLE_DATE
+    query: SELECT * FROM public."AA_PRODUCT_AVAILABLE_DATE"
+    schemaRef: ../schemas/AA_PRODUCT_AVAILABLE_DATE.schema.yaml
+  - schema: informatica 
+    name: AA_PRODUCT_AVAILABLE_REGION
+    query: SELECT * FROM public."AA_PRODUCT_AVAILABLE_REGION"
+    schemaRef: ../schemas/AA_PRODUCT_AVAILABLE_REGION.schema.yaml
+  - schema: informatica 
+    name: AA_PRODUCT_CAT_PROP_CONTROL_PROPERTY
+    query: SELECT * FROM public."AA_PRODUCT_CAT_PROP_CONTROL_PROPERTY"
+    schemaRef: ../schemas/AA_PRODUCT_CAT_PROP_CONTROL_PROPERTY.schema.yaml
+  - schema: informatica 
+    name: AA_PRODUCT_CAT_PROPERTY
+    query: SELECT * FROM public."AA_PRODUCT_CAT_PROPERTY"
+    schemaRef: ../schemas/AA_PRODUCT_CAT_PROPERTY.schema.yaml
+  - schema: informatica 
+    name: AA_PRODUCT_ML
+    query: SELECT * FROM public."AA_PRODUCT_ML"
+    schemaRef: ../schemas/AA_PRODUCT_ML.schema.yaml
+  - schema: informatica 
+    name: AA_PRODUCT_OWNING_COMPANY
+    query: SELECT * FROM public."AA_PRODUCT_OWNING_COMPANY"
+    schemaRef: ../schemas/AA_PRODUCT_OWNING_COMPANY.schema.yaml
+  - schema: informatica 
+    name: AA_PRODUCT_PRF_PROP_CONTROL_PROPERTY
+    query: SELECT * FROM public."AA_PRODUCT_PRF_PROP_CONTROL_PROPERTY"
+    schemaRef: ../schemas/AA_PRODUCT_PRF_PROP_CONTROL_PROPERTY.schema.yaml
+  - schema: informatica 
+    name: AA_PRODUCT_PRF_PROPERTY
+    query: SELECT * FROM public."AA_PRODUCT_PRF_PROPERTY"
+    schemaRef: ../schemas/AA_PRODUCT_PRF_PROPERTY.schema.yaml
+  - schema: informatica 
+    name: AA_PRODUCT_PRODUCT_ERROR
+    query: SELECT * FROM public."AA_PRODUCT_PRODUCT_ERROR"
+    schemaRef: ../schemas/AA_PRODUCT_PRODUCT_ERROR.schema.yaml
+  - schema: informatica 
+    name: AA_SCHEDULED_ACTIVITY
+    query: SELECT * FROM public."AA_SCHEDULED_ACTIVITY"
+    schemaRef: ../schemas/AA_SCHEDULED_ACTIVITY.schema.yaml
+  - schema: informatica 
+    name: AA_SCHEDULED_ACTIVITY_ACTIVITY_NAME
+    query: SELECT * FROM public."AA_SCHEDULED_ACTIVITY_ACTIVITY_NAME"
+    schemaRef: ../schemas/AA_SCHEDULED_ACTIVITY_ACTIVITY_NAME.schema.yaml
+  - schema: informatica 
+    name: AC_BALANCE_TYPE
+    query: SELECT * FROM public."AC_BALANCE_TYPE"
+    schemaRef: ../schemas/AC_BALANCE_TYPE.schema.yaml
+  - schema: informatica 
+    name: AC_BALANCE_TYPE_BALANCE_TYPE
+    query: SELECT * FROM public."AC_BALANCE_TYPE_BALANCE_TYPE"
+    schemaRef: ../schemas/AC_BALANCE_TYPE_BALANCE_TYPE.schema.yaml
+  - schema: informatica 
+    name: AC_BALANCE_TYPE_DATE_TIME
+    query: SELECT * FROM public."AC_BALANCE_TYPE_DATE_TIME"
+    schemaRef: ../schemas/AC_BALANCE_TYPE_DATE_TIME.schema.yaml
+  - schema: informatica 
+    name: AC_BALANCE_TYPE_INPUTTER
+    query: SELECT * FROM public."AC_BALANCE_TYPE_INPUTTER"
+    schemaRef: ../schemas/AC_BALANCE_TYPE_INPUTTER.schema.yaml
+  - schema: informatica 
+    name: AC_BALANCE_TYPE_LOCAL_REF
+    query: SELECT * FROM public."AC_BALANCE_TYPE_LOCAL_REF"
+    schemaRef: ../schemas/AC_BALANCE_TYPE_LOCAL_REF.schema.yaml
+  - schema: informatica 
+    name: AC_BALANCE_TYPE_ML
+    query: SELECT * FROM public."AC_BALANCE_TYPE_ML"
+    schemaRef: ../schemas/AC_BALANCE_TYPE_ML.schema.yaml
+  - schema: informatica 
+    name: AC_BALANCE_TYPE_OVERRIDE
+    query: SELECT * FROM public."AC_BALANCE_TYPE_OVERRIDE"
+    schemaRef: ../schemas/AC_BALANCE_TYPE_OVERRIDE.schema.yaml
+  - schema: informatica 
+    name: AC_BALANCE_TYPE_PRODUCT_LINE
+    query: SELECT * FROM public."AC_BALANCE_TYPE_PRODUCT_LINE"
+    schemaRef: ../schemas/AC_BALANCE_TYPE_PRODUCT_LINE.schema.yaml
+  - schema: informatica 
+    name: AC_BALANCE_TYPE_VIRTUAL_BAL
+    query: SELECT * FROM public."AC_BALANCE_TYPE_VIRTUAL_BAL"
+    schemaRef: ../schemas/AC_BALANCE_TYPE_VIRTUAL_BAL.schema.yaml
+  - schema: informatica 
+    name: AC_KBWW_MCY_MASTER_BALANCES
+    query: SELECT * FROM public."AC_KBWW_MCY_MASTER_BALANCES"
+    schemaRef: ../schemas/AC_KBWW_MCY_MASTER_BALANCES.schema.yaml
+  - schema: informatica 
+    name: AC_LOCKED_EVENT_TYPE
+    query: SELECT * FROM public."AC_LOCKED_EVENT_TYPE"
+    schemaRef: ../schemas/AC_LOCKED_EVENT_TYPE.schema.yaml
+  - schema: informatica 
+    name: AC_LOCKED_EVENT_TYPE_DATE_TIME
+    query: SELECT * FROM public."AC_LOCKED_EVENT_TYPE_DATE_TIME"
+    schemaRef: ../schemas/AC_LOCKED_EVENT_TYPE_DATE_TIME.schema.yaml
+  - schema: informatica 
+    name: AC_LOCKED_EVENT_TYPE_INPUTTER
+    query: SELECT * FROM public."AC_LOCKED_EVENT_TYPE_INPUTTER"
+    schemaRef: ../schemas/AC_LOCKED_EVENT_TYPE_INPUTTER.schema.yaml
+  - schema: informatica 
+    name: AC_LOCKED_EVENT_TYPE_LOCAL_REF
+    query: SELECT * FROM public."AC_LOCKED_EVENT_TYPE_LOCAL_REF"
+    schemaRef: ../schemas/AC_LOCKED_EVENT_TYPE_LOCAL_REF.schema.yaml
+  - schema: informatica 
+    name: AC_LOCKED_EVENT_TYPE_ML
+    query: SELECT * FROM public."AC_LOCKED_EVENT_TYPE_ML"
+    schemaRef: ../schemas/AC_LOCKED_EVENT_TYPE_ML.schema.yaml
+  - schema: informatica 
+    name: AC_LOCKED_EVENT_TYPE_OVERRIDE
+    query: SELECT * FROM public."AC_LOCKED_EVENT_TYPE_OVERRIDE"
+    schemaRef: ../schemas/AC_LOCKED_EVENT_TYPE_OVERRIDE.schema.yaml
+  - schema: informatica 
+    name: AC_LOCKED_EVENTS
+    query: SELECT * FROM public."AC_LOCKED_EVENTS"
+    schemaRef: ../schemas/AC_LOCKED_EVENTS.schema.yaml
+  - schema: informatica 
+    name: AC_LOCKED_EVENTS_DATE_TIME
+    query: SELECT * FROM public."AC_LOCKED_EVENTS_DATE_TIME"
+    schemaRef: ../schemas/AC_LOCKED_EVENTS_DATE_TIME.schema.yaml
+  - schema: informatica 
+    name: AC_LOCKED_EVENTS_L_GSFT_NAME
+    query: SELECT * FROM public."AC_LOCKED_EVENTS_L_GSFT_NAME"
+    schemaRef: ../schemas/AC_LOCKED_EVENTS_L_GSFT_NAME.schema.yaml
+  - schema: informatica 
+    name: ACCOUNT
+    query: SELECT * FROM public."ACCOUNT"
+    schemaRef: ../schemas/ACCOUNT.schema.yaml
+  - schema: informatica 
+    name: ACCOUNT#HIS
+    query: SELECT * FROM public."ACCOUNT#HIS"
+    schemaRef: ../schemas/ACCOUNT#HIS.schema.yaml
+  - schema: informatica 
+    name: ACCOUNT_ALT_ACCT_TYPE
+    query: SELECT * FROM public."ACCOUNT_ALT_ACCT_TYPE"
+    schemaRef: ../schemas/ACCOUNT_ALT_ACCT_TYPE.schema.yaml
+  - schema: informatica 
+    name: ACCOUNT_ALT_ACCT_TYPE#HIS
+    query: SELECT * FROM public."ACCOUNT_ALT_ACCT_TYPE#HIS"
+    schemaRef: ../schemas/ACCOUNT_ALT_ACCT_TYPE#HIS.schema.yaml
+  - schema: informatica 
+    name: ACCOUNT_CLOSED
+    query: SELECT * FROM public."ACCOUNT_CLOSED"
+    schemaRef: ../schemas/ACCOUNT_CLOSED.schema.yaml
+  - schema: informatica 
+    name: ACCOUNT_INPUTTER
+    query: SELECT * FROM public."ACCOUNT_INPUTTER"
+    schemaRef: ../schemas/ACCOUNT_INPUTTER.schema.yaml
+  - schema: informatica 
+    name: ACCOUNT_INPUTTER#HIS
+    query: SELECT * FROM public."ACCOUNT_INPUTTER#HIS"
+    schemaRef: ../schemas/ACCOUNT_INPUTTER#HIS.schema.yaml
+  - schema: informatica 
+    name: ACCOUNT_L_ACCT_DESC_CZ
+    query: SELECT * FROM public."ACCOUNT_L_ACCT_DESC_CZ"
+    schemaRef: ../schemas/ACCOUNT_L_ACCT_DESC_CZ.schema.yaml
+  - schema: informatica 
+    name: ACCOUNT_L_ACCT_DESC_CZ#HIS
+    query: SELECT * FROM public."ACCOUNT_L_ACCT_DESC_CZ#HIS"
+    schemaRef: ../schemas/ACCOUNT_L_ACCT_DESC_CZ#HIS.schema.yaml
+  - schema: informatica 
+    name: ACCOUNT_MEMO_FIELD
+    query: SELECT * FROM public."ACCOUNT_MEMO_FIELD"
+    schemaRef: ../schemas/ACCOUNT_MEMO_FIELD.schema.yaml
+  - schema: informatica 
+    name: ACCOUNT_MEMO_FIELD#HIS
+    query: SELECT * FROM public."ACCOUNT_MEMO_FIELD#HIS"
+    schemaRef: ../schemas/ACCOUNT_MEMO_FIELD#HIS.schema.yaml
+  - schema: informatica 
+    name: ACCOUNT_MEMO_FIELD_EN
+    query: SELECT * FROM public."ACCOUNT_MEMO_FIELD_EN"
+    schemaRef: ../schemas/ACCOUNT_MEMO_FIELD_EN.schema.yaml
+  - schema: informatica 
+    name: ACCOUNT_MEMO_FIELD_EN#HIS
+    query: SELECT * FROM public."ACCOUNT_MEMO_FIELD_EN#HIS"
+    schemaRef: ../schemas/ACCOUNT_MEMO_FIELD_EN#HIS.schema.yaml
+  - schema: informatica 
+    name: ACCOUNT_ML
+    query: SELECT * FROM public."ACCOUNT_ML"
+    schemaRef: ../schemas/ACCOUNT_ML.schema.yaml
+  - schema: informatica 
+    name: ACCOUNT_ML#HIS
+    query: SELECT * FROM public."ACCOUNT_ML#HIS"
+    schemaRef: ../schemas/ACCOUNT_ML#HIS.schema.yaml
+  - schema: informatica 
+    name: ACCOUNT_OVERDRAWN
+    query: SELECT * FROM public."ACCOUNT_OVERDRAWN"
+    schemaRef: ../schemas/ACCOUNT_OVERDRAWN.schema.yaml
+  - schema: informatica 
+    name: ACCOUNT_POSTING_RESTRICT
+    query: SELECT * FROM public."ACCOUNT_POSTING_RESTRICT"
+    schemaRef: ../schemas/ACCOUNT_POSTING_RESTRICT.schema.yaml
+  - schema: informatica 
+    name: ALTERNATE_ACCOUNT
+    query: SELECT * FROM public."ALTERNATE_ACCOUNT"
+    schemaRef: ../schemas/ALTERNATE_ACCOUNT.schema.yaml
+  - schema: informatica 
+    name: CATEG_ENTRY
+    query: SELECT * FROM public."CATEG_ENTRY"
+    schemaRef: ../schemas/CATEG_ENTRY.schema.yaml
+  - schema: informatica 
+    name: CATEG_ENTRY_INPUTTER
+    query: SELECT * FROM public."CATEG_ENTRY_INPUTTER"
+    schemaRef: ../schemas/CATEG_ENTRY_INPUTTER.schema.yaml
+  - schema: informatica 
+    name: CATEG_ENTRY_NARRATIVE
+    query: SELECT * FROM public."CATEG_ENTRY_NARRATIVE"
+    schemaRef: ../schemas/CATEG_ENTRY_NARRATIVE.schema.yaml
+  - schema: informatica 
+    name: CATEGORY
+    query: SELECT * FROM public."CATEGORY"
+    schemaRef: ../schemas/CATEGORY.schema.yaml
+  - schema: informatica 
+    name: CATEGORY_CATEGORY_DES_CZ
+    query: SELECT * FROM public."CATEGORY_CATEGORY_DES_CZ"
+    schemaRef: ../schemas/CATEGORY_CATEGORY_DES_CZ.schema.yaml
+  - schema: informatica 
+    name: CATEGORY_DATE_TIME
+    query: SELECT * FROM public."CATEGORY_DATE_TIME"
+    schemaRef: ../schemas/CATEGORY_DATE_TIME.schema.yaml
+  - schema: informatica 
+    name: CATEGORY_INPUTTER
+    query: SELECT * FROM public."CATEGORY_INPUTTER"
+    schemaRef: ../schemas/CATEGORY_INPUTTER.schema.yaml
+  - schema: informatica 
+    name: CATEGORY_MEMO_FIELD
+    query: SELECT * FROM public."CATEGORY_MEMO_FIELD"
+    schemaRef: ../schemas/CATEGORY_MEMO_FIELD.schema.yaml
+  - schema: informatica 
+    name: CATEGORY_MEMO_FIELD_EN
+    query: SELECT * FROM public."CATEGORY_MEMO_FIELD_EN"
+    schemaRef: ../schemas/CATEGORY_MEMO_FIELD_EN.schema.yaml
+  - schema: informatica 
+    name: CATEGORY_ML
+    query: SELECT * FROM public."CATEGORY_ML"
+    schemaRef: ../schemas/CATEGORY_ML.schema.yaml
+  - schema: informatica 
+    name: CONSOLIDATE_ASST_LIAB
+    query: SELECT * FROM public."CONSOLIDATE_ASST_LIAB"
+    schemaRef: ../schemas/CONSOLIDATE_ASST_LIAB.schema.yaml
+  - schema: informatica 
+    name: CONSOLIDATE_ASST_LIAB_MAT_DATE
+    query: SELECT * FROM public."CONSOLIDATE_ASST_LIAB_MAT_DATE"
+    schemaRef: ../schemas/CONSOLIDATE_ASST_LIAB_MAT_DATE.schema.yaml
+  - schema: informatica 
+    name: CONSOLIDATE_ASST_LIAB_TYPE
+    query: SELECT * FROM public."CONSOLIDATE_ASST_LIAB_TYPE"
+    schemaRef: ../schemas/CONSOLIDATE_ASST_LIAB_TYPE.schema.yaml
+  - schema: informatica 
+    name: CONSOLIDATE_PRFT_LOSS
+    query: SELECT * FROM public."CONSOLIDATE_PRFT_LOSS"
+    schemaRef: ../schemas/CONSOLIDATE_PRFT_LOSS.schema.yaml
+  - schema: informatica 
+    name: CONSOLIDATE_PRFT_LOSS_CURRENCY
+    query: SELECT * FROM public."CONSOLIDATE_PRFT_LOSS_CURRENCY"
+    schemaRef: ../schemas/CONSOLIDATE_PRFT_LOSS_CURRENCY.schema.yaml
+  - schema: informatica 
+    name: CURRENCY
+    query: SELECT * FROM public."CURRENCY"
+    schemaRef: ../schemas/CURRENCY.schema.yaml
+  - schema: informatica 
+    name: CURRENCY_CURRENCY_MARKET
+    query: SELECT * FROM public."CURRENCY_CURRENCY_MARKET"
+    schemaRef: ../schemas/CURRENCY_CURRENCY_MARKET.schema.yaml
+  - schema: informatica 
+    name: CURRENCY_DATE_TIME
+    query: SELECT * FROM public."CURRENCY_DATE_TIME"
+    schemaRef: ../schemas/CURRENCY_DATE_TIME.schema.yaml
+  - schema: informatica 
+    name: CURRENCY_EQUIVALENT_CCYS
+    query: SELECT * FROM public."CURRENCY_EQUIVALENT_CCYS"
+    schemaRef: ../schemas/CURRENCY_EQUIVALENT_CCYS.schema.yaml
+  - schema: informatica 
+    name: CURRENCY_INPUTTER
+    query: SELECT * FROM public."CURRENCY_INPUTTER"
+    schemaRef: ../schemas/CURRENCY_INPUTTER.schema.yaml
+  - schema: informatica 
+    name: CURRENCY_MARKET
+    query: SELECT * FROM public."CURRENCY_MARKET"
+    schemaRef: ../schemas/CURRENCY_MARKET.schema.yaml
+  - schema: informatica 
+    name: CURRENCY_MARKET_DATE_TIME
+    query: SELECT * FROM public."CURRENCY_MARKET_DATE_TIME"
+    schemaRef: ../schemas/CURRENCY_MARKET_DATE_TIME.schema.yaml
+  - schema: informatica 
+    name: CURRENCY_MARKET_INPUTTER
+    query: SELECT * FROM public."CURRENCY_MARKET_INPUTTER"
+    schemaRef: ../schemas/CURRENCY_MARKET_INPUTTER.schema.yaml
+  - schema: informatica 
+    name: CURRENCY_MARKET_LOCAL_REF
+    query: SELECT * FROM public."CURRENCY_MARKET_LOCAL_REF"
+    schemaRef: ../schemas/CURRENCY_MARKET_LOCAL_REF.schema.yaml
+  - schema: informatica 
+    name: CURRENCY_MARKET_ML
+    query: SELECT * FROM public."CURRENCY_MARKET_ML"
+    schemaRef: ../schemas/CURRENCY_MARKET_ML.schema.yaml
+  - schema: informatica 
+    name: CURRENCY_ML
+    query: SELECT * FROM public."CURRENCY_ML"
+    schemaRef: ../schemas/CURRENCY_ML.schema.yaml
+  - schema: informatica 
+    name: CURRENCY_OVERRIDE
+    query: SELECT * FROM public."CURRENCY_OVERRIDE"
+    schemaRef: ../schemas/CURRENCY_OVERRIDE.schema.yaml
+  - schema: informatica 
+    name: CURRENCY_TRSY_LIMIT_AMT
+    query: SELECT * FROM public."CURRENCY_TRSY_LIMIT_AMT"
+    schemaRef: ../schemas/CURRENCY_TRSY_LIMIT_AMT.schema.yaml
+  - schema: informatica 
+    name: CUSTOMER
+    query: SELECT * FROM public."CUSTOMER"
+    schemaRef: ../schemas/CUSTOMER.schema.yaml
+  - schema: informatica 
+    name: CUSTOMER_EXTERN_SYS_ID
+    query: SELECT * FROM public."CUSTOMER_EXTERN_SYS_ID"
+    schemaRef: ../schemas/CUSTOMER_EXTERN_SYS_ID.schema.yaml
+  - schema: informatica 
+    name: CUSTOMER_CHARGE
+    query: SELECT * FROM public."CUSTOMER_CHARGE"
+    schemaRef: ../schemas/CUSTOMER_CHARGE.schema.yaml
+  - schema: informatica 
+    name: CUSTOMER_CHARGE_TAX_TYPE
+    query: SELECT * FROM public."CUSTOMER_CHARGE_TAX_TYPE"
+    schemaRef: ../schemas/CUSTOMER_CHARGE_TAX_TYPE.schema.yaml
+  - schema: informatica 
+    name: CUSTOMER_LEGAL_ID
+    query: SELECT * FROM public."CUSTOMER_LEGAL_ID"
+    schemaRef: ../schemas/CUSTOMER_LEGAL_ID.schema.yaml
+  - schema: informatica 
+    name: CUSTOMER_ML
+    query: SELECT * FROM public."CUSTOMER_ML"
+    schemaRef: ../schemas/CUSTOMER_ML.schema.yaml
+  - schema: informatica 
+    name: DATA_CAPTURE#HIS
+    query: SELECT * FROM public."DATA_CAPTURE#HIS"
+    schemaRef: ../schemas/DATA_CAPTURE#HIS.schema.yaml
+  - schema: informatica 
+    name: DATA_CAPTURE_DATE_TIME#HIS
+    query: SELECT * FROM public."DATA_CAPTURE_DATE_TIME#HIS"
+    schemaRef: ../schemas/DATA_CAPTURE_DATE_TIME#HIS.schema.yaml
+  - schema: informatica 
+    name: DATA_CAPTURE_INPUTTER#HIS
+    query: SELECT * FROM public."DATA_CAPTURE_INPUTTER#HIS"
+    schemaRef: ../schemas/DATA_CAPTURE_INPUTTER#HIS.schema.yaml
+  - schema: informatica 
+    name: DATA_CAPTURE_L_FT_PMT_DETS#HIS
+    query: SELECT * FROM public."DATA_CAPTURE_L_FT_PMT_DETS#HIS"
+    schemaRef: ../schemas/DATA_CAPTURE_L_FT_PMT_DETS#HIS.schema.yaml
+  - schema: informatica 
+    name: DATA_CAPTURE_NARRATIVE#HIS
+    query: SELECT * FROM public."DATA_CAPTURE_NARRATIVE#HIS"
+    schemaRef: ../schemas/DATA_CAPTURE_NARRATIVE#HIS.schema.yaml
+  - schema: informatica 
+    name: DATA_CAPTURE_OVERRIDE#HIS
+    query: SELECT * FROM public."DATA_CAPTURE_OVERRIDE#HIS"
+    schemaRef: ../schemas/DATA_CAPTURE_OVERRIDE#HIS.schema.yaml
+  - schema: informatica 
+    name: DATA_CAPTURE_STMT_NO#HIS
+    query: SELECT * FROM public."DATA_CAPTURE_STMT_NO#HIS"
+    schemaRef: ../schemas/DATA_CAPTURE_STMT_NO#HIS.schema.yaml
+  - schema: informatica 
+    name: DATES
+    query: SELECT * FROM public."DATES"
+    schemaRef: ../schemas/DATES.schema.yaml
+  - schema: informatica 
+    name: DATES_DATE_TIME
+    query: SELECT * FROM public."DATES_DATE_TIME"
+    schemaRef: ../schemas/DATES_DATE_TIME.schema.yaml
+  - schema: informatica 
+    name: DATES_INPUTTER
+    query: SELECT * FROM public."DATES_INPUTTER"
+    schemaRef: ../schemas/DATES_INPUTTER.schema.yaml
+  - schema: informatica 
+    name: DATES_OVERRIDE
+    query: SELECT * FROM public."DATES_OVERRIDE"
+    schemaRef: ../schemas/DATES_OVERRIDE.schema.yaml
+  - schema: informatica 
+    name: EB_CASHFLOW
+    query: SELECT * FROM public."EB_CASHFLOW"
+    schemaRef: ../schemas/EB_CASHFLOW.schema.yaml
+  - schema: informatica 
+    name: EB_CASHFLOW_CASH_FLOW_DATE
+    query: SELECT * FROM public."EB_CASHFLOW_CASH_FLOW_DATE"
+    schemaRef: ../schemas/EB_CASHFLOW_CASH_FLOW_DATE.schema.yaml
+  - schema: informatica 
+    name: EB_FILE_UPLOAD
+    query: SELECT * FROM public."EB_FILE_UPLOAD"
+    schemaRef: ../schemas/EB_FILE_UPLOAD.schema.yaml
+  - schema: informatica 
+    name: EB_KBWW_EB_UPLOAD_CONTROL
+    query: SELECT * FROM public."EB_KBWW_EB_UPLOAD_CONTROL"
+    schemaRef: ../schemas/EB_KBWW_EB_UPLOAD_CONTROL.schema.yaml
+  - schema: informatica 
+    name: EB_SYSTEM_ID
+    query: SELECT * FROM public."EB_SYSTEM_ID"
+    schemaRef: ../schemas/EB_SYSTEM_ID.schema.yaml
+  - schema: informatica 
+    name: EB_SYSTEM_ID_DATE_TIME
+    query: SELECT * FROM public."EB_SYSTEM_ID_DATE_TIME"
+    schemaRef: ../schemas/EB_SYSTEM_ID_DATE_TIME.schema.yaml
+  - schema: informatica 
+    name: EB_SYSTEM_ID_INPUTTER
+    query: SELECT * FROM public."EB_SYSTEM_ID_INPUTTER"
+    schemaRef: ../schemas/EB_SYSTEM_ID_INPUTTER.schema.yaml
+  - schema: informatica 
+    name: EB_SYSTEM_ID_LOCAL_REF
+    query: SELECT * FROM public."EB_SYSTEM_ID_LOCAL_REF"
+    schemaRef: ../schemas/EB_SYSTEM_ID_LOCAL_REF.schema.yaml
+  - schema: informatica 
+    name: EB_SYSTEM_ID_ML
+    query: SELECT * FROM public."EB_SYSTEM_ID_ML"
+    schemaRef: ../schemas/EB_SYSTEM_ID_ML.schema.yaml
+  - schema: informatica 
+    name: FT_TXN_TYPE_CONDITION
+    query: SELECT * FROM public."FT_TXN_TYPE_CONDITION"
+    schemaRef: ../schemas/FT_TXN_TYPE_CONDITION.schema.yaml
+  - schema: informatica 
+    name: FT_TXN_TYPE_CONDITION_COMM_TYPES
+    query: SELECT * FROM public."FT_TXN_TYPE_CONDITION_COMM_TYPES"
+    schemaRef: ../schemas/FT_TXN_TYPE_CONDITION_COMM_TYPES.schema.yaml
+  - schema: informatica 
+    name: FT_TXN_TYPE_CONDITION_DATE_TIME
+    query: SELECT * FROM public."FT_TXN_TYPE_CONDITION_DATE_TIME"
+    schemaRef: ../schemas/FT_TXN_TYPE_CONDITION_DATE_TIME.schema.yaml
+  - schema: informatica 
+    name: FT_TXN_TYPE_CONDITION_DUPLICATE_CHECK
+    query: SELECT * FROM public."FT_TXN_TYPE_CONDITION_DUPLICATE_CHECK"
+    schemaRef: ../schemas/FT_TXN_TYPE_CONDITION_DUPLICATE_CHECK.schema.yaml
+  - schema: informatica 
+    name: FT_TXN_TYPE_CONDITION_CHARGE_TYPES
+    query: SELECT * FROM public."FT_TXN_TYPE_CONDITION_CHARGE_TYPES"
+    schemaRef: ../schemas/FT_TXN_TYPE_CONDITION_CHARGE_TYPES.schema.yaml
+  - schema: informatica 
+    name: FT_TXN_TYPE_CONDITION_INPUTTER
+    query: SELECT * FROM public."FT_TXN_TYPE_CONDITION_INPUTTER"
+    schemaRef: ../schemas/FT_TXN_TYPE_CONDITION_INPUTTER.schema.yaml
+  - schema: informatica 
+    name: FT_TXN_TYPE_CONDITION_LOCAL_REF
+    query: SELECT * FROM public."FT_TXN_TYPE_CONDITION_LOCAL_REF"
+    schemaRef: ../schemas/FT_TXN_TYPE_CONDITION_LOCAL_REF.schema.yaml
+  - schema: informatica 
+    name: FT_TXN_TYPE_CONDITION_ML
+    query: SELECT * FROM public."FT_TXN_TYPE_CONDITION_ML"
+    schemaRef: ../schemas/FT_TXN_TYPE_CONDITION_ML.schema.yaml
+  - schema: informatica 
+    name: FT_TXN_TYPE_CONDITION_PAYMENT_TYPE
+    query: SELECT * FROM public."FT_TXN_TYPE_CONDITION_PAYMENT_TYPE"
+    schemaRef: ../schemas/FT_TXN_TYPE_CONDITION_PAYMENT_TYPE.schema.yaml
+  - schema: informatica 
+    name: FUNDS_TRANSFER
+    query: SELECT * FROM public."FUNDS_TRANSFER"
+    schemaRef: ../schemas/FUNDS_TRANSFER.schema.yaml
+  - schema: informatica 
+    name: FUNDS_TRANSFER#HIS
+    query: SELECT * FROM public."FUNDS_TRANSFER#HIS"
+    schemaRef: ../schemas/FUNDS_TRANSFER#HIS.schema.yaml
+  - schema: informatica 
+    name: FUNDS_TRANSFER_INPUTTER
+    query: SELECT * FROM public."FUNDS_TRANSFER_INPUTTER"
+    schemaRef: ../schemas/FUNDS_TRANSFER_INPUTTER.schema.yaml
+  - schema: informatica 
+    name: FUNDS_TRANSFER_INPUTTER#HIS
+    query: SELECT * FROM public."FUNDS_TRANSFER_INPUTTER#HIS"
+    schemaRef: ../schemas/FUNDS_TRANSFER_INPUTTER#HIS.schema.yaml
+  - schema: informatica 
+    name: FUNDS_TRANSFER_L_FT_NOTE_BANK
+    query: SELECT * FROM public."FUNDS_TRANSFER_L_FT_NOTE_BANK"
+    schemaRef: ../schemas/FUNDS_TRANSFER_L_FT_NOTE_BANK.schema.yaml
+  - schema: informatica 
+    name: FUNDS_TRANSFER_L_FT_NOTE_BANK#HIS
+    query: SELECT * FROM public."FUNDS_TRANSFER_L_FT_NOTE_BANK#HIS"
+    schemaRef: ../schemas/FUNDS_TRANSFER_L_FT_NOTE_BANK#HIS.schema.yaml
+  - schema: informatica 
+    name: FUNDS_TRANSFER_L_FT_NOTE_CR
+    query: SELECT * FROM public."FUNDS_TRANSFER_L_FT_NOTE_CR"
+    schemaRef: ../schemas/FUNDS_TRANSFER_L_FT_NOTE_CR.schema.yaml
+  - schema: informatica 
+    name: FUNDS_TRANSFER_L_FT_NOTE_CR#HIS
+    query: SELECT * FROM public."FUNDS_TRANSFER_L_FT_NOTE_CR#HIS"
+    schemaRef: ../schemas/FUNDS_TRANSFER_L_FT_NOTE_CR#HIS.schema.yaml
+  - schema: informatica 
+    name: FUNDS_TRANSFER_L_FT_NOTE_DT
+    query: SELECT * FROM public."FUNDS_TRANSFER_L_FT_NOTE_DT"
+    schemaRef: ../schemas/FUNDS_TRANSFER_L_FT_NOTE_DT.schema.yaml
+  - schema: informatica 
+    name: FUNDS_TRANSFER_L_FT_NOTE_DT#HIS
+    query: SELECT * FROM public."FUNDS_TRANSFER_L_FT_NOTE_DT#HIS"
+    schemaRef: ../schemas/FUNDS_TRANSFER_L_FT_NOTE_DT#HIS.schema.yaml
+  - schema: informatica 
+    name: FUNDS_TRANSFER_L_FT_ORG_AC_NAM
+    query: SELECT * FROM public."FUNDS_TRANSFER_L_FT_ORG_AC_NAM"
+    schemaRef: ../schemas/FUNDS_TRANSFER_L_FT_ORG_AC_NAM.schema.yaml
+  - schema: informatica 
+    name: FUNDS_TRANSFER_L_FT_ORG_AC_NAM#HIS
+    query: SELECT * FROM public."FUNDS_TRANSFER_L_FT_ORG_AC_NAM#HIS"
+    schemaRef: ../schemas/FUNDS_TRANSFER_L_FT_ORG_AC_NAM#HIS.schema.yaml
+  - schema: informatica 
+    name: FUNDS_TRANSFER_L_FT_PART_NAME
+    query: SELECT * FROM public."FUNDS_TRANSFER_L_FT_PART_NAME"
+    schemaRef: ../schemas/FUNDS_TRANSFER_L_FT_PART_NAME.schema.yaml
+  - schema: informatica 
+    name: FUNDS_TRANSFER_L_FT_PART_NAME#HIS
+    query: SELECT * FROM public."FUNDS_TRANSFER_L_FT_PART_NAME#HIS"
+    schemaRef: ../schemas/FUNDS_TRANSFER_L_FT_PART_NAME#HIS.schema.yaml
+  - schema: informatica 
+    name: FUNDS_TRANSFER_L_FT_PMT_DETS
+    query: SELECT * FROM public."FUNDS_TRANSFER_L_FT_PMT_DETS"
+    schemaRef: ../schemas/FUNDS_TRANSFER_L_FT_PMT_DETS.schema.yaml
+  - schema: informatica 
+    name: FUNDS_TRANSFER_L_FT_PMT_DETS#HIS
+    query: SELECT * FROM public."FUNDS_TRANSFER_L_FT_PMT_DETS#HIS"
+    schemaRef: ../schemas/FUNDS_TRANSFER_L_FT_PMT_DETS#HIS.schema.yaml
+  - schema: informatica 
+    name: FUNDS_TRANSFER_L_FT_REMIT_INFO
+    query: SELECT * FROM public."FUNDS_TRANSFER_L_FT_REMIT_INFO"
+    schemaRef: ../schemas/FUNDS_TRANSFER_L_FT_REMIT_INFO.schema.yaml
+  - schema: informatica 
+    name: FUNDS_TRANSFER_L_FT_REMIT_INFO#HIS
+    query: SELECT * FROM public."FUNDS_TRANSFER_L_FT_REMIT_INFO#HIS"
+    schemaRef: ../schemas/FUNDS_TRANSFER_L_FT_REMIT_INFO#HIS.schema.yaml
+  - schema: informatica 
+    name: FUNDS_TRANSFER_OVERRIDE
+    query: SELECT * FROM public."FUNDS_TRANSFER_OVERRIDE"
+    schemaRef: ../schemas/FUNDS_TRANSFER_OVERRIDE.schema.yaml
+  - schema: informatica 
+    name: FUNDS_TRANSFER_OVERRIDE#HIS
+    query: SELECT * FROM public."FUNDS_TRANSFER_OVERRIDE#HIS"
+    schemaRef: ../schemas/FUNDS_TRANSFER_OVERRIDE#HIS.schema.yaml
+  - schema: informatica 
+    name: INTEREST_BASIS
+    query: SELECT * FROM public."INTEREST_BASIS"
+    schemaRef: ../schemas/INTEREST_BASIS.schema.yaml
+  - schema: informatica 
+    name: KB_ACCOUNT
+    query: SELECT * FROM public."KB_ACCOUNT"
+    schemaRef: ../schemas/KB_ACCOUNT.schema.yaml
+  - schema: informatica 
+    name: LIMIT
+    query: SELECT * FROM public."LIMIT"
+    schemaRef: ../schemas/LIMIT.schema.yaml
+  - schema: informatica 
+    name: LIMIT_ACC_COMPANY
+    query: SELECT * FROM public."LIMIT_ACC_COMPANY"
+    schemaRef: ../schemas/LIMIT_ACC_COMPANY.schema.yaml
+  - schema: informatica 
+    name: LIMIT_DATE_TIME
+    query: SELECT * FROM public."LIMIT_DATE_TIME"
+    schemaRef: ../schemas/LIMIT_DATE_TIME.schema.yaml
+  - schema: informatica 
+    name: POSITION
+    query: SELECT * FROM public."POSITION"
+    schemaRef: ../schemas/POSITION.schema.yaml
+  - schema: informatica 
+    name: POSITION_APPLIC_ID
+    query: SELECT * FROM public."POSITION_APPLIC_ID"
+    schemaRef: ../schemas/POSITION_APPLIC_ID.schema.yaml
+  - schema: informatica 
+    name: POSITION_SYSTEM_DATE
+    query: SELECT * FROM public."POSITION_SYSTEM_DATE"
+    schemaRef: ../schemas/POSITION_SYSTEM_DATE.schema.yaml
+  - schema: informatica 
+    name: POSITION_TXN_REF_NO
+    query: SELECT * FROM public."POSITION_TXN_REF_NO"
+    schemaRef: ../schemas/POSITION_TXN_REF_NO.schema.yaml
+  - schema: informatica 
+    name: POSTING_RESTRICT
+    query: SELECT * FROM public."POSTING_RESTRICT"
+    schemaRef: ../schemas/POSTING_RESTRICT.schema.yaml
+  - schema: informatica 
+    name: RE_CONSOL_SPEC_ENTRY
+    query: SELECT * FROM public."RE_CONSOL_SPEC_ENTRY"
+    schemaRef: ../schemas/RE_CONSOL_SPEC_ENTRY.schema.yaml
+  - schema: informatica 
+    name: RE_CONSOL_SPEC_ENTRY_DATE_TIME
+    query: SELECT * FROM public."RE_CONSOL_SPEC_ENTRY_DATE_TIME"
+    schemaRef: ../schemas/RE_CONSOL_SPEC_ENTRY_DATE_TIME.schema.yaml
+  - schema: informatica 
+    name: RE_CONSOL_SPEC_ENTRY_INPUTTER
+    query: SELECT * FROM public."RE_CONSOL_SPEC_ENTRY_INPUTTER"
+    schemaRef: ../schemas/RE_CONSOL_SPEC_ENTRY_INPUTTER.schema.yaml
+  - schema: informatica 
+    name: RE_CONSOL_SPEC_ENTRY_NARRATIVE
+    query: SELECT * FROM public."RE_CONSOL_SPEC_ENTRY_NARRATIVE"
+    schemaRef: ../schemas/RE_CONSOL_SPEC_ENTRY_NARRATIVE.schema.yaml
+  - schema: informatica 
+    name: RE_CONSOL_SPEC_ENTRY_PC_PERIOD_END
+    query: SELECT * FROM public."RE_CONSOL_SPEC_ENTRY_PC_PERIOD_END"
+    schemaRef: ../schemas/RE_CONSOL_SPEC_ENTRY_PC_PERIOD_END.schema.yaml
+  - schema: informatica 
+    name: RE_CRF_DETAIL_REPORT
+    query: SELECT * FROM public."RE_CRF_DETAIL_REPORT"
+    schemaRef: ../schemas/RE_CRF_DETAIL_REPORT.schema.yaml
+  - schema: informatica 
+    name: RE_CRF_DETAIL_REPORT_CONSOL_KEY
+    query: SELECT * FROM public."RE_CRF_DETAIL_REPORT_CONSOL_KEY"
+    schemaRef: ../schemas/RE_CRF_DETAIL_REPORT_CONSOL_KEY.schema.yaml
+  - schema: informatica 
+    name: RE_CRF_DETAIL_REPORT_CONSOL_KEY_REC_ID
+    query: SELECT * FROM public."RE_CRF_DETAIL_REPORT_CONSOL_KEY_REC_ID"
+    schemaRef: ../schemas/RE_CRF_DETAIL_REPORT_CONSOL_KEY_REC_ID.schema.yaml
+  - schema: informatica 
+    name: RE_CRF_DETAIL_REPORT_DATE_TIME
+    query: SELECT * FROM public."RE_CRF_DETAIL_REPORT_DATE_TIME"
+    schemaRef: ../schemas/RE_CRF_DETAIL_REPORT_DATE_TIME.schema.yaml
+  - schema: informatica 
+    name: RE_CRF_DETAIL_REPORT_INPUTTER
+    query: SELECT * FROM public."RE_CRF_DETAIL_REPORT_INPUTTER"
+    schemaRef: ../schemas/RE_CRF_DETAIL_REPORT_INPUTTER.schema.yaml
+  - schema: informatica 
+    name: RE_CRF_DETAIL_REPORT_OVERRIDE
+    query: SELECT * FROM public."RE_CRF_DETAIL_REPORT_OVERRIDE"
+    schemaRef: ../schemas/RE_CRF_DETAIL_REPORT_OVERRIDE.schema.yaml
+  - schema: informatica 
+    name: RE_CRF_CHECKSUM
+    query: SELECT * FROM public."RE_CRF_CHECKSUM"
+    schemaRef: ../schemas/RE_CRF_CHECKSUM.schema.yaml
+  - schema: informatica 
+    name: RE_CRF_KBGL
+    query: SELECT * FROM public."RE_CRF_KBGL"
+    schemaRef: ../schemas/RE_CRF_KBGL.schema.yaml
+  - schema: informatica 
+    name: RE_CRF_KBPL
+    query: SELECT * FROM public."RE_CRF_KBPL"
+    schemaRef: ../schemas/RE_CRF_KBPL.schema.yaml
+  - schema: informatica 
+    name: RE_KBWW_KBI_GL_IMPORT
+    query: SELECT * FROM public."RE_KBWW_KBI_GL_IMPORT"
+    schemaRef: ../schemas/RE_KBWW_KBI_GL_IMPORT.schema.yaml
+  - schema: informatica 
+    name: RE_KBWW_KBI_GL_IMPORT#HIS
+    query: SELECT * FROM public."RE_KBWW_KBI_GL_IMPORT#HIS"
+    schemaRef: ../schemas/RE_KBWW_KBI_GL_IMPORT#HIS.schema.yaml
+  - schema: informatica 
+    name: RE_KBWW_KBI_GL_IMPORT_DATE_TIME
+    query: SELECT * FROM public."RE_KBWW_KBI_GL_IMPORT_DATE_TIME"
+    schemaRef: ../schemas/RE_KBWW_KBI_GL_IMPORT_DATE_TIME.schema.yaml
+  - schema: informatica 
+    name: RE_KBWW_KBI_GL_IMPORT_DATE_TIME#HIS
+    query: SELECT * FROM public."RE_KBWW_KBI_GL_IMPORT_DATE_TIME#HIS"
+    schemaRef: ../schemas/RE_KBWW_KBI_GL_IMPORT_DATE_TIME#HIS.schema.yaml
+  - schema: informatica 
+    name: RE_KBWW_KBI_GL_IMPORT_ERROR_MSG
+    query: SELECT * FROM public."RE_KBWW_KBI_GL_IMPORT_ERROR_MSG"
+    schemaRef: ../schemas/RE_KBWW_KBI_GL_IMPORT_ERROR_MSG.schema.yaml
+  - schema: informatica 
+    name: RE_KBWW_KBI_GL_IMPORT_ERROR_MSG#HIS
+    query: SELECT * FROM public."RE_KBWW_KBI_GL_IMPORT_ERROR_MSG#HIS"
+    schemaRef: ../schemas/RE_KBWW_KBI_GL_IMPORT_ERROR_MSG#HIS.schema.yaml
+  - schema: informatica 
+    name: RE_KBWW_KBI_GL_IMPORT_INPUTTER
+    query: SELECT * FROM public."RE_KBWW_KBI_GL_IMPORT_INPUTTER"
+    schemaRef: ../schemas/RE_KBWW_KBI_GL_IMPORT_INPUTTER.schema.yaml
+  - schema: informatica 
+    name: RE_KBWW_KBI_GL_IMPORT_INPUTTER#HIS
+    query: SELECT * FROM public."RE_KBWW_KBI_GL_IMPORT_INPUTTER#HIS"
+    schemaRef: ../schemas/RE_KBWW_KBI_GL_IMPORT_INPUTTER#HIS.schema.yaml
+  - schema: informatica 
+    name: RE_KBWW_KBI_GL_IMPORT_LOCAL_REF
+    query: SELECT * FROM public."RE_KBWW_KBI_GL_IMPORT_LOCAL_REF"
+    schemaRef: ../schemas/RE_KBWW_KBI_GL_IMPORT_LOCAL_REF.schema.yaml
+  - schema: informatica 
+    name: RE_KBWW_KBI_GL_IMPORT_LOCAL_REF#HIS
+    query: SELECT * FROM public."RE_KBWW_KBI_GL_IMPORT_LOCAL_REF#HIS"
+    schemaRef: ../schemas/RE_KBWW_KBI_GL_IMPORT_LOCAL_REF#HIS.schema.yaml
+  - schema: informatica 
+    name: RE_KBWW_KBI_GL_IMPORT_OVERRIDE
+    query: SELECT * FROM public."RE_KBWW_KBI_GL_IMPORT_OVERRIDE"
+    schemaRef: ../schemas/RE_KBWW_KBI_GL_IMPORT_OVERRIDE.schema.yaml
+  - schema: informatica 
+    name: RE_KBWW_KBI_GL_IMPORT_OVERRIDE#HIS
+    query: SELECT * FROM public."RE_KBWW_KBI_GL_IMPORT_OVERRIDE#HIS"
+    schemaRef: ../schemas/RE_KBWW_KBI_GL_IMPORT_OVERRIDE#HIS.schema.yaml
+  - schema: informatica 
+    name: RE_KBWW_KBIGL_IMPORT_MAPPING
+    query: SELECT * FROM public."RE_KBWW_KBIGL_IMPORT_MAPPING"
+    schemaRef: ../schemas/RE_KBWW_KBIGL_IMPORT_MAPPING.schema.yaml
+  - schema: informatica 
+    name: RE_KBWW_KBIGL_IMPORT_MAPPING_DATE_TIME
+    query: SELECT * FROM public."RE_KBWW_KBIGL_IMPORT_MAPPING_DATE_TIME"
+    schemaRef: ../schemas/RE_KBWW_KBIGL_IMPORT_MAPPING_DATE_TIME.schema.yaml
+  - schema: informatica 
+    name: RE_KBWW_KBIGL_IMPORT_MAPPING_INPUTTER
+    query: SELECT * FROM public."RE_KBWW_KBIGL_IMPORT_MAPPING_INPUTTER"
+    schemaRef: ../schemas/RE_KBWW_KBIGL_IMPORT_MAPPING_INPUTTER.schema.yaml
+  - schema: informatica 
+    name: RE_KBWW_KBIGL_IMPORT_MAPPING_OVERRIDE
+    query: SELECT * FROM public."RE_KBWW_KBIGL_IMPORT_MAPPING_OVERRIDE"
+    schemaRef: ../schemas/RE_KBWW_KBIGL_IMPORT_MAPPING_OVERRIDE.schema.yaml
+  - schema: informatica 
+    name: RE_KBWW_SBU_GL_IMPORT
+    query: SELECT * FROM public."RE_KBWW_SBU_GL_IMPORT"
+    schemaRef: ../schemas/RE_KBWW_SBU_GL_IMPORT.schema.yaml
+  - schema: informatica 
+    name: RE_KBWW_SBU_GL_IMPORT#HIS
+    query: SELECT * FROM public."RE_KBWW_SBU_GL_IMPORT#HIS"
+    schemaRef: ../schemas/RE_KBWW_SBU_GL_IMPORT#HIS.schema.yaml
+  - schema: informatica 
+    name: RE_KBWW_SBU_GL_IMPORT_DATE_TIME
+    query: SELECT * FROM public."RE_KBWW_SBU_GL_IMPORT_DATE_TIME"
+    schemaRef: ../schemas/RE_KBWW_SBU_GL_IMPORT_DATE_TIME.schema.yaml
+  - schema: informatica 
+    name: RE_KBWW_SBU_GL_IMPORT_ERROR_MSG
+    query: SELECT * FROM public."RE_KBWW_SBU_GL_IMPORT_ERROR_MSG"
+    schemaRef: ../schemas/RE_KBWW_SBU_GL_IMPORT_ERROR_MSG.schema.yaml
+  - schema: informatica 
+    name: RE_KBWW_SBU_GL_IMPORT_INPUTTER
+    query: SELECT * FROM public."RE_KBWW_SBU_GL_IMPORT_INPUTTER"
+    schemaRef: ../schemas/RE_KBWW_SBU_GL_IMPORT_INPUTTER.schema.yaml
+  - schema: informatica 
+    name: RE_KBWW_SBU_GL_IMPORT_LOCAL_REF
+    query: SELECT * FROM public."RE_KBWW_SBU_GL_IMPORT_LOCAL_REF"
+    schemaRef: ../schemas/RE_KBWW_SBU_GL_IMPORT_LOCAL_REF.schema.yaml
+  - schema: informatica 
+    name: RE_KBWW_SBU_GL_IMPORT_NARRATIVE
+    query: SELECT * FROM public."RE_KBWW_SBU_GL_IMPORT_NARRATIVE"
+    schemaRef: ../schemas/RE_KBWW_SBU_GL_IMPORT_NARRATIVE.schema.yaml
+  - schema: informatica 
+    name: RE_KBWW_SBU_GL_IMPORT_OVERRIDE
+    query: SELECT * FROM public."RE_KBWW_SBU_GL_IMPORT_OVERRIDE"
+    schemaRef: ../schemas/RE_KBWW_SBU_GL_IMPORT_OVERRIDE.schema.yaml
+  - schema: informatica 
+    name: RE_KBWW_SBUGL_IMPORT_MAPPING
+    query: SELECT * FROM public."RE_KBWW_SBUGL_IMPORT_MAPPING"
+    schemaRef: ../schemas/RE_KBWW_SBUGL_IMPORT_MAPPING.schema.yaml
+  - schema: informatica 
+    name: RE_KBWW_SBUGL_IMPORT_MAPPING_DATE_TIME
+    query: SELECT * FROM public."RE_KBWW_SBUGL_IMPORT_MAPPING_DATE_TIME"
+    schemaRef: ../schemas/RE_KBWW_SBUGL_IMPORT_MAPPING_DATE_TIME.schema.yaml
+  - schema: informatica 
+    name: RE_KBWW_SBUGL_IMPORT_MAPPING_INPUTTER
+    query: SELECT * FROM public."RE_KBWW_SBUGL_IMPORT_MAPPING_INPUTTER"
+    schemaRef: ../schemas/RE_KBWW_SBUGL_IMPORT_MAPPING_INPUTTER.schema.yaml
+  - schema: informatica 
+    name: RE_KBWW_SBUGL_IMPORT_MAPPING_OVERRIDE
+    query: SELECT * FROM public."RE_KBWW_SBUGL_IMPORT_MAPPING_OVERRIDE"
+    schemaRef: ../schemas/RE_KBWW_SBUGL_IMPORT_MAPPING_OVERRIDE.schema.yaml
+  - schema: informatica 
+    name: RE_STAT_LINE_BAL
+    query: SELECT * FROM public."RE_STAT_LINE_BAL"
+    schemaRef: ../schemas/RE_STAT_LINE_BAL.schema.yaml
+  - schema: informatica 
+    name: RE_STAT_LINE_CONT
+    query: SELECT * FROM public."RE_STAT_LINE_CONT"
+    schemaRef: ../schemas/RE_STAT_LINE_CONT.schema.yaml
+  - schema: informatica 
+    name: RE_STAT_LINE_CONT_ASSET_TYPE
+    query: SELECT * FROM public."RE_STAT_LINE_CONT_ASSET_TYPE"
+    schemaRef: ../schemas/RE_STAT_LINE_CONT_ASSET_TYPE.schema.yaml
+  - schema: informatica 
+    name: RE_STAT_LINE_CONT_ASST_CONSOL_KEY
+    query: SELECT * FROM public."RE_STAT_LINE_CONT_ASST_CONSOL_KEY"
+    schemaRef: ../schemas/RE_STAT_LINE_CONT_ASST_CONSOL_KEY.schema.yaml
+  - schema: informatica 
+    name: RE_STAT_LINE_CONT_MV_ML
+    query: SELECT * FROM public."RE_STAT_LINE_CONT_MV_ML"
+    schemaRef: ../schemas/RE_STAT_LINE_CONT_MV_ML.schema.yaml
+  - schema: informatica 
+    name: RE_STAT_LINE_CONT_PRFT_CONSOL_KEY
+    query: SELECT * FROM public."RE_STAT_LINE_CONT_PRFT_CONSOL_KEY"
+    schemaRef: ../schemas/RE_STAT_LINE_CONT_PRFT_CONSOL_KEY.schema.yaml
+  - schema: informatica 
+    name: RE_STAT_LINE_CONT_PROFIT_CCY
+    query: SELECT * FROM public."RE_STAT_LINE_CONT_PROFIT_CCY"
+    schemaRef: ../schemas/RE_STAT_LINE_CONT_PROFIT_CCY.schema.yaml
+  - schema: informatica 
+    name: RE_STAT_RANGE
+    query: SELECT * FROM public."RE_STAT_RANGE"
+    schemaRef: ../schemas/RE_STAT_RANGE.schema.yaml
+  - schema: informatica 
+    name: RE_STAT_RANGE_CONSOL_FIELD
+    query: SELECT * FROM public."RE_STAT_RANGE_CONSOL_FIELD"
+    schemaRef: ../schemas/RE_STAT_RANGE_CONSOL_FIELD.schema.yaml
+  - schema: informatica 
+    name: RE_STAT_RANGE_DATE_TIME
+    query: SELECT * FROM public."RE_STAT_RANGE_DATE_TIME"
+    schemaRef: ../schemas/RE_STAT_RANGE_DATE_TIME.schema.yaml
+  - schema: informatica 
+    name: RE_STAT_RANGE_INPUTTER
+    query: SELECT * FROM public."RE_STAT_RANGE_INPUTTER"
+    schemaRef: ../schemas/RE_STAT_RANGE_INPUTTER.schema.yaml
+  - schema: informatica 
+    name: RE_STAT_RANGE_ML
+    query: SELECT * FROM public."RE_STAT_RANGE_ML"
+    schemaRef: ../schemas/RE_STAT_RANGE_ML.schema.yaml
+  - schema: informatica 
+    name: RE_STAT_RANGE_REPORT_LINE
+    query: SELECT * FROM public."RE_STAT_RANGE_REPORT_LINE"
+    schemaRef: ../schemas/RE_STAT_RANGE_REPORT_LINE.schema.yaml
+  - schema: informatica 
+    name: RE_STAT_RANGE_REPORT_NAME
+    query: SELECT * FROM public."RE_STAT_RANGE_REPORT_NAME"
+    schemaRef: ../schemas/RE_STAT_RANGE_REPORT_NAME.schema.yaml
+  - schema: informatica 
+    name: RE_STAT_RANGE_START_RANGE
+    query: SELECT * FROM public."RE_STAT_RANGE_START_RANGE"
+    schemaRef: ../schemas/RE_STAT_RANGE_START_RANGE.schema.yaml
+  - schema: informatica 
+    name: RE_STAT_REP_LINE
+    query: SELECT * FROM public."RE_STAT_REP_LINE"
+    schemaRef: ../schemas/RE_STAT_REP_LINE.schema.yaml
+  - schema: informatica 
+    name: RE_STAT_REP_LINE_ASSET_APPLIC_ID
+    query: SELECT * FROM public."RE_STAT_REP_LINE_ASSET_APPLIC_ID"
+    schemaRef: ../schemas/RE_STAT_REP_LINE_ASSET_APPLIC_ID.schema.yaml
+  - schema: informatica 
+    name: RE_STAT_REP_LINE_DATE_TIME
+    query: SELECT * FROM public."RE_STAT_REP_LINE_DATE_TIME"
+    schemaRef: ../schemas/RE_STAT_REP_LINE_DATE_TIME.schema.yaml
+  - schema: informatica 
+    name: RE_STAT_REP_LINE_INPUTTER
+    query: SELECT * FROM public."RE_STAT_REP_LINE_INPUTTER"
+    schemaRef: ../schemas/RE_STAT_REP_LINE_INPUTTER.schema.yaml
+  - schema: informatica 
+    name: RE_STAT_REP_LINE_LINE_DESC_CZ
+    query: SELECT * FROM public."RE_STAT_REP_LINE_LINE_DESC_CZ"
+    schemaRef: ../schemas/RE_STAT_REP_LINE_LINE_DESC_CZ.schema.yaml
+  - schema: informatica 
+    name: RE_STAT_REP_LINE_MV_ML
+    query: SELECT * FROM public."RE_STAT_REP_LINE_MV_ML"
+    schemaRef: ../schemas/RE_STAT_REP_LINE_MV_ML.schema.yaml
+  - schema: informatica 
+    name: RE_STAT_REP_LINE_OVERRIDE
+    query: SELECT * FROM public."RE_STAT_REP_LINE_OVERRIDE"
+    schemaRef: ../schemas/RE_STAT_REP_LINE_OVERRIDE.schema.yaml
+  - schema: informatica 
+    name: RE_STAT_REP_LINE_PROFT_APPLIC_ID
+    query: SELECT * FROM public."RE_STAT_REP_LINE_PROFT_APPLIC_ID"
+    schemaRef: ../schemas/RE_STAT_REP_LINE_PROFT_APPLIC_ID.schema.yaml
+  - schema: informatica 
+    name: RE_STAT_REP_LINE_TOTAL_ACCUM
+    query: SELECT * FROM public."RE_STAT_REP_LINE_TOTAL_ACCUM"
+    schemaRef: ../schemas/RE_STAT_REP_LINE_TOTAL_ACCUM.schema.yaml
+  - schema: informatica 
+    name: RE_TXN_CODE
+    query: SELECT * FROM public."RE_TXN_CODE"
+    schemaRef: ../schemas/RE_TXN_CODE.schema.yaml
+  - schema: informatica 
+    name: RE_TXN_CODE_DATE_TIME
+    query: SELECT * FROM public."RE_TXN_CODE_DATE_TIME"
+    schemaRef: ../schemas/RE_TXN_CODE_DATE_TIME.schema.yaml
+  - schema: informatica 
+    name: RE_TXN_CODE_INPUTTER
+    query: SELECT * FROM public."RE_TXN_CODE_INPUTTER"
+    schemaRef: ../schemas/RE_TXN_CODE_INPUTTER.schema.yaml
+  - schema: informatica 
+    name: RE_TXN_CODE_LOCAL_REF
+    query: SELECT * FROM public."RE_TXN_CODE_LOCAL_REF"
+    schemaRef: ../schemas/RE_TXN_CODE_LOCAL_REF.schema.yaml
+  - schema: informatica 
+    name: RE_TXN_CODE_ML
+    query: SELECT * FROM public."RE_TXN_CODE_ML"
+    schemaRef: ../schemas/RE_TXN_CODE_ML.schema.yaml
+  - schema: informatica 
+    name: SDS_DELETE_LOG_MGMT
+    query: SELECT * FROM public."SDS_DELETE_LOG_MGMT"
+    schemaRef: ../schemas/SDS_DELETE_LOG_MGMT.schema.yaml
+  - schema: informatica 
+    name: ST_KB_ESA_SECTOR
+    query: SELECT * FROM public."ST_KB_ESA_SECTOR"
+    schemaRef: ../schemas/ST_KB_ESA_SECTOR.schema.yaml
+  - schema: informatica 
+    name: ST_KB_ESA_SECTOR_DATE_TIME
+    query: SELECT * FROM public."ST_KB_ESA_SECTOR_DATE_TIME"
+    schemaRef: ../schemas/ST_KB_ESA_SECTOR_DATE_TIME.schema.yaml
+  - schema: informatica 
+    name: ST_KB_ESA_SECTOR_INPUTTER
+    query: SELECT * FROM public."ST_KB_ESA_SECTOR_INPUTTER"
+    schemaRef: ../schemas/ST_KB_ESA_SECTOR_INPUTTER.schema.yaml
+  - schema: informatica 
+    name: ST_KB_ESA_SECTOR_OVERRIDE
+    query: SELECT * FROM public."ST_KB_ESA_SECTOR_OVERRIDE"
+    schemaRef: ../schemas/ST_KB_ESA_SECTOR_OVERRIDE.schema.yaml
+  - schema: informatica 
+    name: ST_KBWW_UA_REGISTRY
+    query: SELECT * FROM public."ST_KBWW_UA_REGISTRY"
+    schemaRef: ../schemas/ST_KBWW_UA_REGISTRY.schema.yaml
+  - schema: informatica 
+    name: ST_KBWW_UA_REGISTRY_DATE_TIME
+    query: SELECT * FROM public."ST_KBWW_UA_REGISTRY_DATE_TIME"
+    schemaRef: ../schemas/ST_KBWW_UA_REGISTRY_DATE_TIME.schema.yaml
+  - schema: informatica 
+    name: ST_KBWW_UA_REGISTRY_INPUTTER
+    query: SELECT * FROM public."ST_KBWW_UA_REGISTRY_INPUTTER"
+    schemaRef: ../schemas/ST_KBWW_UA_REGISTRY_INPUTTER.schema.yaml
+  - schema: informatica 
+    name: ST_KBWW_UA_REGISTRY_LOCAL_REF
+    query: SELECT * FROM public."ST_KBWW_UA_REGISTRY_LOCAL_REF"
+    schemaRef: ../schemas/ST_KBWW_UA_REGISTRY_LOCAL_REF.schema.yaml
+  - schema: informatica 
+    name: ST_KBWW_UA_REGISTRY_OVERRIDE
+    query: SELECT * FROM public."ST_KBWW_UA_REGISTRY_OVERRIDE"
+    schemaRef: ../schemas/ST_KBWW_UA_REGISTRY_OVERRIDE.schema.yaml
+  - schema: informatica 
+    name: STMT_ENTRY
+    query: SELECT * FROM public."STMT_ENTRY"
+    schemaRef: ../schemas/STMT_ENTRY.schema.yaml
+  - schema: informatica 
+    name: STMT_ENTRY_DETAIL
+    query: SELECT * FROM public."STMT_ENTRY_DETAIL"
+    schemaRef: ../schemas/STMT_ENTRY_DETAIL.schema.yaml
+  - schema: informatica 
+    name: STMT_ENTRY_DETAIL_ACCRUAL_DATA
+    query: SELECT * FROM public."STMT_ENTRY_DETAIL_ACCRUAL_DATA"
+    schemaRef: ../schemas/STMT_ENTRY_DETAIL_ACCRUAL_DATA.schema.yaml
+  - schema: informatica 
+    name: STMT_ENTRY_DETAIL_ADD_DETAIL_NAME
+    query: SELECT * FROM public."STMT_ENTRY_DETAIL_ADD_DETAIL_NAME"
+    schemaRef: ../schemas/STMT_ENTRY_DETAIL_ADD_DETAIL_NAME.schema.yaml
+  - schema: informatica 
+    name: STMT_ENTRY_DETAIL_ADD_DETAIL_VALUE
+    query: SELECT * FROM public."STMT_ENTRY_DETAIL_ADD_DETAIL_VALUE"
+    schemaRef: ../schemas/STMT_ENTRY_DETAIL_ADD_DETAIL_VALUE.schema.yaml
+  - schema: informatica 
+    name: STMT_ENTRY_DETAIL_ADDL_TRANS_REF
+    query: SELECT * FROM public."STMT_ENTRY_DETAIL_ADDL_TRANS_REF"
+    schemaRef: ../schemas/STMT_ENTRY_DETAIL_ADDL_TRANS_REF.schema.yaml
+  - schema: informatica 
+    name: STMT_ENTRY_DETAIL_BANK_SORT_CDE
+    query: SELECT * FROM public."STMT_ENTRY_DETAIL_BANK_SORT_CDE"
+    schemaRef: ../schemas/STMT_ENTRY_DETAIL_BANK_SORT_CDE.schema.yaml
+  - schema: informatica 
+    name: STMT_ENTRY_DETAIL_CARD_TXN_DETAIL
+    query: SELECT * FROM public."STMT_ENTRY_DETAIL_CARD_TXN_DETAIL"
+    schemaRef: ../schemas/STMT_ENTRY_DETAIL_CARD_TXN_DETAIL.schema.yaml
+  - schema: informatica 
+    name: STMT_ENTRY_DETAIL_CREDIT_CHK_DTLS_NAME
+    query: SELECT * FROM public."STMT_ENTRY_DETAIL_CREDIT_CHK_DTLS_NAME"
+    schemaRef: ../schemas/STMT_ENTRY_DETAIL_CREDIT_CHK_DTLS_NAME.schema.yaml
+  - schema: informatica 
+    name: STMT_ENTRY_DETAIL_DATE_TIME
+    query: SELECT * FROM public."STMT_ENTRY_DETAIL_DATE_TIME"
+    schemaRef: ../schemas/STMT_ENTRY_DETAIL_DATE_TIME.schema.yaml
+  - schema: informatica 
+    name: STMT_ENTRY_DETAIL_EXP_SPLIT_DATE
+    query: SELECT * FROM public."STMT_ENTRY_DETAIL_EXP_SPLIT_DATE"
+    schemaRef: ../schemas/STMT_ENTRY_DETAIL_EXP_SPLIT_DATE.schema.yaml
+  - schema: informatica 
+    name: STMT_ENTRY_DETAIL_EXTERNAL_SEPA_ID
+    query: SELECT * FROM public."STMT_ENTRY_DETAIL_EXTERNAL_SEPA_ID"
+    schemaRef: ../schemas/STMT_ENTRY_DETAIL_EXTERNAL_SEPA_ID.schema.yaml
+  - schema: informatica 
+    name: STMT_ENTRY_DETAIL_INPUTTER
+    query: SELECT * FROM public."STMT_ENTRY_DETAIL_INPUTTER"
+    schemaRef: ../schemas/STMT_ENTRY_DETAIL_INPUTTER.schema.yaml
+  - schema: informatica 
+    name: STMT_ENTRY_DETAIL_LOCAL_REF
+    query: SELECT * FROM public."STMT_ENTRY_DETAIL_LOCAL_REF"
+    schemaRef: ../schemas/STMT_ENTRY_DETAIL_LOCAL_REF.schema.yaml
+  - schema: informatica 
+    name: STMT_ENTRY_DETAIL_NARRATIVE
+    query: SELECT * FROM public."STMT_ENTRY_DETAIL_NARRATIVE"
+    schemaRef: ../schemas/STMT_ENTRY_DETAIL_NARRATIVE.schema.yaml
+  - schema: informatica 
+    name: STMT_ENTRY_DETAIL_OVERRIDE
+    query: SELECT * FROM public."STMT_ENTRY_DETAIL_OVERRIDE"
+    schemaRef: ../schemas/STMT_ENTRY_DETAIL_OVERRIDE.schema.yaml
+  - schema: informatica 
+    name: STMT_ENTRY_DETAIL_PC_PERIOD_END
+    query: SELECT * FROM public."STMT_ENTRY_DETAIL_PC_PERIOD_END"
+    schemaRef: ../schemas/STMT_ENTRY_DETAIL_PC_PERIOD_END.schema.yaml
+  - schema: informatica 
+    name: STMT_ENTRY_DETAIL_XREF
+    query: SELECT * FROM public."STMT_ENTRY_DETAIL_XREF"
+    schemaRef: ../schemas/STMT_ENTRY_DETAIL_XREF.schema.yaml
+  - schema: informatica 
+    name: STMT_ENTRY_DETAIL_XREF_DETAIL_ID
+    query: SELECT * FROM public."STMT_ENTRY_DETAIL_XREF_DETAIL_ID"
+    schemaRef: ../schemas/STMT_ENTRY_DETAIL_XREF_DETAIL_ID.schema.yaml
+  - schema: informatica 
+    name: STMT_ENTRY_INPUTTER
+    query: SELECT * FROM public."STMT_ENTRY_INPUTTER"
+    schemaRef: ../schemas/STMT_ENTRY_INPUTTER.schema.yaml
+  - schema: informatica 
+    name: STMT_ENTRY_NARRATIVE
+    query: SELECT * FROM public."STMT_ENTRY_NARRATIVE"
+    schemaRef: ../schemas/STMT_ENTRY_NARRATIVE.schema.yaml
+  - schema: informatica 
+    name: TAX
+    query: SELECT * FROM public."TAX"
+    schemaRef: ../schemas/TAX.schema.yaml
+  - schema: informatica 
+    name: TAX_CALC_TYPE
+    query: SELECT * FROM public."TAX_CALC_TYPE"
+    schemaRef: ../schemas/TAX_CALC_TYPE.schema.yaml
+  - schema: informatica 
+    name: TAX_CURRENCY
+    query: SELECT * FROM public."TAX_CURRENCY"
+    schemaRef: ../schemas/TAX_CURRENCY.schema.yaml
+  - schema: informatica 
+    name: TAX_DATE_TIME
+    query: SELECT * FROM public."TAX_DATE_TIME"
+    schemaRef: ../schemas/TAX_DATE_TIME.schema.yaml
+  - schema: informatica 
+    name: TAX_INPUTTER
+    query: SELECT * FROM public."TAX_INPUTTER"
+    schemaRef: ../schemas/TAX_INPUTTER.schema.yaml
+  - schema: informatica 
+    name: TAX_LINK_TAX
+    query: SELECT * FROM public."TAX_LINK_TAX"
+    schemaRef: ../schemas/TAX_LINK_TAX.schema.yaml
+  - schema: informatica 
+    name: TAX_ML
+    query: SELECT * FROM public."TAX_ML"
+    schemaRef: ../schemas/TAX_ML.schema.yaml
+  - schema: informatica 
+    name: TAX_OVERRIDE
+    query: SELECT * FROM public."TAX_OVERRIDE"
+    schemaRef: ../schemas/TAX_OVERRIDE.schema.yaml
+  - schema: informatica 
+    name: TAX_TYPE
+    query: SELECT * FROM public."TAX_TYPE"
+    schemaRef: ../schemas/TAX_TYPE.schema.yaml
+  - schema: informatica 
+    name: TAX_TYPE_CONDITION
+    query: SELECT * FROM public."TAX_TYPE_CONDITION"
+    schemaRef: ../schemas/TAX_TYPE_CONDITION.schema.yaml
+  - schema: informatica 
+    name: TAX_TYPE_CONDITION_CONTRACT_GRP
+    query: SELECT * FROM public."TAX_TYPE_CONDITION_CONTRACT_GRP"
+    schemaRef: ../schemas/TAX_TYPE_CONDITION_CONTRACT_GRP.schema.yaml
+  - schema: informatica 
+    name: TAX_TYPE_CONDITION_CUST_TAX_GRP
+    query: SELECT * FROM public."TAX_TYPE_CONDITION_CUST_TAX_GRP"
+    schemaRef: ../schemas/TAX_TYPE_CONDITION_CUST_TAX_GRP.schema.yaml
+  - schema: informatica 
+    name: TAX_TYPE_CONDITION_DATE_TIME
+    query: SELECT * FROM public."TAX_TYPE_CONDITION_DATE_TIME"
+    schemaRef: ../schemas/TAX_TYPE_CONDITION_DATE_TIME.schema.yaml
+  - schema: informatica 
+    name: TAX_TYPE_CONDITION_INPUTTER
+    query: SELECT * FROM public."TAX_TYPE_CONDITION_INPUTTER"
+    schemaRef: ../schemas/TAX_TYPE_CONDITION_INPUTTER.schema.yaml
+  - schema: informatica 
+    name: TAX_TYPE_CONDITION_LOCAL_REF
+    query: SELECT * FROM public."TAX_TYPE_CONDITION_LOCAL_REF"
+    schemaRef: ../schemas/TAX_TYPE_CONDITION_LOCAL_REF.schema.yaml
+  - schema: informatica 
+    name: TAX_TYPE_CONDITION_ML
+    query: SELECT * FROM public."TAX_TYPE_CONDITION_ML"
+    schemaRef: ../schemas/TAX_TYPE_CONDITION_ML.schema.yaml
+  - schema: informatica 
+    name: TAX_TYPE_DATE_TIME
+    query: SELECT * FROM public."TAX_TYPE_DATE_TIME"
+    schemaRef: ../schemas/TAX_TYPE_DATE_TIME.schema.yaml
+  - schema: informatica 
+    name: TAX_TYPE_INPUTTER
+    query: SELECT * FROM public."TAX_TYPE_INPUTTER"
+    schemaRef: ../schemas/TAX_TYPE_INPUTTER.schema.yaml
+  - schema: informatica 
+    name: TAX_TYPE_ML
+    query: SELECT * FROM public."TAX_TYPE_ML"
+    schemaRef: ../schemas/TAX_TYPE_ML.schema.yaml
+  - schema: informatica 
+    name: TRANSACTION
+    query: SELECT * FROM public."TRANSACTION"
+    schemaRef: ../schemas/TRANSACTION.schema.yaml
+  - schema: informatica 
+    name: TRANSACTION_COMBINE_TXN
+    query: SELECT * FROM public."TRANSACTION_COMBINE_TXN"
+    schemaRef: ../schemas/TRANSACTION_COMBINE_TXN.schema.yaml
+  - schema: informatica 
+    name: TRANSACTION_DATE_TIME
+    query: SELECT * FROM public."TRANSACTION_DATE_TIME"
+    schemaRef: ../schemas/TRANSACTION_DATE_TIME.schema.yaml
+  - schema: informatica 
+    name: TRANSACTION_CHARGE_KEY
+    query: SELECT * FROM public."TRANSACTION_CHARGE_KEY"
+    schemaRef: ../schemas/TRANSACTION_CHARGE_KEY.schema.yaml
+  - schema: informatica 
+    name: TRANSACTION_INPUTTER
+    query: SELECT * FROM public."TRANSACTION_INPUTTER"
+    schemaRef: ../schemas/TRANSACTION_INPUTTER.schema.yaml
+  - schema: informatica 
+    name: TRANSACTION_LOCAL_REF
+    query: SELECT * FROM public."TRANSACTION_LOCAL_REF"
+    schemaRef: ../schemas/TRANSACTION_LOCAL_REF.schema.yaml
+  - schema: informatica 
+    name: TRANSACTION_ML
+    query: SELECT * FROM public."TRANSACTION_ML"
+    schemaRef: ../schemas/TRANSACTION_ML.schema.yaml
+  - schema: load_shin_t24 
+    name: V_Last_Date_Valid
+    query: SELECT * FROM public."V_Last_Date_Valid"
+    schemaRef: ../schemas/V_Last_Date_Valid.schema.yaml
+output:
+  s3Prefix: runs
+runtime:
+  tablesPerPod: 20
+  profile: large
+

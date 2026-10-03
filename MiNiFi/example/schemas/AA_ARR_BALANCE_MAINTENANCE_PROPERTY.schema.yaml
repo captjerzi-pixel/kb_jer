@@ -1,0 +1,29 @@
+schemaVersion: 1
+description: generated from informatica.
+allowExtraColumns: true
+strictColumnOrder: false
+columns:
+  - { name: RECID, type: string } 
+  - { name: MV_REF, type: string } 
+  - { name: SV_REF, type: string } 
+  - { name: BANKING_DATE_DL, type: date } 
+  - { name: SDS_COMPANY_CODE, type: string } 
+  - { name: SDS_MNEMONIC, type: string } 
+  - { name: PROPERTY, type: string } 
+  - { name: WOF_PROPERTY, type: string } 
+  - { name: OR_PROP_AMT, type: decimal } 
+  - { name: OS_PROP_AMT, type: decimal } 
+  - { name: NEW_PROP_AMT, type: decimal } 
+  - { name: ADJ_PROP_AMT, type: decimal } 
+  - { name: OS_SUS_PROP_AMT, type: decimal } 
+  - { name: NEW_SUS_PROP_AMT, type: decimal } 
+  - { name: ADJ_SUS_PROP_AMT, type: decimal } 
+  - { name: OR_BANK_AMT, type: decimal } 
+  - { name: OS_BANK_AMT, type: decimal } 
+  - { name: NEW_BANK_AMT, type: decimal } 
+  - { name: ADJ_BANK_AMT, type: decimal } 
+  - { name: AMORT_END_DATE, type: date } 
+  - { name: OS_AMORT_AMT, type: decimal } 
+  - { name: NEW_AMORT_AMT, type: decimal } 
+  - { name: ADJ_AMORT_AMT, type: decimal } 
+

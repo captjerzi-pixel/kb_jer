@@ -1,0 +1,22 @@
+schemaVersion: 1
+description: generated from informatica.
+allowExtraColumns: true
+strictColumnOrder: false
+columns:
+  - { name: RECID, type: string } 
+  - { name: CURR_OD_STATUS, type: string } 
+  - { name: CURR_OD_START_DATE, type: date } 
+  - { name: CURR_OD_DAYS, type: string } 
+  - { name: OVERDRAWN_AMT, type: decimal } 
+  - { name: THRESHOLD_AMT, type: decimal } 
+  - { name: OD_FEE_DATE, type: date } 
+  - { name: RESERVED_5, type: string } 
+  - { name: RESERVED_4, type: string } 
+  - { name: RESERVED_3, type: string } 
+  - { name: RESERVED_2, type: string } 
+  - { name: RESERVED_1, type: string } 
+  - { name: CREATION_TIME_DL, type: decimal } 
+  - { name: BANKING_DATE_DL, type: date } 
+  - { name: SDS_COMPANY_CODE, type: string } 
+  - { name: SDS_MNEMONIC, type: string } 
+

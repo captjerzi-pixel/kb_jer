@@ -1,0 +1,58 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: minifi-java-parquet-runtime
+  namespace: ci
+  labels:
+    app.kubernetes.io/name: minifi-java-parquet-ingestion
+    app.kubernetes.io/component: teradata-example
+    minifi.kb.cz/source-type: jdbc-teradata
+data:
+  DATABASE_URL: "jdbc:teradata://teradata.example.ds.kb.cz/DATABASE=source_db"
+  DATABASE_DRIVER_CLASS: "com.teradata.jdbc.TeraDriver"
+  DATABASE_DRIVER_LOCATION: "/opt/minifi/jdbc-drivers/teradata-jdbc.jar"
+  DATABASE_VALIDATION_QUERY: "SELECT 1"
+  SQL_SELECT_QUERY: >-
+    SELECT * FROM source_db.source_table
+  FETCH_SIZE: "50000"
+  MAX_ROWS_PER_FLOW_FILE: "50000"
+  OUTPUT_BATCH_SIZE: "5"
+  MAX_TIMER_DRIVEN_THREAD_COUNT: "32"
+  EXECUTE_SQL_CONCURRENCY: "1"
+  UPDATE_ATTRIBUTE_CONCURRENCY: "4"
+  S3_UPLOAD_CONCURRENCY: "10"
+  S3_REGION_SELECTOR: "use-custom-region"
+  S3_REGION: "us-east-1"
+  S3_PREFIX: "runs"
+  RUN_TIMESTAMP: "20260918T000000Z"
+  TABLE_SCHEMA: "source_db"
+  TABLE_NAME: "source_table"
+  CHECKPOINT_ROOT: "/checkpoints/runs"
+  S3_RETRY_COUNT: "10"
+  S3_COMMUNICATIONS_TIMEOUT: "60 secs"
+  S3_MULTIPART_THRESHOLD: "256 MB"
+  S3_MULTIPART_PART_SIZE: "128 MB"
+  S3_USE_CHUNKED_ENCODING: "false"
+  S3_USE_PATH_STYLE_ACCESS: "true"
+  S3_TRUSTSTORE_PATH: "/opt/minifi/minifi-current/conf/s3-truststore.p12"
+  S3_TRUSTSTORE_PASSWORD: "changeit"
+  S3_TRUSTSTORE_TYPE: "PKCS12"
+  RUN_SCHEDULE: "24 hours"
+  OUTPUT_FILENAME_PREFIX: "source_table"
+  PARQUET_COMPRESSION: "SNAPPY"
+  PARQUET_ROW_GROUP_SIZE: "128 MB"
+  PARQUET_PAGE_SIZE: "1 MB"
+  HADOOP_CONFIGURATION_RESOURCES: "/opt/minifi/minifi-current/conf/core-site.xml"
+  HADOOP_DEFAULT_FS: "file:///"
+  MINIFI_RUN_DURATION: "12h"
+  NIFI_SENSITIVE_PROPS_KEY: "minifi-java-parquet-sample-key"
+  MINIFI_ROOT_LOG_LEVEL: "INFO"
+  MINIFI_PROCESSOR_LOG_LEVEL: "WARN"
+  MINIFI_STATUS_PERIOD_SECONDS: "60"
+  MINIFI_JOB_POLL_SECONDS: "30"
+  MINIFI_JOB_IDLE_CHECKS: "3"
+  MINIFI_STATUS_QUERIES: |-
+    instance:health
+    processor:all:health
+    processor:all:stats
+    connection:all:stats
